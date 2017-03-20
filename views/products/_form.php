@@ -12,11 +12,11 @@ use moonland\tinymce\TinyMCE;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'cost')->textInput(['maxlength' => true]) ?>
 
-    <?//= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+
     <? echo TinyMCE::widget(['name' => 'text-content']);
 
     $form->field($model, 'description')->widget(TinyMCE::className());
@@ -24,8 +24,14 @@ use moonland\tinymce\TinyMCE;
 
     <?= $form->field($model, 'cashback')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'casino_id')->textInput() ?>
+    <?php $casino_items = $model->getCasinoList();
 
+    $params = [
+        'prompt' => 'Выберите казино'
+    ];
+    echo $form->field($model, 'casino_id')->dropDownList($casino_items,$params);?>
+    <?= $form->field($model, 'meta_keywords')->textarea(['rows' => 3]) ?>
+    <?= $form->field($model, 'meta_description')->textarea(['rows' => 4]) ?>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
