@@ -7,8 +7,22 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'modules' => [
+        /*
+         * TODO: Вызов метода проверки доступа и редиректа в админку
+         */
         'user' => [
             'class' => 'dektrium\user\Module',
+            'controllerMap' => [
+                'security' => [
+                    'class' => \dektrium\user\controllers\SecurityController::className(),
+                    'on ' . \dektrium\user\controllers\SecurityController::EVENT_AFTER_LOGIN => function ($e) {
+
+                        Yii::$app->response->redirect('/admin');
+                        Yii::$app->end();
+
+                    },
+                ],
+            ],
         ],
         'admin' => [
             'class' => 'app\modules\admin\Admin',
