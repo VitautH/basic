@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "products".
  *
  * @property integer $id
- * @property string $name
+ * @property string $title
  * @property string $cost
  * @property string $description
  * @property string $cashback
@@ -32,8 +32,9 @@ class Products extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description'], 'string'],
-            [['cost', 'cashback', 'casino_id'], 'number'],
+            [['title', 'meta_keywords', 'meta_description', 'description'], 'string'],
+            [['cost', 'cashback'], 'string'],
+            [['casino_id'], 'number'],
             [['casino_id'], 'exist', 'skipOnError' => true, 'targetClass' => Casino::className(), 'targetAttribute' => ['casino_id' => 'id']],
         ];
     }
@@ -45,7 +46,9 @@ class Products extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'title' => 'Title',
+            'meta_description' => 'Meta Description',
+            'meta_keywords' => 'Meta Keywords',
             'cost' => 'Cost',
             'description' => 'Description',
             'cashback' => 'Cashback',
