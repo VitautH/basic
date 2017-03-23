@@ -36,10 +36,7 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-//        'user' => [
-//            'identityClass' => 'app\models\User',
-//            'enableAutoLogin' => true,
-//        ],
+
 
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -71,6 +68,9 @@ $config = [
             ],
         ],
         
+    ],
+    'aliases' => [
+        '@img_path' => 'uploads/images'
     ],
     'params' => $params,
 ];
