@@ -70,7 +70,7 @@ $config = [
         
     ],
     'aliases' => [
-        '@img_path' => 'uploads/images/'
+        '@img_path' => 'uploads/images',
     ],
     'params' => $params,
 ];
