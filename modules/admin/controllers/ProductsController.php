@@ -3,18 +3,25 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\Products;
+use app\modules\admin\models\Products;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\modules\controllers;
+use yii\web\UploadedFile;
 /**
  * ProductsController implements the CRUD actions for Products model.
  */
-class ProductsController extends AdminController
+class ProductsController extends Controller
 {
+    public function beforeAction($action)
+    {
 
+        if (empty(Yii::$app->user->identity)) {
+            return false;
+        }
+        return  parent::beforeAction($action);
+    }
     /**
      * @inheritdoc
      */
@@ -66,16 +73,28 @@ class ProductsController extends AdminController
      */
     public function actionCreate()
     {
+
+
         $model = new Products();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+
+
+
+
+             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+              return $this->render('create', [
+                  'model' => $model,
+             ]);
         }
+
+
+
     }
+
+
+
 
     /**
      * Updates an existing Products model.
@@ -124,4 +143,5 @@ class ProductsController extends AdminController
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 }
