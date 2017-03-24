@@ -8,6 +8,8 @@ use yii\widgets\Pjax;
 
 $this->title = 'Products';
 $this->params['breadcrumbs'][] = $this->title;
+
+
 ?>
 <div class="products-index">
 
@@ -22,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'name',
+            'title',
             'cost',
             'description:ntext',
             'cashback',
