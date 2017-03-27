@@ -30,7 +30,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'title',
-            'city_id',
+            'description',
+            'meta_description',
+            'meta_keywords',
+            'cityName',
             'address_street',
             'phone',
         ],
