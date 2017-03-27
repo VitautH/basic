@@ -25,10 +25,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'title',
+            'casinoName',
             'cost',
             'description:ntext',
             'cashback',
-            // 'casino_id',
+
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
