@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'title',
-            'city_id',
+            'cityName',
             'address_street',
             'phone',
 
