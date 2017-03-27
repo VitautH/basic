@@ -30,10 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'title',
+            'casinoName',
             'cost',
             'description',
             'cashback',
-            'casino_id',
+
         ],
     ]) ?>
 
