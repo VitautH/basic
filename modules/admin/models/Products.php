@@ -2,7 +2,6 @@
 
 namespace app\modules\admin\models;
 
-use phpDocumentor\Reflection\Types\Null_;
 use Yii;
 use app\models\base\Products as BaseProducts;
 use yii\helpers\ArrayHelper;
@@ -13,6 +12,8 @@ use yii\db;
 class Products extends BaseProducts
 {
 public $imageFile;
+
+public $casino_name;
 
     /*
      * Проверка на ввод данных + обязательные поля
@@ -35,10 +36,29 @@ public $imageFile;
  $casino_array = casino::find()->select(['id','title'])->all();
        return $items = ArrayHelper::map($casino_array,'id','title');
     }
-/*
- *  Method  saveImage
- * после  сохранения Продукта
- */
+
+    /*
+    * @return  string getCasinoName
+    */
+
+    public function getCasinoName()
+    {
+        if($this->casino_id !== null) {
+            $connection = Yii::$app->db;
+            $this->casino_name = $connection->createCommand("SELECT id, title FROM casino WHERE id = $this->casino_id")->queryOne();
+            unset($connection);
+
+            return $this->casino_name['title'];
+        }
+        else {
+            return "N/A";
+        }
+    }
+
+    /*
+     *  Method  saveImage
+     * после  сохранения Продукта
+     */
 public function saveImage()
 {
     $imgUpload =  new ImageClass();
