@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'meta_keywords',
             'cityName',
             'address_street',
-            'phone',
+            'phone'
         ],
     ]) ?>
 
