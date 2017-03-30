@@ -1,8 +1,9 @@
 <?php
-
+namespace  app\modules\admin\views\products;
+use Yii;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use  yii\app;
 /* @var $this yii\web\View */
 /* @var $model app\models\Products */
 
@@ -34,8 +35,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'cost',
             'description',
             'cashback',
+            [
+                'attribute' => 'Images',
+                'format' => 'html',
+                'value' => function ($data) {
+                    return Html::img(Yii::getAlias('@web').'/'.Yii::getAlias('@img_path').'/'. $data['Image']['img_url'],
+                        ['width' => '200px']);
+                },
+            ]
 
-        ],
+        ]
+
     ]) ?>
-
 </div>

@@ -34,7 +34,9 @@ use kartik\widgets\FileInput;
     <?= $form->field($model, 'meta_keywords')->textarea(['rows' => 3]) ?>
     <?= $form->field($model, 'meta_description')->textarea(['rows' => 4]) ?>
 
-
+    <?php
+ print_r($this->viewFile);
+    ?>
     <?= $form->field($model, 'imageFile')->fileInput() ?>
 
 

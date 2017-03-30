@@ -132,6 +132,24 @@ $this->deleteImage();
 
     }
     /*
+     * Получение главного изображения  продукта
+     * @return string|null
+     */
+
+    public function getImage()
+    {
+        $connection = Yii::$app->db;
+        $get_img_url = $connection->createCommand("SELECT  id, img_url FROM img_product WHERE product_id =  $this->id AND  main_image= 1")
+            ->queryOne();
+        if (!empty($get_img_url)) {
+            return  $get_img_url;
+        }
+        else {
+            return null;
+        }
+
+    }
+    /*
      * Обновление картинок
      * ToDo: дописать множественное обновление картинок
      */
