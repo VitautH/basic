@@ -24,9 +24,10 @@ use yii\widgets\Breadcrumbs;
 <body>
 <?php $this->beginBody() ?>
 <header>
+    <div class="top">
 <div class="container">
 
-    <div class="top row">
+    <div class="row">
         <div class="phone col-lg-2">
             <span class="glyphicon glyphicon-earphone"></span>
 <span>+7(981)1588513</span>
@@ -38,8 +39,9 @@ use yii\widgets\Breadcrumbs;
         </div>
         <div class="login col-lg-3 col-lg-offset-3">
             <?php
+
             // ToDo: Исправить с false на true! Стиль кнопки в стил ссылки превратить!!!
-            if(!Yii::$app->user->isGuest) {
+            if(Yii::$app->user->isGuest) {
                 ?>
                 <?= Html::a('Войти', ['/login']) ?>
                 |
@@ -49,27 +51,34 @@ use yii\widgets\Breadcrumbs;
             else {
 
 
-               echo  Html::a('Выйти', ['/logout'], ['linkOptions' => ['data-method' => 'post']]);
+                echo  Html::beginForm(['/logout'], 'post')
+                    . Html::submitButton(
+                        'Выйти',
+                        ['class' => 'btn btn-link logout']
+                    )
+                    . Html::endForm();
             }
             ?>
         </div>
+    </div>
+
     </div>
     </div>
     <section class="block_1">
     <div class="container">
 
 
-<nav class="col-lg-12  ">
+<nav class="col-lg-10 col-lg-offset-2 col-md-offset-1 col-sm-offset-0 col-sm-offset-0">
 
     <span class="ico_nav glyphicon glyphicon-menu-hamburger col-lg-1"></span>
             <?php
          Menu::begin();
             echo Menu::widget([
-                'options' => ['class' => 'navbar-nav col-lg-11'],
+                'options' => ['class' => 'navbar-nav col-lg-9'],
                 'items' => [
-                    ['label' => 'о нас', 'url' => ['/site/index']],
-                    ['label' => 'всё о казино минска', 'url' => ['/site/about']],
-                    ['label' => 'всё о казино минска', 'url' => ['/site/about']],
+                    ['label' => 'Новости', 'url' => ['/articles']],
+                    ['label' => 'Казино', 'url' => ['/casino']],
+                    ['label' => 'Продукты', 'url' => ['/products']],
                     ['label' => 'контакты', 'url' => ['/site/contact']]
                 ],
             ]);
@@ -110,20 +119,6 @@ use yii\widgets\Breadcrumbs;
 
 
     </section>
-    <div class="container">
-        <div class="row">
-        <div class="offer">
 
-
-            <div class="col-lg-5">
-<span class="title_1"> Хотите воспользоваться услугой?</span>
-            </div>
-
-            <div class="col-lg-5 col-lg-offset-1">
-                <div class="arrow_box"><a href="#"> Забронировать сейчас</a></div>
-            </div>
-        </div>
-            </div>
-        </div>
 
 </header>

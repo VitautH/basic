@@ -3,16 +3,16 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\Casino;
+use app\models\Articles;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * CasinoController implements the CRUD actions for Casino model.
+ * ArticlesController implements the CRUD actions for Articles model.
  */
-class CasinoController extends AdminController
+class ArticlesController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,13 +30,13 @@ class CasinoController extends AdminController
     }
 
     /**
-     * Lists all Casino models.
+     * Lists all Articles models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Casino::find(),
+            'query' => Articles::find(),
         ]);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class CasinoController extends AdminController
     }
 
     /**
-     * Displays a single Casino model.
+     * Displays a single Articles model.
      * @param integer $id
      * @return mixed
      */
@@ -57,13 +57,13 @@ class CasinoController extends AdminController
     }
 
     /**
-     * Creates a new Casino model.
+     * Creates a new Articles model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Casino();
+        $model = new Articles();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,7 +75,7 @@ class CasinoController extends AdminController
     }
 
     /**
-     * Updates an existing Casino model.
+     * Updates an existing Articles model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,7 +94,7 @@ class CasinoController extends AdminController
     }
 
     /**
-     * Deletes an existing Casino model.
+     * Deletes an existing Articles model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,15 +107,15 @@ class CasinoController extends AdminController
     }
 
     /**
-     * Finds the Casino model based on its primary key value.
+     * Finds the Articles model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Casino the loaded model
+     * @return Articles the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Casino::findOne($id)) !== null) {
+        if (($model = Articles::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

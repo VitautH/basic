@@ -6,15 +6,15 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Казино';
+$this->title = 'Articles';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="casino-index">
+<div class="articles-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Casino', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Articles', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -23,9 +23,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'title',
-            'city_id',
-            'address_street',
-            'phone',
+            'meta_keywords',
+            'meta_description',
+            'brief:ntext',
+            // 'text:ntext',
+            // 'date',
+            // 'category_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

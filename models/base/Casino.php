@@ -43,10 +43,14 @@ class Casino extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'city_id' => 'City ID',
-            'address_street' => 'Address Street',
-            'phone' => 'Phone',
+            'title' => 'Наименование казино',
+            'city_id' => 'Город',
+            'address_street' => 'Адрес',
+            'phone' => 'Телефон',
+            'meta_keywords' => 'Ключевые слова',
+            'meta_description' => 'Мета описание',
+            'description' => 'Описание',
+            'imageFile' => 'Изображение'
         ];
     }
 
