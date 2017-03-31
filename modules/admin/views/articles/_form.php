@@ -19,16 +19,10 @@ use moonland\tinymce\TinyMCE;
     <?= $form->field($model, 'meta_description')->textarea(['maxlength' => true]) ?>
 
 
-    <label class="control-label" for="articles-meta_description">Бриф</label>
-    <? echo TinyMCE::widget(['name' => 'text-content']);
 
-    $form->field($model, 'brief')->widget(TinyMCE::className());
-    ?>
-    <label class="control-label" for="articles-meta_description">Текст новости</label>
-    <? echo TinyMCE::widget(['name' => 'text-content']);
+    <?= $form->field($model, 'brief')->textarea(['rows' => 6]) ?>
 
-    $form->field($model, 'text')->widget(TinyMCE::className());
-    ?>
+    <?= $form->field($model, 'text')->textarea(['rows' => 10]) ?>
 
 
 

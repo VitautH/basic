@@ -8,8 +8,11 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use \yii\widgets\Menu;
 use yii\widgets\Breadcrumbs;
-
-
+// ToDo: Add meta tags
+Yii::$app->view->registerMetaTag([
+    'name' => 'description',
+    'content' => 'Description of the page...'
+] );
 ?>
     <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>" xmlns="http://www.w3.org/1999/html">
@@ -17,6 +20,7 @@ use yii\widgets\Breadcrumbs;
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -88,7 +92,7 @@ use yii\widgets\Breadcrumbs;
 
         <div class="clearfix"></div>
 
-    <img src="image/logo.png" class="logo col-lg-4  col-lg-offset-4"/>
+    <img src="/image/logo.png" class="logo col-lg-4  col-lg-offset-4"/>
 
 
 

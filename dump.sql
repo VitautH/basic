@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Мар 30 2017 г., 22:44
+-- Время создания: Мар 31 2017 г., 14:39
 -- Версия сервера: 5.7.13
 -- Версия PHP: 7.0.8
 
@@ -33,18 +33,19 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `meta_description` varchar(225) NOT NULL,
   `brief` text,
   `text` text,
-  `date` datetime DEFAULT NULL,
+  `date` datetime DEFAULT CURRENT_TIMESTAMP,
   `category_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `articles`
 --
 
 INSERT INTO `articles` (`id`, `title`, `meta_keywords`, `meta_description`, `brief`, `text`, `date`, `category_id`) VALUES
-(1, 'Мобильная платформа. ReactNative', '', '', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ultricies, velit a mollis convallis, dui ligula porttitor augue, eu semper nibh lacus non arcu.Vestibulum interdum dapibus felis nec aliquet. ', '1', NULL, NULL),
+(1, 'Мобильная платформа. ReactNative', 'Go, c++', '', 'Кому нужен Go?\r\n\r\nЯ только сегодня понял, что почти никто толком-то и не понимает, зачем вообще Go нужен. Если коротко, то Go нужен для того, чтобы проектировать robust software. Я не знаю, как правильно перевести это слово на русский, но это скорее всего что-то вроде «надежный». ', 'Так вот, Go сделали, потому что гуглу нужен был инструмент для написания надежного кода. На самом деле не сколько гуглу, сколько Робу Пайку, который последние две декады, как минумум, одержим идеей сделать сишку с каналами и зелеными потоками. Так получилось, что Роб Пайк попал в нормальную компашку с другими штрихами из Bell Labs, крутейшим Russ Cox, Фицпатриком и т.д. Этим ребятам несложно было убедить гугл, что им нужен новый язык и вобщем-то, бабосики они на него выбили.\r\n\r\nТак, это было небольшое лирическое отступление, давайте вернемся к теме. Да, зачем же все-таки гуглу был нужен новый язык? Ну, тут все понятно, давайте послушаем слова самого Роба Пайка:\r\nФишка в том, что наши программисты гуглеры, а не ученые. Это обычно молодые, только выпустившиеся пацаны, которые возможно выучили Java, возможно даже C/C++ и может быть Python. Они не в состоянии понимать пробздетый язык, но мы все равно хотим, чтобы они делали хороший софт. Таким образом, мы даем им легкопонимаемый язык, к которому они быстро привыкнут.', NULL, NULL),
 (2, 'Lorem imsum', 'fgdhdfgh', 'fdghfdgh', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ultricies, velit a mollis convallis, dui ligula porttitor augue, eu semper nibh lacus non arcu.', 'fghsfg', '2017-03-03 00:00:00', NULL),
-(3, 'Инфраструктура Twitter: масштаб ', '', '', 'Twitter пришёл из эпохи, когда в дата-центрах было принято устанавливать оборудование от специализированных производителей.', '1', NULL, NULL);
+(3, 'Кому и зачем все-таки нужен Go?', 'Go, C#, C++', 'С технической стороны, ниша у Go довольно скромная: сеть, утилиты, бэкенды. Если у вас сложные сети или много нод, которые надо как-то навороченным образом оркестрировать, то Go это хороший выбор (судя по опыту CloudFlare). ', 'Twitter пришёл из эпохи, когда в дата-центрах было принято устанавливать оборудование от специализированных производителей.', '1', NULL, NULL),
+(4, 'Паттерны проектировния vs архитектурные паттерны', '', '', 'Добрый день.\r\nНедавно у меня состоялась оживлённая дискуссия на тему есть ли разница между понятиями: паттерн проектирования и архитектурный паттерн.\r\nСуть состояла в том, со слов оппонентов, что — MVC\\MVP — архитектурный паттерн, но Singleton\\Factory — паттерн проектирования.', 'Хотелось бы разобраться: \r\n1. Есть ли разница между понятиями: архитектурный паттерн и паттерн проектирования?\r\n2. Если разница между ними есть, в чём она заключается?\r\n3. Примеры либо же список тех сущностей того что относится к паттернам проектирования и архитектурным паттернам.', '2017-03-31 13:16:21', NULL);
 
 -- --------------------------------------------------------
 
@@ -68,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `casino` (
 --
 
 INSERT INTO `casino` (`id`, `title`, `description`, `meta_keywords`, `meta_description`, `city_id`, `address_street`, `phone`) VALUES
-(1, 'New', '', '', '', NULL, 'ул. Советская', '80335890033'),
+(1, 'New', 'Lorem ipsum amet dolor', 'lorem', 'amet emt', 3, 'ул. Советская', '80335890033'),
 (2, 'Core', '', '', '', 3, '', ''),
 (3, 'Plaza Gold', NULL, 'plaza, casino, gold', 'Lorem ipsum amet', 2, 'г. Минск, ул. Советская, 14 А', '80256357721');
 
@@ -147,16 +148,15 @@ CREATE TABLE IF NOT EXISTS `img_product` (
   `product_id` int(11) NOT NULL,
   `img_url` varchar(255) NOT NULL,
   `main_image` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `img_product`
 --
 
 INSERT INTO `img_product` (`id`, `product_id`, `img_url`, `main_image`) VALUES
-(19, 56, 'd9d932af5ab3b5059d034b84d6345e9a.png', 0),
-(20, 56, '7c6837dacc46a282cf55914fe3ca32fb.png', 0),
-(26, 57, 'caf9e2ae60cde8effdac21bea942d9d0.jpg', 1);
+(26, 57, 'caf9e2ae60cde8effdac21bea942d9d0.jpg', 1),
+(28, 49, '6bc3f1bfa6e28915d88ff130246a931c.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -203,23 +203,23 @@ CREATE TABLE IF NOT EXISTS `products` (
   `description` text,
   `cashback` decimal(5,2) DEFAULT '0.00',
   `casino_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `products`
 --
 
 INSERT INTO `products` (`id`, `title`, `meta_keywords`, `meta_description`, `cost`, `description`, `cashback`, `casino_id`) VALUES
-(47, 'ASP Net', '', '', '55.78', NULL, '0.00', 1),
 (48, 'ASP Net', '', '', '55.78', NULL, '0.00', 1),
-(49, 'ASP Net', '', '', '55.78', NULL, '0.00', 1),
+(49, 'Net', 'ddd,f', 'asdfgh', '70.00', NULL, '10.00', 3),
 (50, 'Run TimeType Information', '', '', '50.66', NULL, '5.00', 1),
 (52, 'Run TimeType Information', '', '', '10.50', NULL, '0.00', 1),
 (53, 'Run TimeType Information', '', '', '10.50', NULL, '0.00', 1),
 (54, 'Run TimeType Information', '', '', '50.66', NULL, '0.00', 1),
 (55, 'Run TimeType Information', '', '', '50.66', NULL, '0.00', 1),
 (56, 'Clouser New', '', '', '100.01', NULL, NULL, 1),
-(57, 'Новый продукт2', '', '', '50.66', NULL, NULL, 1);
+(57, 'Новый продукт2', '', '', '50.66', NULL, NULL, 1),
+(58, 'Обеденное меню', 'Аааааа', 'Интересно', '500.00', 'Вкусно поесть', '1.00', 3);
 
 -- --------------------------------------------------------
 
@@ -342,7 +342,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `email`, `phone`, `name`, `firstname`, `lastname`, `role_id`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `last_login_at`) VALUES
-(1, 'vitaut', 'ip-94@ya.ru', '', '', '', '', 1, '$2y$10$u7Z6MG5HwenHT9aAqg8N8ugbCCv6cbVQO5up3cGIzbkFukkZejh1O', 'Lz6pP08anJExk94hby7SD2ZqbJh4W96X', 1489653630, NULL, NULL, '127.0.0.1', 1489653206, 1489653206, 1, 1490903016),
+(1, 'vitaut', 'ip-94@ya.ru', '', '', '', '', 1, '$2y$10$u7Z6MG5HwenHT9aAqg8N8ugbCCv6cbVQO5up3cGIzbkFukkZejh1O', 'Lz6pP08anJExk94hby7SD2ZqbJh4W96X', 1489653630, NULL, NULL, '127.0.0.1', 1489653206, 1489653206, 1, 1490951963),
 (2, 'vitauth', 'ip-94@yandex.ru', '', '', '', '', 1, '$2y$10$DMLyjii5uFPOObNsv.pMx.M.wgkiO.nxi71kIb8XqH.dP6fd7R3xK', 'wQwZxqrCkeuigITdNiVK-wyXBc8y7EIQ', NULL, NULL, NULL, '127.0.0.1', 1489653280, 1489653280, 0, NULL);
 
 -- --------------------------------------------------------
@@ -506,7 +506,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT для таблицы `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT для таблицы `casino`
 --
@@ -536,12 +536,12 @@ ALTER TABLE `img_content`
 -- AUTO_INCREMENT для таблицы `img_product`
 --
 ALTER TABLE `img_product`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT для таблицы `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=59;
 --
 -- AUTO_INCREMENT для таблицы `products_services`
 --

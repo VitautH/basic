@@ -2,41 +2,28 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use yii\web;
 /* @var $this yii\web\View */
 /* @var $model app\models\base\Articles */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Articles', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+// ToDo: Add meta tags;
+//$this->meta_description = $model->meta_description;
+//$this->metakeywords = $model->meta_keywords;
 ?>
-<div class="articles-view">
+<div class="article-view container">
+    <div class="row">
+        <article>
+        <div class="article_container col-lg-9 col-lg-offset-2">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'title',
-            'meta_keywords',
-            'meta_description',
-            'brief:ntext',
-            'text:ntext',
-            'date',
-            'category_id',
-        ],
-    ]) ?>
-
+            <h1><?=$model->title?></h1>
+<div class="content">
+                <?=$model->brief?>
+                <?= $model->text?>
 </div>
+
+        </div>
+        </article>
+    </div>
+</div>
+

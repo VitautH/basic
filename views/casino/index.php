@@ -10,12 +10,12 @@ $this->title = 'Казино';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="casino-index">
-
+<div class="container">
+    <div class="row">
+        <div class="content col-lg-12">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Casino', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
@@ -27,7 +27,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'address_street',
             'phone',
 
-            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-<?php Pjax::end(); ?></div>
+<?php Pjax::end(); ?>
+    </div>
+</div>
+</div>
+</div>
+

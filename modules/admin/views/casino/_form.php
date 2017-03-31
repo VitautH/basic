@@ -14,12 +14,9 @@ use app\modules\admin\models\Casino;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-    <? echo TinyMCE::widget(['name' => 'text-content']);
-
-    $form->field($model, 'description')->widget(TinyMCE::className());
-    ?>
+    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
     <?= $form->field($model, 'meta_keywords')->textarea(['rows' => 3]) ?>
-    <?= $form->field($model, 'meta_description')->textarea(['rows' => 4]) ?>
+    <?= $form->field($model, 'meta_description')->textarea(['rows' => 3]) ?>
 
 
 

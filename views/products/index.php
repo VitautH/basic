@@ -10,7 +10,9 @@ $this->title = 'Продукты';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="products-index">
-
+    <div class="container">
+        <div class="row">
+            <div class="content col-lg-12">
     <h1><?= Html::encode($this->title) ?></h1>
 
 <?php Pjax::begin(); ?>    <?= GridView::widget([
@@ -27,3 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 <?php Pjax::end(); ?></div>
+        </div>
+    </div>
+</div>
+

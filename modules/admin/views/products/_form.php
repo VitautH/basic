@@ -14,14 +14,16 @@ use kartik\widgets\FileInput;
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-
+    <?= $form->field($model, 'meta_keywords')->textarea(['rows' => 3]) ?>
+    <?= $form->field($model, 'meta_description')->textarea(['rows' => 3]) ?>
+    <?= $form->field($model, 'description')->textarea(['rows' => 7]) ?>
     <?= $form->field($model, 'cost')->textInput(['maxlength' => true]) ?>
 
-
-    <? echo TinyMCE::widget(['name' => 'text-content']);
-
-    $form->field($model, 'description')->widget(TinyMCE::className());
-    ?>
+<!---->
+<!--    --><?// echo TinyMCE::widget(['name' => 'description']);
+//
+//    $form->field($model, 'description')->widget(TinyMCE::className());
+//    ?>
 
     <?= $form->field($model, 'cashback')->textInput(['maxlength' => true]) ?>
 
@@ -31,12 +33,9 @@ use kartik\widgets\FileInput;
         'prompt' => 'Выберите казино'
     ];
     echo $form->field($model, 'casino_id')->dropDownList($casino_items,$params);?>
-    <?= $form->field($model, 'meta_keywords')->textarea(['rows' => 3]) ?>
-    <?= $form->field($model, 'meta_description')->textarea(['rows' => 4]) ?>
 
-    <?php
- print_r($this->viewFile);
-    ?>
+
+
     <?= $form->field($model, 'imageFile')->fileInput() ?>
 
 

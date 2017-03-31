@@ -3,13 +3,23 @@
 namespace app\controllers;
 
 use app\models\base\Articles;
-
+use yii\data\ActiveDataProvider;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
 class ArticlesController extends \yii\web\Controller
 {
     public function actionIndex()
     {
-        $articles = Articles::find()->all();
-        return $this->render('index', ['articles' => $articles]);
+//        $articles = Articles::find()->all();
+//        return $this->render('index', ['articles' => $articles]);
+        $dataProvider = new ActiveDataProvider([
+            'query' => Articles::find(),
+        ]);
+
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     public function actionView($id)

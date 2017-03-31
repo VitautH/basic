@@ -209,7 +209,8 @@ article .banner_left {
 article .content {
     background-color: white;
     border-bottom: 1px solid #c4c4c4;
-    padding-bottom: 35px;
+    height: 388px;
+    position: relative;
 }
 
 article .content h1 {
@@ -224,7 +225,8 @@ article .content h1 {
 article .content  h2{
 color:#cc9966;
 font-size:26px;
-
+    line-height: 24px;
+    text-align: left;
 }
 
 article .content p {
@@ -232,30 +234,37 @@ article .content p {
     font-size: 18px;
     text-align: left;
 
+    line-height: 24px;
+    height: 95px;
+    overflow: hidden;
+    margin-top: 25px;
 }
 article .content .news {
     border-right: 1px solid #c4c4c4;
+    height: 289px;
 }
 article .content .end {
     border: none;
+    height: 289px;
 }
 
 article .content span.more{
-
-    margin-top: 25px;
+position:absolute;
+    left: 50%;
+    margin-left: -80px;
+    width: 144px;
+    bottom: 0;
 
 }
 article .content span.more a, article .content span.more a:hover  {
-color:#666666;
+    color: #666666;
     font-size: 14px;
     text-decoration: none;
     text-align: center;
-
     display: block;
     padding-top: 9px;
     padding-bottom: 9px;
     width: 144px;
-
     text-transform: uppercase;
     background-color: #e3e3e3;
     border-radius: 2px;
@@ -264,7 +273,7 @@ color:#666666;
 
 
 article .partner_block{
-    height: 182px;
+    height: 230px;
     background-color: #f3f3f3;
 }
 
@@ -283,4 +292,23 @@ article .partner_block h2 {
 article .bonus_plan {
     background-color: #bcbcbc;
     height: 367px;
+}
+
+/* Article View */
+.article-view article h1 {
+    text-align: center;
+}
+
+.article-view .article_container {
+    background-color: white;
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: justify;
+    padding-bottom: 40px;
+}
+
+/* Other  */
+.products-index .content, .casino-index .content, .site-contact .content {
+    background-color: white;
+    padding: 30px;
 }
