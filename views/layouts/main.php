@@ -16,12 +16,7 @@ AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <?= $this->render('header') ?>
-<!--<div class="container">-->
-<!--    --><?//= Breadcrumbs::widget([
-//        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-//    ]) ?>
-<!--    -->
-<!--</div>-->
+
 <?= $content ?>
 <?= $this->render('footer') ?>
 <?php $this->endPage() ?>

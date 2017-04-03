@@ -35,7 +35,21 @@ $this->params['breadcrumbs'][] = $this->title;
             'meta_keywords',
             'cityName',
             'address_street',
-            'phone'
+            'phone',
+            [
+                'attribute' => 'Images',
+                'format' => 'html',
+                'value' => function ($data) {
+                    if($data['Image']['img_url'] !== null) {
+                        return Html::img(Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' . $data['Image']['img_url'],
+                            ['width' => '200px']);
+                    }
+                    else {
+                        return Html::img(Yii::getAlias('@web') . '/image/noimg.jpg',
+                            ['width' => '100px']);
+                    }
+                },
+            ]
         ],
     ]) ?>
 

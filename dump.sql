@@ -1,11 +1,11 @@
-﻿-- phpMyAdmin SQL Dump
--- version 4.4.15.7
+-- phpMyAdmin SQL Dump
+-- version 4.0.10.6
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Мар 31 2017 г., 14:39
--- Версия сервера: 5.7.13
--- Версия PHP: 7.0.8
+-- Время создания: Апр 03 2017 г., 19:50
+-- Версия сервера: 5.6.22-log
+-- Версия PHP: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- База данных: `casino`
@@ -23,7 +23,24 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- 
+-- Структура таблицы `articles`
+--
+
+CREATE TABLE IF NOT EXISTS `articles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL,
+  `meta_keywords` varchar(225) NOT NULL,
+  `meta_description` varchar(225) NOT NULL,
+  `brief` text,
+  `text` text,
+  `date` datetime DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `articles_category_fk` (`category_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Дамп данных таблицы `articles`
 --
 
 INSERT INTO `articles` (`id`, `title`, `meta_keywords`, `meta_description`, `brief`, `text`, `date`, `category_id`) VALUES
@@ -39,15 +56,17 @@ INSERT INTO `articles` (`id`, `title`, `meta_keywords`, `meta_description`, `bri
 --
 
 CREATE TABLE IF NOT EXISTS `casino` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(225) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `meta_keywords` varchar(255) DEFAULT NULL,
   `meta_description` varchar(255) DEFAULT NULL,
   `city_id` int(11) DEFAULT NULL,
   `address_street` varchar(225) DEFAULT NULL,
-  `phone` varchar(225) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  `phone` varchar(225) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `casino_city_fk` (`city_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Дамп данных таблицы `casino`
@@ -56,7 +75,8 @@ CREATE TABLE IF NOT EXISTS `casino` (
 INSERT INTO `casino` (`id`, `title`, `description`, `meta_keywords`, `meta_description`, `city_id`, `address_street`, `phone`) VALUES
 (1, 'New', 'Lorem ipsum amet dolor', 'lorem', 'amet emt', 3, 'ул. Советская', '80335890033'),
 (2, 'Core', '', '', '', 3, '', ''),
-(3, 'Plaza Gold', NULL, 'plaza, casino, gold', 'Lorem ipsum amet', 2, 'г. Минск, ул. Советская, 14 А', '80256357721');
+(3, 'Plaza Gold', '', 'plaza, casino, gold', 'Lorem ipsum amet', 2, 'г. Минск, ул. Советская, 14 А', '80256357721'),
+(4, 'Diamond', '', '', '', 1, '', '');
 
 -- --------------------------------------------------------
 
@@ -65,11 +85,12 @@ INSERT INTO `casino` (`id`, `title`, `description`, `meta_keywords`, `meta_descr
 --
 
 CREATE TABLE IF NOT EXISTS `categories` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` text,
   `meta_keywords` varchar(255) NOT NULL,
-  `meta_description` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `meta_description` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -78,9 +99,10 @@ CREATE TABLE IF NOT EXISTS `categories` (
 --
 
 CREATE TABLE IF NOT EXISTS `city` (
-  `id` int(11) NOT NULL,
-  `name` text
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Дамп данных таблицы `city`
@@ -98,17 +120,21 @@ INSERT INTO `city` (`id`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `img_casino` (
-  `id` int(10) NOT NULL,
+  `id` int(10) NOT NULL AUTO_INCREMENT,
   `casino_id` int(10) NOT NULL,
-  `img_url` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `img_url` varchar(255) NOT NULL,
+  `main_image` int(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Дамп данных таблицы `img_casino`
 --
 
-INSERT INTO `img_casino` (`id`, `casino_id`, `img_url`) VALUES
-(1, 3, '07c71d7142c7db155245db8966716c4b.jpg');
+INSERT INTO `img_casino` (`id`, `casino_id`, `img_url`, `main_image`) VALUES
+(2, 3, 'ab9c5cc7b0a5f40ab59604bb64b69208.jpg', 1),
+(3, 2, '13a62007faae34985236c9cc945c884d.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -117,10 +143,11 @@ INSERT INTO `img_casino` (`id`, `casino_id`, `img_url`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `img_content` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `article_id` int(11) NOT NULL,
-  `img_url` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `img_url` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -129,11 +156,13 @@ CREATE TABLE IF NOT EXISTS `img_content` (
 --
 
 CREATE TABLE IF NOT EXISTS `img_product` (
-  `id` int(10) NOT NULL,
+  `id` int(10) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `img_url` varchar(255) NOT NULL,
-  `main_image` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+  `main_image` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `product_id` (`product_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
 
 --
 -- Дамп данных таблицы `img_product`
@@ -151,7 +180,8 @@ INSERT INTO `img_product` (`id`, `product_id`, `img_url`, `main_image`) VALUES
 
 CREATE TABLE IF NOT EXISTS `migration` (
   `version` varchar(180) NOT NULL,
-  `apply_time` int(11) DEFAULT NULL
+  `apply_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -180,15 +210,17 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `products` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(225) DEFAULT NULL,
   `meta_keywords` varchar(225) NOT NULL,
   `meta_description` varchar(225) NOT NULL,
   `cost` decimal(5,2) DEFAULT NULL,
   `description` text,
   `cashback` decimal(5,2) DEFAULT '0.00',
-  `casino_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
+  `casino_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `products_casino_fk` (`casino_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=59 ;
 
 --
 -- Дамп данных таблицы `products`
@@ -213,10 +245,13 @@ INSERT INTO `products` (`id`, `title`, `meta_keywords`, `meta_description`, `cos
 --
 
 CREATE TABLE IF NOT EXISTS `products_services` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_service` int(11) DEFAULT NULL,
-  `id_product` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_product` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `products_services_service_fk` (`id_service`),
+  KEY `products_services_product_fk` (`id_product`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -233,7 +268,8 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `location` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `website` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `bio` text COLLATE utf8_unicode_ci,
-  `timezone` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL
+  `timezone` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -251,10 +287,11 @@ INSERT INTO `profile` (`user_id`, `name`, `public_email`, `gravatar_email`, `gra
 --
 
 CREATE TABLE IF NOT EXISTS `services` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(225) DEFAULT NULL,
-  `cost` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `cost` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -263,7 +300,7 @@ CREATE TABLE IF NOT EXISTS `services` (
 --
 
 CREATE TABLE IF NOT EXISTS `social_account` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   `provider` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `client_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -271,8 +308,12 @@ CREATE TABLE IF NOT EXISTS `social_account` (
   `code` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` int(11) DEFAULT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `username` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `username` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `account_unique` (`provider`,`client_id`),
+  UNIQUE KEY `account_unique_code` (`code`),
+  KEY `fk_user_account` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -284,7 +325,8 @@ CREATE TABLE IF NOT EXISTS `token` (
   `user_id` int(11) NOT NULL,
   `code` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` int(11) NOT NULL,
-  `type` smallint(6) NOT NULL
+  `type` smallint(6) NOT NULL,
+  UNIQUE KEY `token_unique` (`user_id`,`code`,`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -302,7 +344,7 @@ INSERT INTO `token` (`user_id`, `code`, `created_at`, `type`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(225) COLLATE utf8_unicode_ci NOT NULL,
@@ -319,15 +361,19 @@ CREATE TABLE IF NOT EXISTS `user` (
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   `flags` int(11) NOT NULL DEFAULT '0',
-  `last_login_at` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `last_login_at` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_unique_username` (`username`),
+  UNIQUE KEY `user_unique_email` (`email`),
+  KEY `role_id` (`role_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Дамп данных таблицы `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `email`, `phone`, `name`, `firstname`, `lastname`, `role_id`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `last_login_at`) VALUES
-(1, 'vitaut', 'ip-94@ya.ru', '', '', '', '', 1, '$2y$10$u7Z6MG5HwenHT9aAqg8N8ugbCCv6cbVQO5up3cGIzbkFukkZejh1O', 'Lz6pP08anJExk94hby7SD2ZqbJh4W96X', 1489653630, NULL, NULL, '127.0.0.1', 1489653206, 1489653206, 1, 1490951963),
+(1, 'vitaut', 'ip-94@ya.ru', '', '', '', '', 1, '$2y$10$u7Z6MG5HwenHT9aAqg8N8ugbCCv6cbVQO5up3cGIzbkFukkZejh1O', 'Lz6pP08anJExk94hby7SD2ZqbJh4W96X', 1489653630, NULL, NULL, '127.0.0.1', 1489653206, 1489653206, 1, 1491218948),
 (2, 'vitauth', 'ip-94@yandex.ru', '', '', '', '', 1, '$2y$10$DMLyjii5uFPOObNsv.pMx.M.wgkiO.nxi71kIb8XqH.dP6fd7R3xK', 'wQwZxqrCkeuigITdNiVK-wyXBc8y7EIQ', NULL, NULL, NULL, '127.0.0.1', 1489653280, 1489653280, 0, NULL);
 
 -- --------------------------------------------------------
@@ -337,12 +383,15 @@ INSERT INTO `user` (`id`, `username`, `email`, `phone`, `name`, `firstname`, `la
 --
 
 CREATE TABLE IF NOT EXISTS `user_payment` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   `product_id` int(11) DEFAULT NULL,
   `amount` decimal(15,2) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `created_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_payment_fk` (`user_id`),
+  KEY `user_payment_product_fk` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -351,9 +400,10 @@ CREATE TABLE IF NOT EXISTS `user_payment` (
 --
 
 CREATE TABLE IF NOT EXISTS `user_role` (
-  `id` int(11) NOT NULL,
-  `name` varchar(225) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(225) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Дамп данных таблицы `user_role`
@@ -362,201 +412,6 @@ CREATE TABLE IF NOT EXISTS `user_role` (
 INSERT INTO `user_role` (`id`, `name`) VALUES
 (1, 'admin');
 
---
--- Индексы сохранённых таблиц
---
-
---
--- Индексы таблицы `articles`
---
-ALTER TABLE `articles`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `articles_category_fk` (`category_id`);
-
---
--- Индексы таблицы `casino`
---
-ALTER TABLE `casino`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `casino_city_fk` (`city_id`);
-
---
--- Индексы таблицы `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
-
---
--- Индексы таблицы `city`
---
-ALTER TABLE `city`
-  ADD PRIMARY KEY (`id`);
-
---
--- Индексы таблицы `img_casino`
---
-ALTER TABLE `img_casino`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`);
-
---
--- Индексы таблицы `img_content`
---
-ALTER TABLE `img_content`
-  ADD PRIMARY KEY (`id`);
-
---
--- Индексы таблицы `img_product`
---
-ALTER TABLE `img_product`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `product_id` (`product_id`);
-
---
--- Индексы таблицы `migration`
---
-ALTER TABLE `migration`
-  ADD PRIMARY KEY (`version`);
-
---
--- Индексы таблицы `products`
---
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `products_casino_fk` (`casino_id`);
-
---
--- Индексы таблицы `products_services`
---
-ALTER TABLE `products_services`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `products_services_service_fk` (`id_service`),
-  ADD KEY `products_services_product_fk` (`id_product`);
-
---
--- Индексы таблицы `profile`
---
-ALTER TABLE `profile`
-  ADD PRIMARY KEY (`user_id`);
-
---
--- Индексы таблицы `services`
---
-ALTER TABLE `services`
-  ADD PRIMARY KEY (`id`);
-
---
--- Индексы таблицы `social_account`
---
-ALTER TABLE `social_account`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `account_unique` (`provider`,`client_id`),
-  ADD UNIQUE KEY `account_unique_code` (`code`),
-  ADD KEY `fk_user_account` (`user_id`);
-
---
--- Индексы таблицы `token`
---
-ALTER TABLE `token`
-  ADD UNIQUE KEY `token_unique` (`user_id`,`code`,`type`);
-
---
--- Индексы таблицы `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `user_unique_username` (`username`),
-  ADD UNIQUE KEY `user_unique_email` (`email`),
-  ADD KEY `role_id` (`role_id`);
-
---
--- Индексы таблицы `user_payment`
---
-ALTER TABLE `user_payment`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_payment_fk` (`user_id`),
-  ADD KEY `user_payment_product_fk` (`product_id`);
-
---
--- Индексы таблицы `user_role`
---
-ALTER TABLE `user_role`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT для сохранённых таблиц
---
-
---
--- AUTO_INCREMENT для таблицы `articles`
---
-ALTER TABLE `articles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT для таблицы `casino`
---
-ALTER TABLE `casino`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT для таблицы `categories`
---
-ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT для таблицы `city`
---
-ALTER TABLE `city`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT для таблицы `img_casino`
---
-ALTER TABLE `img_casino`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT для таблицы `img_content`
---
-ALTER TABLE `img_content`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT для таблицы `img_product`
---
-ALTER TABLE `img_product`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
---
--- AUTO_INCREMENT для таблицы `products`
---
-ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=59;
---
--- AUTO_INCREMENT для таблицы `products_services`
---
-ALTER TABLE `products_services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT для таблицы `services`
---
-ALTER TABLE `services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT для таблицы `social_account`
---
-ALTER TABLE `social_account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT для таблицы `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT для таблицы `user_payment`
---
-ALTER TABLE `user_payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT для таблицы `user_role`
---
-ALTER TABLE `user_role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --

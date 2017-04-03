@@ -277,7 +277,7 @@ article .partner_block{
     background-color: #f3f3f3;
 }
 
-article .bonus_plan_block {
+article .bonus_plan_left_sidebar_block {
     background-color: white;
     height: 367px;
 }
@@ -288,12 +288,98 @@ article .partner_block h2 {
 
     text-align: center;
 }
+article .bonus_plan_left_sidebar_block h3 {
+    color: #333333;
+    font-size: 42px;
+    line-height: 60px;
+    margin-top: 62px;
+    margin-left: 30px;
+}
 
-article .bonus_plan {
+/* Bonus_plan Steps */
+article .bonus_plan_steps {
     background-color: #bcbcbc;
     height: 367px;
 }
+article .bonus_plan_steps .block-top  {
+    height: 118px;
 
+    margin-left: 36px;
+    margin-top: 56px;
+    padding-left: 0;
+    padding-right: 0px;
+}
+article .bonus_plan_steps .block-bottom  {
+    height: 118px;
+
+    margin-left: 36px;
+    margin-top: 25px;
+    padding-left: 0;
+    padding-right: 5px;
+
+}
+article .bonus_plan_steps .block-top .img, article .bonus_plan_steps .block-bottom  .img {
+    width: 120px;
+    height: 117px;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+
+}
+article .bonus_plan_steps .block-top .bonus_plan_steps_content,  article .bonus_plan_steps .block-bottom .bonus_plan_steps_content {
+    background-color: #f1f1f1;
+
+
+    width: 187px;
+    height: 117px;
+    padding: 0;
+    margin: 0;
+    border-right: 5px solid #333333;
+
+}
+article .bonus_plan_steps   .bonus_plan_steps_content h3 {
+    text-align: center;
+    font-size: 40px;
+    color:#666666;
+}
+article .bonus_plan_steps   .bonus_plan_steps_content a {
+    color: #cc9966;
+    font-size: 20px;
+    line-height: 28px;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+    font-weight: bold;
+}
+/* Bottom */
+.bottom .left_block {
+background-image: url('../image/booking.png');
+    background-size: cover;
+    height: 305px;
+}
+.bottom .right_block {
+    background-color: white;
+    height: 305px;
+    border-right: 5px solid #cc9966;
+
+}
+.bottom .right_block h3 {
+color:#cc9966;
+    font-size: 40px;
+    line-height: 36px;
+    margin-top: 23px;
+    margin-left: 11px;
+
+}
+
+.bottom .right_block p {
+    font-size: 18px;
+    line-height: 24px;
+    color: #333333;
+    font-weight: bold;
+    margin-top: 37px;
+    margin-left: 11px;
+}
 /* Article View */
 .article-view article h1 {
     text-align: center;

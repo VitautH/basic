@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Casino;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -62,7 +63,8 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $articles = Articles::find()->limit(3)->all();
-        return $this->render('index', ['articles' => $articles]);
+        $casinos = Casino::find()->limit(4)->all();
+        return $this->render('index', ['articles' => $articles, 'casinos'=> $casinos]);
 
     }
 

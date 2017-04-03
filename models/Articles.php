@@ -25,4 +25,18 @@ use yii\web\UploadedFile;
  */
 class Articles extends BaseArticles
 {
+    public $imageFile;
+    public function rules()
+    {
+        return [
+            [['title'], 'required'],
+            [['brief', 'text'], 'string'],
+            [['date'], 'safe'],
+            [['category_id'], 'integer'],
+            [['title'], 'string', 'max' => 100],
+            [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
+            [['meta_keywords', 'meta_description'], 'string', 'max' => 225],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categories::className(), 'targetAttribute' => ['category_id' => 'id']],
+        ];
+    }
 }

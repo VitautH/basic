@@ -100,7 +100,7 @@ public  function getCityName(){
 
 
             $connection = Yii::$app->db;
-            $connection->createCommand()->delete('img_casino', 'product_id=:id', array(':id' => $this->id))->execute();
+            $connection->createCommand()->delete('img_casino', 'casino_id=:id', array(':id' => $this->id))->execute();
             $connection = null;
         }
 
@@ -123,6 +123,24 @@ public  function getCityName(){
         $connection = Yii::$app->db;
         $get_img_url = $connection->createCommand("SELECT  id, img_url FROM img_casino WHERE casino_id =  $this->id")
             ->queryAll();
+        if (!empty($get_img_url)) {
+            return  $get_img_url;
+        }
+        else {
+            return null;
+        }
+
+    }
+    /*
+    * Получение главного изображения  продукта
+    * @return string|null
+    */
+
+    public function getImage()
+    {
+        $connection = Yii::$app->db;
+        $get_img_url = $connection->createCommand("SELECT  id, img_url FROM img_casino WHERE casino_id =  $this->id AND  main_image= 1")
+            ->queryOne();
         if (!empty($get_img_url)) {
             return  $get_img_url;
         }
