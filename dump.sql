@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.4.15.7
 -- http://www.phpmyadmin.net
 --
@@ -23,22 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `articles`
---
-
-CREATE TABLE IF NOT EXISTS `articles` (
-  `id` int(11) NOT NULL,
-  `title` varchar(100) NOT NULL,
-  `meta_keywords` varchar(225) NOT NULL,
-  `meta_description` varchar(225) NOT NULL,
-  `brief` text,
-  `text` text,
-  `date` datetime DEFAULT CURRENT_TIMESTAMP,
-  `category_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `articles`
+-- 
 --
 
 INSERT INTO `articles` (`id`, `title`, `meta_keywords`, `meta_description`, `brief`, `text`, `date`, `category_id`) VALUES
