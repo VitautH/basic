@@ -276,18 +276,24 @@ article .partner_block{
     height: 230px;
     background-color: #f3f3f3;
 }
-
-article .bonus_plan_left_sidebar_block {
-    background-color: white;
-    height: 367px;
-}
-
 article .partner_block h2 {
     color:#333333;
     font-size: 30px;
 
     text-align: center;
 }
+article .partner_block .silder{
+  margin-top: 30px;
+}
+article .partner_block .silder img{
+    margin-left: 50px;
+}
+article .bonus_plan_left_sidebar_block {
+    background-color: white;
+    height: 367px;
+}
+
+
 article .bonus_plan_left_sidebar_block h3 {
     color: #333333;
     font-size: 42px;
@@ -339,7 +345,7 @@ article .bonus_plan_steps .block-top .bonus_plan_steps_content,  article .bonus_
 }
 article .bonus_plan_steps   .bonus_plan_steps_content h3 {
     text-align: center;
-    font-size: 40px;
+    font-size: 30px;
     color:#666666;
 }
 article .bonus_plan_steps   .bonus_plan_steps_content a {
@@ -357,6 +363,12 @@ background-image: url('../image/booking.png');
     background-size: cover;
     height: 305px;
 }
+.bottom .left_block h3{
+    font-size: 42px;
+    line-height: 60px;
+    color: white;
+    margin-top: 45px;
+}
 .bottom .right_block {
     background-color: white;
     height: 305px;
@@ -371,7 +383,67 @@ color:#cc9966;
     margin-left: 11px;
 
 }
+.bottom .center_block {
 
+    height: 305px;
+    margin: 0;
+    padding: 0;
+}
+.bottom .center_block .block_1{
+    height: 102px;
+    background-color: #cc9966;
+    padding: 0;
+}
+.bottom .center_block .block_2{
+    height: 101px;
+    background-color: #b88047;
+    padding: 0;
+}
+.bottom .center_block .block_3{
+    background-color: #9d6d3c;
+    height: 102px;
+    padding: 0;
+}
+.bottom .center_block .block_1 .icon{
+background-image: url('../image/icon_1.png');
+
+    height: 71px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-left: 42px;
+    margin-top: 15px;
+    padding: 0;
+}
+.bottom .center_block .block_1 h3, .bottom .center_block .block_2 h3, .bottom .center_block .block_3 h3{
+    font-size: 20px;
+    color: white;
+}
+.bottom .center_block .block_2 .icon{
+    background-image: url('../image/icon_2.png');
+    height: 71px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-left: 42px;
+    margin-top: 15px;
+    padding: 0;
+}
+.bottom .center_block .block_3 .icon{
+    background-image: url('../image/icon_3.png');
+    height: 71px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-left: 42px;
+    margin-top: 15px;
+    padding: 0;
+}
+
+.bottom .center_block .block_1 p, .bottom .center_block .block_2 p, .bottom .center_block .block_3 p{
+    font-size: 12px;
+    margin-bottom: 0;
+    line-height: 16px;
+    width: 299px;
+    color: white;
+}
 .bottom .right_block p {
     font-size: 18px;
     line-height: 24px;
@@ -379,6 +451,29 @@ color:#cc9966;
     font-weight: bold;
     margin-top: 37px;
     margin-left: 11px;
+}
+/* Footer */
+footer {
+    background-color: #0b0b0b;
+height: 189px;
+}
+
+footer .footer_menu h3 {
+    color:white;
+    line-height: 24px;
+    font-size: 14px;
+
+}
+footer .footer_menu ul {
+    padding-left: 0;
+    margin-left: 0;
+    margin-top: 20px;
+}
+footer .footer_menu ul > li {
+    color:#666666;
+    font-size: 12px;
+    list-style: none;
+    margin-top: 6px;
 }
 /* Article View */
 .article-view article h1 {

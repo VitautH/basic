@@ -6,11 +6,43 @@ use yii\widgets\Breadcrumbs;
 ?>
 
 
-<footer class="footer">
+<footer>
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+   <div class="row">
+       <div class="col-lg-4">
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+       </div>
+       <div class="col-lg-2 footer_menu">
+           <h3>О компании
+           </h3>
+           <ul>
+               <li>Политика обработки ПД</li>
+               <li>Новости</li>
+               <li>Документы</li>
+               <li>Контакты</li>
+           </ul>
+       </div>
+       <div class="col-lg-2  footer_menu">
+           <h3>О компании
+           </h3>
+           <ul>
+               <li>Политика обработки ПД</li>
+               <li>Новости</li>
+               <li>Документы</li>
+               <li>Контакты</li>
+           </ul>
+       </div>
+       <div class="col-lg-2  footer_menu">
+           <h3>О компании
+           </h3>
+           <ul>
+               <li>Политика обработки ПД</li>
+               <li>Новости</li>
+               <li>Документы</li>
+               <li>Контакты</li>
+           </ul>
+       </div>
+   </div>
     </div>
 </footer>
 

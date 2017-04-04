@@ -48,8 +48,10 @@ $this->title = 'Casino';
 <div class="partner_block col-lg-9">
 <h2>НАШИ ПАРТНЁРЫ</h2>
     <div class="silder">
-        <img src=""/>
-
+       <img src="<?php echo Yii::getAlias('@web').'/'.Yii::getAlias('@img_path')  ?>/sliders/slider_img_1.png"/>
+        <img src="<?php echo Yii::getAlias('@web').'/'.Yii::getAlias('@img_path')  ?>/sliders/slider_img_3.png"/>
+<img src="<?php echo Yii::getAlias('@web').'/'.Yii::getAlias('@img_path')  ?>/sliders/slider_img_2.png"/>
+            <img src="<?php echo Yii::getAlias('@web').'/'.Yii::getAlias('@img_path')  ?>/sliders/slider_img_3.png"/>
     </div>
 </div>
     </div>
@@ -60,7 +62,7 @@ $this->title = 'Casino';
     <br>
     ПОЛУЧИТЬ
     <br>
-    БОНУС ПЛАН
+    БОНУС ПЛАН ?
 </h3>
     </div>
     <div class="bonus_plan_steps col-lg-8">
@@ -100,10 +102,32 @@ $this->title = 'Casino';
 <div class="container bottom">
     <div class="row">
         <div class="left_block col-lg-4">
-
+<h3>
+    ПРЕИМУЩЕСТВА РАННЕГО БРОНИРОВАНИЯ
+</h3>
         </div>
         <div class="center_block col-lg-5">
+<div class="block_1 col-lg-12">
+<div class="icon col-lg-2"></div>
+    <div class="col-lg-8"><h3>ПОЛУЧАЕТЕ НА 10% БОЛЬШЕ</h3>
+        <p>Среди них широкий ассортимент, квалифицированный персонал, привлекательные условия.</p>
+    </div>
+            </div>
+            <div class="block_2 col-lg-12">
+                <div class="icon col-lg-2"></div>
+                <div class="col-lg-8"><h3>ВЫСОКОЕ КАЧЕСТВО УСЛУГ</h3>
+                    <p>
+                        Среди них широкий ассортимент, квалифицированный персонал, привлекательные условия.
+                    </p>
+                </div>
 
+            </div>
+            <div class="block_3 col-lg-12">
+                <div class="icon col-lg-2"></div>
+                <div class="col-lg-8"><h3>ЭКОНОМИТЕ СВОЕ ВРЕМЯ</h3><p>
+                        Среди них широкий ассортимент, квалифицированный персонал, привлекательные условия.
+                    </p></div>
+            </div>
         </div>
         <div class="right_block col-lg-3">
             <h3>
