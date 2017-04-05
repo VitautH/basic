@@ -26,3 +26,4 @@ vendor/codeception/base/tests/data/included_w/src/foo/AcmePack/tests/_support/_g
 vendor/ezyang/htmlpurifier/plugins/phorum/htmlpurifier/
 vendor/yiisoft/yii2/console/runtime/
 
+/views/layouts/old/
