@@ -21,6 +21,12 @@ class ImageClass{
   * (путь к папке загрузки изображений)
   */
  private   $baseImagePath;
+ /*
+  * string @var $folder
+  * параметр, указывающий на папку в $baseimagePath
+  * Пример, 'sliders/' (не забывать '/');
+  */
+ private $folder;
 
 public  function __construct()
 {
@@ -45,15 +51,20 @@ public  function __construct()
     }
     /*
    * Загрузка изображения
+     * resource @var $imgIstance - дескриптор изображения
+   * string @var $folder
+  * параметр, указывающий на папку в $baseimagePath
+  * Пример, 'sliders/' (не забывать '/');
    * @return pathSaveImage
    */
-    public  function uploadImage($imgIstance)
+    public  function uploadImage($imgIstance, $folder)
     {
+        $this->folder= $folder;
         $name = $this->getRandomFileName($imgIstance->extension);
 
-    $imgIstance->saveAs($this->baseImagePath . '/' . $name . '.' . $imgIstance->extension);
+    $imgIstance->saveAs($this->baseImagePath . '/'.$this->folder . $name . '.' . $imgIstance->extension);
 
-     return   $name . '.' . $imgIstance->extension;
+     return   $this->folder. $name . '.' . $imgIstance->extension;
 
 
     }

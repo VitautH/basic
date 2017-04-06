@@ -48,10 +48,13 @@ $this->title = 'Casino';
 <div class="partner_block col-lg-9">
 <h2>НАШИ ПАРТНЁРЫ</h2>
     <div class="silder">
-       <img src="<?php echo Yii::getAlias('@web').'/'.Yii::getAlias('@img_path')  ?>/sliders/slider_img_1.png"/>
-        <img src="<?php echo Yii::getAlias('@web').'/'.Yii::getAlias('@img_path')  ?>/sliders/slider_img_3.png"/>
-<img src="<?php echo Yii::getAlias('@web').'/'.Yii::getAlias('@img_path')  ?>/sliders/slider_img_2.png"/>
-            <img src="<?php echo Yii::getAlias('@web').'/'.Yii::getAlias('@img_path')  ?>/sliders/slider_img_3.png"/>
+        <? foreach ($ourpartner as $key=>$ourpartner) : ?>
+            <img src="<?php echo Yii::getAlias('@web').'/'.Yii::getAlias('@img_path')."/". $ourpartner->img_url?>"/>
+
+
+
+        <?php endforeach; ?>
+
     </div>
 </div>
     </div>

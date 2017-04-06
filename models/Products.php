@@ -14,7 +14,13 @@ class Products extends BaseProducts
 public $imageFile;
 
 public $casino_name;
-
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'products';
+    }
     /*
      * Проверка на ввод данных + обязательные поля
      */

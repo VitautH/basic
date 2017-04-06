@@ -10,7 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Articles;
-
+use app\models\Ourpartner;
 class SiteController extends Controller
 {
     /**
@@ -64,7 +64,8 @@ class SiteController extends Controller
     {
         $articles = Articles::find()->limit(3)->all();
         $casinos = Casino::find()->limit(4)->all();
-        return $this->render('index', ['articles' => $articles, 'casinos'=> $casinos]);
+        $ourpartner= Ourpartner::find()->limit(4)->all();
+        return $this->render('index', ['articles' => $articles, 'casinos'=> $casinos, 'ourpartner' => $ourpartner ]);
 
     }
 
