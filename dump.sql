@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 04 2017 г., 12:27
+-- Время создания: Апр 06 2017 г., 18:27
 -- Версия сервера: 5.6.22-log
 -- Версия PHP: 5.6.3
 
@@ -202,6 +202,31 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 ('m150623_212711_fix_username_notnull', 1489587445),
 ('m151218_234654_add_timezone_to_profile', 1489587445),
 ('m160929_103127_add_last_login_at_to_user_table', 1489587445);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `modules_our_partners`
+--
+
+CREATE TABLE IF NOT EXISTS `modules_our_partners` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `title` varchar(20) NOT NULL,
+  `img_url` varchar(225) NOT NULL,
+  `url` varchar(225) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+
+--
+-- Дамп данных таблицы `modules_our_partners`
+--
+
+INSERT INTO `modules_our_partners` (`id`, `title`, `img_url`, `url`) VALUES
+(9, 'Coffe Berry', 'sliders/1e2a8b4b5b41e09606d004dd5e9a4100.png', 'http://coffe.com'),
+(10, 'Sochi', 'sliders/26ed7fd4350c956bacad0557e5853653.png', 'http://sochi.ru'),
+(11, 'Sochi', 'sliders/c032b155cf1479891495bc58ddf1dd3e.png', 'http://sochi.ru'),
+(12, 'Меридиан', 'sliders/efa75b454176109729e19669f355e63d.png', 'http://meridian.com'),
+(13, 'Platinum', '', 'чmeridian.com');
 
 -- --------------------------------------------------------
 
