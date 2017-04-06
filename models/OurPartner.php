@@ -7,7 +7,7 @@ use yii\helpers\ArrayHelper;
 use app\core\ImageClass;
 use yii\web\UploadedFile;
 
-class OurPartner extends  BaseOurPartner{
+class Ourpartner extends  BaseOurPartner{
     public $imageFile;
 
     /**
