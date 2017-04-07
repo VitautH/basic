@@ -10,14 +10,17 @@ use kartik\widgets\FileInput;
     <div class="col-lg-4">
         <h2>Модуль Наши Партнеры</h2>
         <p>
+            Партнёр месяца может выбран только один.
+            Для Партнёра месяца загружайте, пожалуйста, изображения размером 295 х 618 пиксилей.
 
         </p>
     </div>
     <?php $form = ActiveForm::begin(['options' => ['class' => 'form-horizontal col-lg-8', 'enctype' => 'multipart/form-data']]); ?>
 <?= $form->field($model, 'title')->textInput(['maxlength' => 255])->hint('Введите название партнера')->label(true); ?>
-    <?= $form->field($model, 'url')->textInput(['maxlength' => 255])->hint('Введите url-адрес партнера')->label(true); ?>
+    <?= $form->field($model, 'url')->textInput(['maxlength' => 255])->hint('Например, http://ya.ru')->label(true); ?>
+    <?= $form->field($model, 'main_partner')->checkbox()->label(true); ?>
 
-<?= $form->field($model, 'imageFile')->fileInput() ?>
+<?= $form->field($model, 'imageFile')->fileInput()->label("Изображение");  ?>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

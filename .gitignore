@@ -27,3 +27,4 @@ vendor/ezyang/htmlpurifier/plugins/phorum/htmlpurifier/
 vendor/yiisoft/yii2/console/runtime/
 
 /views/layouts/old/
+/modules/admin/views/articles1/

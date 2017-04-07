@@ -39,7 +39,7 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Продукты', 'url' => ['/admin/products/']],
             ['label' => 'Модули', 'url' => ['/admin/modules/'], 'items' => [
-                ['label' => 'Наши партнёры', 'url' => ['/admin/modules/ourpartner/']
+                ['label' => 'Наши партнёры', 'url' => ['/admin/ourpartner/']
                 ] ]],
             ['label' => 'Новости', 'url' => ['/admin/articles/']],
             ['label' => 'Казино', 'url' => ['/admin/casino']],

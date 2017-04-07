@@ -25,7 +25,7 @@ $this->title = 'Casino';
 <div class="container">
 <div class="row">
         <div class="banner_left col-lg-3">
-<img src="<?php echo Yii::getAlias('@web').'/'.Yii::getAlias('@img_path')  ?>/banner/banner.jpg"/>
+<img width="295" height="618" src="<?php echo Yii::getAlias('@web').'/'.Yii::getAlias('@img_path')  ?>/banner/banner.jpg"/>
         </div>
 
 <div class="content col-lg-9">

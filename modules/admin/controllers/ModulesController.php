@@ -47,10 +47,5 @@ class ModulesController extends Controller
     {
         echo "I is Modules";
     }
-    public  function actionOurpartner () {
-        $model = new OurPartner();
-$method = $_GET['method'];
-       echo $model->$method();
-    }
 
 }
