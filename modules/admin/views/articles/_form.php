@@ -17,7 +17,12 @@ use moonland\tinymce\TinyMCE;
     <?= $form->field($model, 'meta_keywords')->textarea(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'meta_description')->textarea(['maxlength' => true]) ?>
+    <?php $categories_items = $model->getCategoriesList();
 
+    $params = [
+        'prompt' => 'Выберите категорию'
+    ];
+    echo $form->field($model, 'categories_id')->dropDownList($categories_items,$params);?>
 
 
     <?= $form->field($model, 'brief')->textarea(['rows' => 6]) ?>
