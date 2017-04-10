@@ -47,13 +47,28 @@ $this->title = 'Casino';
 </div>
 <div class="partner_block col-lg-9">
 <h2>НАШИ ПАРТНЁРЫ</h2>
+    <!--    <div class="silder">-->
+    <!--        --><? // foreach ($ourpartner as $key=>$ourpartner) : ?>
+    <!--            <img src="-->
+    <?php //echo Yii::getAlias('@web').'/'.Yii::getAlias('@img_path')."/". $ourpartner->img_url?><!--"/>-->
+    <!---->
+    <!---->
+    <!---->
+    <!--        --><?php //endforeach; ?>
+    <!---->
+    <!--    </div>-->
     <div class="silder">
-        <? foreach ($ourpartner as $key=>$ourpartner) : ?>
-            <img src="<?php echo Yii::getAlias('@web').'/'.Yii::getAlias('@img_path')."/". $ourpartner->img_url?>"/>
+        <img src="/uploads/images/sliders/1e2a8b4b5b41e09606d004dd5e9a4100.png">
 
 
+        <img src="/uploads/images/sliders/26ed7fd4350c956bacad0557e5853653.png">
 
-        <?php endforeach; ?>
+
+        <img src="/uploads/images/sliders/c032b155cf1479891495bc58ddf1dd3e.png">
+
+
+        <img src="/uploads/images/sliders/efa75b454176109729e19669f355e63d.png">
+
 
     </div>
 </div>
@@ -61,11 +76,7 @@ $this->title = 'Casino';
 <div class="row">
     <div class="bonus_plan_left_sidebar_block col-lg-4">
 <h3>
-    КАК
-    <br>
-    ПОЛУЧИТЬ
-    <br>
-    БОНУС ПЛАН ?
+    ПОПУЛЯРНЫЕ БОНУС-ПЛАНЫ
 </h3>
     </div>
     <div class="bonus_plan_steps col-lg-8">
