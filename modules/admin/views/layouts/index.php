@@ -40,7 +40,7 @@ AppAsset::register($this);
             ['label' => 'Пользователи', 'url' => ['/admin/users/']],
             ['label' => 'Продукты', 'url' => ['/admin/products/']],
             ['label' => 'Модули', 'url' => ['/admin/modules/'], 'items' => [
-                ['label' => 'Баннер', 'url' => ['/admin/banner/']
+                ['label' => 'Баннер', 'url' => ['/admin/banners/']
                 ],   ['label' => 'Меню', 'url' => ['/admin/menu/']
                 ] ]],
             ['label' => 'Материалы', 'url' => ['#'], 'items' => [
