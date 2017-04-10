@@ -22,7 +22,7 @@ use moonland\tinymce\TinyMCE;
     $params = [
         'prompt' => 'Выберите категорию'
     ];
-    echo $form->field($model, 'categories_id')->dropDownList($categories_items,$params);?>
+    echo $form->field($model, 'category_id')->dropDownList($categories_items,$params);?>
 
 
     <?= $form->field($model, 'brief')->textarea(['rows' => 6]) ?>

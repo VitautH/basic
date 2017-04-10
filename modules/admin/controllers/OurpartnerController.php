@@ -47,7 +47,7 @@ class OurpartnerController extends Controller
     {
 
         $dataProvider = new ActiveDataProvider([
-            'query' => OurPartner::find(),
+            'query' => Ourpartner::find(),
         ]);
 
         return $this->render('index', [
@@ -63,19 +63,24 @@ class OurpartnerController extends Controller
     {
 
 
-        $model = new OurPartner();
+        $model = new Ourpartner();
 
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if ($model->validate()) {
+                $dataProvider = new ActiveDataProvider([
+                    'query' => OurPartner::find(),
+                ]);
 
-            $dataProvider = new ActiveDataProvider([
-                'query' => OurPartner::find(),
-            ]);
 
+                return $this->redirect(['index',
+                    'dataProvider' => $dataProvider,
+                ]);
+            } else {
+                echo "Form validated with errors:\n\n";
+                var_dump($model->getErrors());
+            }
 
-            return $this->redirect(['index',
-                'dataProvider' => $dataProvider,
-            ]);
         } else {
             return $this->render('create', [
                 'model' => $model
@@ -98,6 +103,27 @@ class OurpartnerController extends Controller
 
         return $this->redirect(['index']);
     }
+    /**
+     * Updates an existing OurPartner model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionUpdate($id)
+    {
+
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
+
     /**
      * Finds the Products model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

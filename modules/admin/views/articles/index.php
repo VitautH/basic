@@ -19,10 +19,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+
 
             'id',
-            'title',
+            [
+                'label' => 'Название',
+                'format' => 'raw',
+                'value' =>'title',
+            ],
+            [
+                'label' => 'Категория',
+                'format' => 'raw',
+                'value' =>'CategoryName',
+                ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

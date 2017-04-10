@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use app\models\base\Products as BaseProducts;
+
 use yii\helpers\ArrayHelper;
 use app\core\ImageClass;
 use yii\web\UploadedFile;

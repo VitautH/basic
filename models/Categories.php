@@ -7,18 +7,22 @@ use app\models\base\Categories as BaseCategories;
 use yii\helpers\ArrayHelper;
 use app\core\ImageClass;
 use yii\web\UploadedFile;
-use yii\db\ActiveRecord;
-use yii\db;
+
 /**
- * This is the model class for table "Categories".
+ * This is the model class for table "Сategories".
  *
  * @property integer $id
  * @property string $title
  * @property string $meta_keywords
  * @property string $meta_description
+ * @property ImgContent $main_image
  */
-class Categories extends \yii\db\ActiveRecord
+class Categories extends BaseCategories
 {
+
+
+
+    public $imageFile;
     /**
      * @inheritdoc
      */
