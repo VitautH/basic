@@ -68,30 +68,34 @@ Yii::$app->view->registerMetaTag([
             </div>
 
         </div>
-    </div>
-    <section class="block_1">
-        <div class="container">
+        <nav>
+            <div class="nav_container col-lg-12 col-md-offset-1 col-sm-offset-0 col-sm-offset-0">
 
-
-            <nav class="col-lg-10 col-lg-offset-2 col-md-offset-1 col-sm-offset-0 col-sm-offset-0">
-
-                <a href="<?= Yii::$app->homeUrl; ?>"> <span class="ico_nav glyphicon glyphicon-menu-hamburger col-lg-1"></span></a>
                 <?php
                 Menu::begin();
                 echo Menu::widget([
-                    'options' => ['class' => 'navbar-nav col-lg-9'],
+                    'options' => ['class' => 'navbar-nav col-lg-11'],
                     'items' => [
-                        ['label' => 'Новости', 'url' => ['/articles']],
-                        ['label' => 'Казино', 'url' => ['/casino']],
-                        ['label' => 'Продукты', 'url' => ['/products']],
+                        ['url' => Yii::$app->homeUrl, 'template' => '<a href="{url}" > <span class="ico_nav glyphicon glyphicon-menu-hamburger"></span></a>'],
+                        ['label' => 'О нас', 'url' => ['/articles']],
+                        ['label' => 'Всё о казино Минска', 'url' => ['/casino']],
+                        ['label' => 'Всё о казино Минска', 'url' => ['/products']],
                         ['label' => 'контакты', 'url' => ['/site/contact']]
                     ],
                 ]);
                 Menu::end();
                 ?>
-            </nav>
+            </div>
+        </nav>
+    </div>
 
-            <div class="clearfix"></div>
+    <section class="block_1">
+
+        <div class="container">
+
+
+
+
 
             <img src="/image/logo.png" class="logo col-lg-4  col-lg-offset-4"/>
 
