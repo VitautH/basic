@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use moonland\tinymce\TinyMCE;
+use yii\jui\DatePicker;
 /* @var $this yii\web\View */
 /* @var $model app\models\base\Articles */
 /* @var $form yii\widgets\ActiveForm */
@@ -29,6 +30,15 @@ use moonland\tinymce\TinyMCE;
 
     <?= $form->field($model, 'text')->textarea(['rows' => 10]) ?>
 
+    <?= $form->field($model, 'date_published')->widget(\yii\jui\DatePicker::classname(), [
+        'language' => 'ru',
+        'clientOptions' => [
+            'dateFormat' => 'yy-mm-dd'
+        ]
+
+
+    ]) ?>
+    <?= $form->field($model, 'archive')->checkbox() ?>
 
 
     <div class="form-group">

@@ -27,8 +27,9 @@ $this->title = 'Casino';
         <div class="banner_left col-lg-3">
             <?php if ($banner !== null) {
                 ?>
-                <img width="295" height="618"
-                     src="<?= Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . "/" . $banner->img_url ?>"/>
+                <a href="<?= $banner->url; ?>"> <img width="295" height="618"
+                                                     src="<?= Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . "/" . $banner->img_url ?>"/>
+                </a>
                 <?php
             }
             ?>

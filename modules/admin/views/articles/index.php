@@ -32,6 +32,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' =>'CategoryName',
                 ],
+            [
+                'label' => 'Дата публикации',
+                'format' => 'raw',
+                'value' => 'date_published',
+            ],
+            [
+                'label' => 'Дата создания',
+                'format' => 'raw',
+                'value' => 'date_created',
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

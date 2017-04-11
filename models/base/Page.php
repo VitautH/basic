@@ -12,7 +12,7 @@ use Yii;
  * @property string $meta_description
  * @property string $meta_keywords
  * @property string $content
- * @property string $date
+ * @property string $date_created
  */
 class Page extends \yii\db\ActiveRecord
 {
@@ -32,7 +32,7 @@ class Page extends \yii\db\ActiveRecord
         return [
             [['title', 'meta_description', 'meta_keywords', 'content'], 'required'],
             [['content'], 'string'],
-            [['date'], 'safe'],
+            [['date_created'], 'safe'],
             [['title', 'meta_description', 'meta_keywords'], 'string', 'max' => 225],
         ];
     }
@@ -48,7 +48,7 @@ class Page extends \yii\db\ActiveRecord
             'meta_description' => 'Meta Description',
             'meta_keywords' => 'Meta Keywords',
             'content' => 'Content',
-            'date' => 'Date',
+            'date_created' => 'Date',
         ];
     }
 }
