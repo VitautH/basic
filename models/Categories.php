@@ -28,7 +28,7 @@ class Categories extends BaseCategories
      */
     public static function tableName()
     {
-        return 'Categories';
+        return 'categories';
     }
 
     /**
