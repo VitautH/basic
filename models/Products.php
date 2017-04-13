@@ -50,7 +50,7 @@ public $casino_name;
      */
     public function getCasinoList()
     {
- $casino_array = casino::find()->select(['id','title'])->all();
+ $casino_array = Casino::find()->select(['id','title'])->all();
        return $items = ArrayHelper::map($casino_array,'id','title');
     }
 
