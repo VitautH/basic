@@ -131,32 +131,32 @@ $img_url = Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' . $cas
     <div class="bonus_plan_steps col-lg-8">
         <?php
 
-//        foreach ($casinos as  $key=>$casino){ ?>
-<!--            <div class="col-lg-5 --><?//= ($key <= 1) ? 'block-top ':'block-bottom' ?><!--">-->
-<!--                <div class="img col-lg-2">-->
-<!--                    --><?php //  if($casino->getImage()['img_url'] !== null) {
-//
-//                    ?>
-<!--                    <img width="120" height="117" src="--><?//= Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' . $casino->getImage()['img_url'];?><!--"/>-->
-<!--                --><?php //}
-//                else {
-//                        ?>
-<!--                    <img width="120" height="117" src="--><?//= Yii::getAlias('@web') . '/image/default_img_casino.png'?><!--"/>-->
-<!---->
-<!--                    --><?//
-//                }
-//                    ?>
-<!--                </div>-->
-<!--                <div class="bonus_plan_steps_content col-lg-3">-->
-<!--                    <h3>--><?//= $casino->title;?><!--</h3>-->
-<!---->
-<!--                  <a  href="#">выберите план</a>-->
-<!--                </div>-->
-<!---->
-<!--            </div>-->
-<!---->
-<!---->
-<!--    --><?//    } ?>
+        foreach ($products as  $key=>$product){ ?>
+            <div class="col-lg-5 <?= ($key <= 1) ? 'block-top ':'block-bottom' ?>">
+                <div class="img col-lg-2">
+                    <?php   if($product->img_url !== null) {
+
+                    ?>
+                    <img width="120" height="117" src="<?= Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' . $product->img_url;?>"/>
+                <?php }
+                else {
+                        ?>
+                    <img width="120" height="117" src="<?= Yii::getAlias('@web') . '/image/default_img_casino.png'?>"/>
+
+                    <?
+                }
+                    ?>
+                </div>
+                <div class="bonus_plan_steps_content col-lg-3">
+                    <h3><?= $product->title;?></h3>
+
+                    <a href="products/view?id=<?= $product->id; ?>">выберите план</a>
+                </div>
+
+            </div>
+
+
+    <?    } ?>
 
     </div>
 </div>

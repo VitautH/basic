@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\base\Products;
 use app\models\Casino;
 use Yii;
 use yii\filters\AccessControl;
@@ -66,10 +67,12 @@ class SiteController extends Controller
 
         $casinos_slider_img = Casino::find()->where(['not', ['img_url' => NULL]])->all();
 
-        // Вывод баннера на левый сайтбар. Убрать лимит 1 ?
+        // Вывод баннера на левый сайтбар. ToDo: Убрать лимит 1 ?
         $banner = Banners::find()->one();
+        // ToDo: Сделать галочку отобразить на главной, Random, limit 4
+        $products = Products::find()->limit(4)->all();
 
-        return $this->render('index', ['articles' => $articles, 'casinos_slider_img' => $casinos_slider_img, 'banner' => $banner]);
+        return $this->render('index', ['articles' => $articles, 'casinos_slider_img' => $casinos_slider_img, 'banner' => $banner, 'products'=>$products]);
 
     }
 

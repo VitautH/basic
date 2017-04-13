@@ -36,7 +36,8 @@ use kartik\widgets\FileInput;
 
 
 
-    <?= $form->field($model, 'imageFile')->fileInput() ?>
+    <?= $form->field($model, 'imageFile')->fileInput()->hint('в формате png, jpg')->label("Главное изображение"); ?>
+
 
 
 
