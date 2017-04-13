@@ -63,10 +63,13 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $articles = Articles::find()->limit(3)->all();
-        $casinos = Casino::find()->limit(4)->all();
+
+        $casinos_slider_img = Casino::find()->where(['not', ['img_url' => NULL]])->all();
+
+        // Вывод баннера на левый сайтбар. Убрать лимит 1 ?
         $banner = Banners::find()->one();
 
-        return $this->render('index', ['articles' => $articles, 'casinos' => $casinos, 'banner' => $banner]);
+        return $this->render('index', ['articles' => $articles, 'casinos_slider_img' => $casinos_slider_img, 'banner' => $banner]);
 
     }
 

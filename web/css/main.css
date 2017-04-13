@@ -92,12 +92,12 @@ background-image: url("../image/background.png");
     background-size: cover;
 }
 header section.block_1 .logo{
-margin-top: 70px;
+    margin-top: 105px;
 }
-header  section.block_1 .slider {
+header  section.block_1 .slider_header {
     margin-top: 28px;
 }
-header  section.block_1 .slider .arrow {
+header  section.block_1 .slider_header .arrow {
     margin-top: 70px;
     width: 32px;
     height: 32px;
@@ -126,10 +126,10 @@ header  section.block_1 .slider .arrow {
     /*border: 50px solid transparent;*/
     /*border-top-color: red;*/
 /*}*/
-header  section.block_1 .slider  .content {
+header  section.block_1 .slider_header  .content {
     margin-right: 30px;
 }
-header  section.block_1 .slider  .content span.title {
+header  section.block_1 .slider_header  .content span.title {
 text-align: center;
     color: white;
     font-size: 40px;
@@ -137,7 +137,7 @@ text-align: center;
     text-transform: uppercase;
 }
 
-header  section.block_1 .slider .content p {
+header  section.block_1 .slider_header .content p {
     color: white;
     font-size: 20px;
     text-align: center;
@@ -269,7 +269,7 @@ article .content span.more a, article .content span.more a:hover  {
 
 }
 
-
+/* Begin Partner Block */
 article .partner_block{
     height: 230px;
     background-color: #f3f3f3;
@@ -280,12 +280,35 @@ article .partner_block h2 {
 
     text-align: center;
 }
-article .partner_block .silder{
+article .partner_block .silder_partner{
   margin-top: 30px;
+
+    padding-left: 30px;
+    padding-right: 30px;
 }
-article .partner_block .silder img{
-    margin-left: 50px;
+
+article .partner_block .silder_partner .slick-list {
+    padding-left: 30px;
+    padding-right: 30px;
 }
+
+article .partner_block .silder_partner .slick-prev {
+left:0;
+}
+article .partner_block .silder_partner .slick-next {
+    right: 0;
+}
+article .partner_block .silder_partner  .slick-prev:before, article .partner_block .silder_partner  .slick-next:before {
+    font-family: 'slick';
+    font-size: 30px;
+    line-height: 1;
+    opacity: .75;
+    color: #bcbcbc;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* End Partner Block */
 article .bonus_plan_left_sidebar_block {
     background-color: white;
     height: 367px;

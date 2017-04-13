@@ -22,6 +22,8 @@ Yii::$app->view->registerMetaTag([
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
+
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -102,7 +104,7 @@ Yii::$app->view->registerMetaTag([
 
 
             <div class="clearfix"></div>
-            <div class="slider col-lg-11 col-lg-offset-2" id="slider_1">
+            <div class="slider_header col-lg-11 col-lg-offset-2" id="slider_1">
                 <div class="arrow  col-lg-1" id="arrow-left">
                     <!--            ToDo: Стрелки добавить! -->
                     <!--<span class="glyphicon glyphicon-arrow-left"></span>-->

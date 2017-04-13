@@ -15,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Обновить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -37,16 +37,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'address_street',
             'phone',
             [
-                'attribute' => 'Images',
+                'attribute' => 'img_url',
                 'format' => 'html',
                 'value' => function ($data) {
-                    if($data['Image']['img_url'] !== null) {
-                        return Html::img(Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' . $data['Image']['img_url'],
-                            ['width' => '200px']);
-                    }
-                    else {
-                        return Html::img(Yii::getAlias('@web') . '/image/noimg.jpg',
-                            ['width' => '100px']);
+                    if ($data->img_url != null) {
+                        return Html::img(Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' . $data->img_url, [
+                            'alt' => 'yii2 - картинка в gridview',
+                            'style' => 'width:100px;'
+                        ]);
+                    } else {
+                        return "N/A";
                     }
                 },
             ]

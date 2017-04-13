@@ -3,6 +3,9 @@
 /* @var $this yii\web\View */
 
 use  yii\app;
+use evgeniyrru\yii2slick\Slick;
+use  yii\web\JsExpression;
+use yii\helpers\Html;
 $this->title = 'Casino';
 
 ?>
@@ -54,30 +57,69 @@ $this->title = 'Casino';
 </div>
 <div class="partner_block col-lg-9">
 <h2>НАШИ ПАРТНЁРЫ</h2>
-    <!--    <div class="silder">-->
-    <!--        --><? // foreach ($ourpartner as $key=>$ourpartner) : ?>
-    <!--            <img src="-->
-    <?php //echo Yii::getAlias('@web').'/'.Yii::getAlias('@img_path')."/". $ourpartner->img_url?><!--"/>-->
-    <!---->
-    <!---->
-    <!---->
-    <!--        --><?php //endforeach; ?>
-    <!---->
-    <!--    </div>-->
-    <div class="silder">
-        <img src="/uploads/images/sliders/1e2a8b4b5b41e09606d004dd5e9a4100.png">
 
 
-        <img src="/uploads/images/sliders/26ed7fd4350c956bacad0557e5853653.png">
+   <?
+   $sliders_img =[];
+
+   foreach ($casinos_slider_img as  $key=>$casino) {
+$img_url = Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' . $casino->img_url;
+       array_push($sliders_img,   '<a href="casino/view?id='.$casino->id.'">'.Html::img($img_url, $options = ['style' => [
+               'width' => '118px',
+               'height' => '121px',
+           ],]).'</a>');
 
 
-        <img src="/uploads/images/sliders/c032b155cf1479891495bc58ddf1dd3e.png">
+   }
+
+            echo Slick::widget([
+
+                // HTML tag for container. Div is default.
+                'itemContainer' => 'div',
+
+                // HTML attributes for widget container
+                'containerOptions' => ['class' => 'silder_partner'],
+
+                // Items for carousel. Empty array not allowed, exception will be throw, if empty
+                'items' => $sliders_img,
+
+                // HTML attribute for every carousel item
+                'itemOptions' => ['class' => 'cat-image'],
+
+                // settings for js plugin
+                // @see http://kenwheeler.github.io/slick/#settings
+                'clientOptions' => [
+                    'autoplay' => false,
+                    'dots'     => false,
+                    'infinite' => true,
+                    'slidesToShow' => 4,
+                    'slidesToScroll' => 3,
+                    'responsive' => [
+                        [
+                            'breakpoint' => 768,
+                            'settings' => [
+                                'slidesToShow' => 2,
+                                'slidesToScroll' => 2,
+                                'infinite' => true,
+                                'autoplay' => false,
+                                'dots' => false,
+                            ],
+                        ],
+                       [ 'breakpoint' => 480,
+                        'settings' => 'unslick',
+                           ],
+                            ],
+                    // note, that for params passing function you should use JsExpression object
+                    'onAfterChange' => new JsExpression('function() {console.log("The cat has shown")}'),
+                ],
+
+            ]);
+
+            ?>
 
 
-        <img src="/uploads/images/sliders/efa75b454176109729e19669f355e63d.png">
 
 
-    </div>
 </div>
     </div>
 <div class="row">
@@ -89,32 +131,32 @@ $this->title = 'Casino';
     <div class="bonus_plan_steps col-lg-8">
         <?php
 
-        foreach ($casinos as  $key=>$casino){ ?>
-            <div class="col-lg-5 <?= ($key <= 1) ? 'block-top ':'block-bottom' ?>">
-                <div class="img col-lg-2">
-                    <?php   if($casino->getImage()['img_url'] !== null) {
-
-                    ?>
-                    <img width="120" height="117" src="<?= Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' . $casino->getImage()['img_url'];?>"/>
-                <?php }
-                else {
-                        ?>
-                    <img width="120" height="117" src="<?= Yii::getAlias('@web') . '/image/default_img_casino.png'?>"/>
-
-                    <?
-                }
-                    ?>
-                </div>
-                <div class="bonus_plan_steps_content col-lg-3">
-                    <h3><?= $casino->title;?></h3>
-
-                  <a  href="#">выберите план</a>
-                </div>
-
-            </div>
-
-
-    <?    } ?>
+//        foreach ($casinos as  $key=>$casino){ ?>
+<!--            <div class="col-lg-5 --><?//= ($key <= 1) ? 'block-top ':'block-bottom' ?><!--">-->
+<!--                <div class="img col-lg-2">-->
+<!--                    --><?php //  if($casino->getImage()['img_url'] !== null) {
+//
+//                    ?>
+<!--                    <img width="120" height="117" src="--><?//= Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' . $casino->getImage()['img_url'];?><!--"/>-->
+<!--                --><?php //}
+//                else {
+//                        ?>
+<!--                    <img width="120" height="117" src="--><?//= Yii::getAlias('@web') . '/image/default_img_casino.png'?><!--"/>-->
+<!---->
+<!--                    --><?//
+//                }
+//                    ?>
+<!--                </div>-->
+<!--                <div class="bonus_plan_steps_content col-lg-3">-->
+<!--                    <h3>--><?//= $casino->title;?><!--</h3>-->
+<!---->
+<!--                  <a  href="#">выберите план</a>-->
+<!--                </div>-->
+<!---->
+<!--            </div>-->
+<!---->
+<!---->
+<!--    --><?//    } ?>
 
     </div>
 </div>
