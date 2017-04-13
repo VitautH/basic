@@ -56,7 +56,7 @@ class Articles extends BaseArticles
             'category_id' => 'Категория',
             'date_created' => 'Дата создания',
             'CategoryName' => 'Категория',
-            'archive' => 'Скрыть',
+            'archive' => 'В архив',
             'img_url' => 'Изображение'
         ];
     }

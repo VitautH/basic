@@ -34,15 +34,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'meta_keywords',
             'meta_description',
-// ToDo: дописать вывод картинок
-//            [
-//                'attribute' => 'Images',
-//                'format' => 'html',
-//                'value' => function ($data) {
-//                    return Html::img(Yii::getAlias('@web').'/'.Yii::getAlias('@img_path').'/'. $data['Image']['img_url'],
-//                        ['width' => '200px']);
-//                },
-//            ]
+            [
+                'attribute' => 'img_url',
+                'format' => 'html',
+                'value' => function ($data) {
+                    if ($data->img_url != null) {
+                        return Html::img(Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' . $data->img_url, [
+                            'alt' => 'yii2 - картинка в gridview',
+                            'style' => 'width:100px;'
+                        ]);
+                    } else {
+                        return "N/A";
+                    }
+                },
+            ],
 
         ]
 

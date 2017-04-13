@@ -17,6 +17,9 @@ use kartik\widgets\FileInput;
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'meta_keywords')->textarea(['rows' => 3]) ?>
     <?= $form->field($model, 'meta_description')->textarea(['rows' => 3]) ?>
+    <?= $form->field($model, 'imageFile')->fileInput()->hint('в формате png, jpg')->label("Главное изображение"); ?>
+
+
 
 
     <!---->
@@ -29,7 +32,6 @@ use kartik\widgets\FileInput;
 
 
 
-    <?= $form->field($model, 'imageFile')->fileInput() ?>
 
 
     <div class="form-group">
