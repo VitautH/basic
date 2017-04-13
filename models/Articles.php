@@ -30,9 +30,10 @@ class Articles extends BaseArticles
     public function rules()
     {
         return [
+            //ToDo: исправить ошибку валидации даты
             [['title','category_id'], 'required'],
             [['brief', 'text'], 'string'],
-            [['date_published'], 'date', 'format' => 'php:Y-m-d'],
+            [['date_published'], 'safe'],
             [['date_created', 'archive'], 'safe'],
             [['category_id'], 'integer'],
             [['title'], 'string', 'max' => 100],
@@ -55,7 +56,8 @@ class Articles extends BaseArticles
             'category_id' => 'Категория',
             'date_created' => 'Дата создания',
             'CategoryName' => 'Категория',
-            'archive' => 'Скрыть'
+            'archive' => 'Скрыть',
+            'img_url' => 'Изображение'
         ];
     }
     public function getCategoriesList()
@@ -76,9 +78,22 @@ public  function getCategoryName()
         return "N/A";
     }
 }
+    public function saveImage()
+    {
+
+        $imgUpload = new ImageClass();
+        return $path = $imgUpload->uploadImage(UploadedFile::getInstance($this, 'imageFile'), 'articles/');
+
+
+    }
 
     public function save($runValidation = true, $attributeNames = null)
     {
+        if (UploadedFile::getInstance($this, 'imageFile') !== null) {
+
+            $img_url_path = $this->saveImage();
+            $this->setAttribute('img_url', $img_url_path);
+        }
         $this->date_created = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd h:i:s');
 
 

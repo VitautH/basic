@@ -37,6 +37,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'date_published',
             'date_created',
             'CategoryName',
+            [
+                'attribute' => 'img_url',
+                'format' => 'html',
+                'value' => function ($data) {
+                    if ($data->img_url != null) {
+                        return Html::img(Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' . $data->img_url, [
+                            'alt' => 'yii2 - картинка в gridview',
+                            'style' => 'width:100px;'
+                        ]);
+                    } else {
+                        return "N/A";
+                    }
+                },
+            ]
         ],
     ]) ?>
 

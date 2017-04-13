@@ -30,14 +30,9 @@ use yii\jui\DatePicker;
 
     <?= $form->field($model, 'text')->textarea(['rows' => 10]) ?>
 
-    <?= $form->field($model, 'date_published')->widget(\yii\jui\DatePicker::classname(), [
-        'language' => 'ru',
-        'clientOptions' => [
-            'dateFormat' => 'yy-mm-dd'
-        ]
+    <?= $form->field($model, 'date_published')->input('date') ?>
+    <?= $form->field($model, 'imageFile')->fileInput()->hint('в формате png, jpg')->label("Главное изображение"); ?>
 
-
-    ]) ?>
     <?= $form->field($model, 'archive')->checkbox() ?>
 
 

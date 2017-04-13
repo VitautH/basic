@@ -100,7 +100,7 @@ public function saveImage()
     }
 
 
-
+// ToDo: Перепроверить, переписать,  рефакторинг!
 
     /*
      * Method  Delete image
