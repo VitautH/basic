@@ -36,7 +36,7 @@ class Slaidshow extends BaseSlaidshow
     public function rules()
     {
         return [
-            [['title', 'content', 'imageFile'], 'required'],
+            [['title', 'content', 'img_url'], 'required'],
             [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
             [['title', 'content', 'img_url'], 'string', 'max' => 225],
         ];
