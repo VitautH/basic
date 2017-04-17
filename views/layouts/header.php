@@ -90,20 +90,21 @@ Yii::$app->view->registerMetaTag([
             </div>
         </nav>
     </div>
-    <script>
-        var sliders= {};
-            <?php
-
-    foreach ($this->context->slaidshow as  $key=>$slide){ ?>
-        sliders.img_url='<?= $slide->img_url; ?>',
-        sliders.title='<?= $slide->title; ?>',
-        sliders.content='<?= $slide->content; ?>';
 
 
+    <?php
+    $sliders = array();
 
-    <?php } ?>
+    foreach ($this->context->slaidshow as  $key=>$slide){
+     array_push($sliders, ['img_url' => [$slide->img_url],'title' => [$slide->title],'content' => [$slide->content]] );
+    }
 
-    </script>
+
+
+
+    ?><script type="text/javascript">
+        var sliders = <?php echo json_encode($sliders) ?>;
+        </script>
     <section class="block_1">
 
         <div class="container">
