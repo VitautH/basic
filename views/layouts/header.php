@@ -22,7 +22,7 @@ Yii::$app->view->registerMetaTag([
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
+    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
@@ -90,7 +90,20 @@ Yii::$app->view->registerMetaTag([
             </div>
         </nav>
     </div>
+    <script>
+        var sliders= {};
+            <?php
 
+    foreach ($this->context->slaidshow as  $key=>$slide){ ?>
+        sliders.img_url='<?= $slide->img_url; ?>',
+        sliders.title='<?= $slide->title; ?>',
+        sliders.content='<?= $slide->content; ?>';
+
+
+
+    <?php } ?>
+
+    </script>
     <section class="block_1">
 
         <div class="container">

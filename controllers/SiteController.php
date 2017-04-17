@@ -12,8 +12,16 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Articles;
 use app\models\Banners;
+use  app\models\Slaidshow;
 class SiteController extends Controller
 {
+    public $slaidshow;
+    public function beforeAction($action)
+    {
+        $this->slaidshow = Slaidshow::find()->all();
+       return parent::beforeAction($action);
+    }
+
     /**
      * @inheritdoc
      */
@@ -71,6 +79,7 @@ class SiteController extends Controller
         $banner = Banners::find()->one();
         // ToDo: Сделать галочку отобразить на главной, Random, limit 4
         $products = Products::find()->limit(4)->all();
+
 
         return $this->render('index', ['articles' => $articles, 'casinos_slider_img' => $casinos_slider_img, 'banner' => $banner, 'products'=>$products]);
 
