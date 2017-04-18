@@ -38,6 +38,7 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Пользователи', 'url' => ['/admin/users/']],
+            ['label' => 'Купоны', 'url' => ['/admin/coupon/']],
             ['label' => 'Продукты', 'url' => ['/admin/products/']],
             ['label' => 'Модули', 'url' => ['/admin/modules/'], 'items' => [
                 ['label' => 'Баннер', 'url' => ['/admin/banners/']],

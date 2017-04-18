@@ -16,7 +16,7 @@ class MainController extends \yii\web\Controller
     public $slaidshow;
     public function beforeAction($action)
     {
-        $this->slaidshow = Slaidshow::find()->all();
+        $this->slaidshow = Slaidshow::find()->asArray()->all();
         return parent::beforeAction($action);
     }
 
