@@ -94,7 +94,7 @@ Yii::$app->view->registerMetaTag([
 
 
     <section class="block_1" >
-
+        <div class="dark_background"></div>
         <div class="container">
 
 
