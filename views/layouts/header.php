@@ -92,19 +92,7 @@ Yii::$app->view->registerMetaTag([
     </div>
 
 
-    <?php
-    $sliders = array();
 
-    foreach ($this->context->slaidshow as  $key=>$slide){
-     array_push($sliders, ['img_url' => [$slide->img_url],'title' => [$slide->title],'content' => [$slide->content]] );
-    }
-
-
-
-
-    ?><script type="text/javascript">
-        var sliders = <?php echo json_encode($sliders) ?>;
-        </script>
     <section class="block_1">
 
         <div class="container">
@@ -125,10 +113,10 @@ Yii::$app->view->registerMetaTag([
                 </div>
                 <div class="content col-lg-8">
     <span class="title">
-        о нас
+
     </span>
                     <p>
-                        Используя наш сервис вы можете получить бонус-план в лучших казино Минска с помощью раннего бронирования посещения
+
                     </p>
 
                 </div>

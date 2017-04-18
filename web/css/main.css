@@ -87,7 +87,7 @@ header nav ul > li > a:hover {
     text-decoration: none;
 }
 header section.block_1 {
-background-image: url("../image/background.png");
+/background-image: url("../image/background.png");
     height: 527px;
     background-size: cover;
 }

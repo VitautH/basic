@@ -73,5 +73,26 @@ use yii\widgets\Breadcrumbs;
 
 
 </script>
+<?php
+$sliders = array();
+
+foreach ($this->context->slaidshow as  $key=>$slide){
+    array_push($sliders, ['img_url' => [$slide->img_url],'title' => [$slide->title],'content' => [$slide->content]] );
+}
+
+
+
+
+?><script type="text/javascript">
+    var sliders = <?php echo json_encode($sliders) ?>;
+
+
+
+        $('.block_1').css( "background-image", "url(/uploads/images/"+sliders[0].img_url+")");
+    $("header  section.block_1 .slider_header  .content  .title").text(sliders[0].title);
+    $("header  section.block_1 .slider_header .content p").text(sliders[0].content);
+    $( document ).ready(function() {
+    });
+</script>
 </body>
 </html>
