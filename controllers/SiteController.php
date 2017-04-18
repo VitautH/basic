@@ -1,7 +1,7 @@
 <?php
 
 namespace app\controllers;
-use app\controllers\base\MainController as MainController;
+use app\controllers\Base\MainController as MainController;
 use app\models\base\Products;
 use app\models\Casino;
 use Yii;
