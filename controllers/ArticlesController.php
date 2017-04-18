@@ -1,13 +1,13 @@
 <?php
 
 namespace app\controllers;
-
+use app\controllers\base\MainController as MainController;
 use app\models\base\Articles;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-class ArticlesController extends \yii\web\Controller
+class ArticlesController extends MainController
 {
     public function actionIndex()
     {

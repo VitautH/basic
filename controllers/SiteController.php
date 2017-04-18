@@ -1,7 +1,7 @@
 <?php
 
 namespace app\controllers;
-
+use app\controllers\base\MainController as MainController;
 use app\models\base\Products;
 use app\models\Casino;
 use Yii;
@@ -12,15 +12,10 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Articles;
 use app\models\Banners;
-use  app\models\Slaidshow;
-class SiteController extends Controller
+
+class SiteController extends MainController
 {
-    public $slaidshow;
-    public function beforeAction($action)
-    {
-        $this->slaidshow = Slaidshow::find()->all();
-       return parent::beforeAction($action);
-    }
+
 
     /**
      * @inheritdoc

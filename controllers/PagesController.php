@@ -8,11 +8,11 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\controllers\base\MainController as MainController;
 /**
  * PagesController implements the CRUD actions for Page model.
  */
-class PagesController extends Controller
+class PagesController extends MainController
 {
     /**
      * @inheritdoc

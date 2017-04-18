@@ -8,11 +8,11 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\controllers\base\MainController as MainController;
 /**
  * CasinoController implements the CRUD actions for Casino model.
  */
-class ProductsController extends Controller
+class ProductsController extends MainController
 {
     /**
      * @inheritdoc
