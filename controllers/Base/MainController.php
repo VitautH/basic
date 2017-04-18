@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\controllers\base;
+namespace app\controllers\Base;
 
 use app\models\base\Articles;
 use yii\data\ActiveDataProvider;

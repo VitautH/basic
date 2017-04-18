@@ -93,7 +93,7 @@ Yii::$app->view->registerMetaTag([
 
 
 
-    <section class="block_1">
+    <section class="block_1" >
 
         <div class="container">
 

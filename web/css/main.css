@@ -114,6 +114,7 @@ header  section.block_1 .slider_header .arrow {
     -ms-transform-origin: 0 100%;
     -o-transform-origin: 0 100%;
     transform-origin: 0 100%;
+    cursor: pointer;
 
 }
 /*header  section.block_1 .slider .arrow:after {*/
