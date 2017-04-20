@@ -14,14 +14,38 @@ class AdminController extends Controller
 {
     public function beforeAction($action)
     {
-/*
- *  Редирект на вход
- */
+        /*
+         *  Вход + проверка прав доступа
+         * role_id = 1  - admin
+         * role_id = 2 - buyer
+         * role_id = 3  - menedger
+         *
+
+         */
+        $user_role =  Yii::$app->user->identity['role_id'];
         if (empty(Yii::$app->user->identity)) {
-          $this->redirect('/login');
-          return false;
+            $this->redirect('/login');
+            return false;
+        } else {
+            switch ($user_role) {
+                case 1:
+                    return parent::beforeAction($action);
+                    break;
+
+                case 2:
+                    Yii::$app->response->redirect('/account');
+                    Yii::$app->end();
+                    break;
+
+                case 3:
+
+                    Yii::$app->response->redirect('/manager');
+                    Yii::$app->end();
+                    break;
+            }
+
+
         }
-        return parent::beforeAction($action);
     }
 
 

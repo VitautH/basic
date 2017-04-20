@@ -16,9 +16,27 @@ $config = [
                 'security' => [
                     'class' => \dektrium\user\controllers\SecurityController::className(),
                     'on ' . \dektrium\user\controllers\SecurityController::EVENT_AFTER_LOGIN => function ($e) {
+                       $user_role =  Yii::$app->user->identity['role_id'];
+                        switch ($user_role) {
+                            case 1:
+                                Yii::$app->response->redirect('/admin');
+                                Yii::$app->end();
+                                break;
 
-                        Yii::$app->response->redirect('/admin');
-                        Yii::$app->end();
+                            case 2:
+                                Yii::$app->response->redirect('/account');
+                                Yii::$app->end();
+                                break;
+
+                            case 3:
+
+                                Yii::$app->response->redirect('/manager');
+                                Yii::$app->end();
+                                break;
+
+                                  }
+
+
 
                     },
                 ],
