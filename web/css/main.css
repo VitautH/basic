@@ -48,13 +48,22 @@ header .top .language_switch a:hover
 header .top .login {
     margin-top: 12px;
 }
-header .top .login > a
+header .top .login  a, header .top .login span.account  a
 {
     color: #181818;
     font-size: 14px;
     margin: 0 4px 0 4px;
 }
+header .top span.logout form {
+    display: inline-block;
+}
+header .top span.logout form button{
+    padding: 0;
+    color: #181818;
+    font-size: 14px;
+    margin: 0 4px 0 4px;
 
+}
 header nav {
     width: 100%;
     background-color: black;

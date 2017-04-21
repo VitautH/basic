@@ -56,15 +56,15 @@ Yii::$app->view->registerMetaTag([
                     }
                     else {
                         if (!empty($this->context->user_name)) {
-                            echo Html::a($this->context->getUserName(), [$this->context->getLinkAccaunt()]);
+                            echo '<span class="link_account">'.Html::a($this->context->getUserName(), [$this->context->getLinkAccaunt()]).'</span>';
                         }
 
-                        echo  Html::beginForm(['/logout'], 'post')
+                        echo  '<span class="logout">'.Html::beginForm(['/logout'], 'post')
                             . Html::submitButton(
                                 'Выйти',
                                 ['class' => 'btn btn-link logout']
                             )
-                            . Html::endForm();
+                            . Html::endForm().'</span>';
                     }
                     ?>
                 </div>
