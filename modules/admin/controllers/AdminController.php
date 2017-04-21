@@ -3,7 +3,7 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\Products;
+use app\models\User;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -16,28 +16,28 @@ class AdminController extends Controller
     {
         /*
          *  Вход + проверка прав доступа
-         * role_id = 1  - admin
-         * role_id = 2 - buyer
-         * role_id = 3  - menedger
+         *
          *
 
          */
-        $user_role =  Yii::$app->user->identity['role_id'];
+        $user = new User;
+        Yii::$app->end();
         if (empty(Yii::$app->user->identity)) {
             $this->redirect('/login');
             return false;
         } else {
+            $user_role =  Yii::$app->user->identity->role_id;
             switch ($user_role) {
-                case 1:
+                case $user::ADMIN:
                     return parent::beforeAction($action);
                     break;
 
-                case 2:
+                case $user::BUYER:
                     Yii::$app->response->redirect('/account');
                     Yii::$app->end();
                     break;
 
-                case 3:
+                case $user::MANAGER:
 
                     Yii::$app->response->redirect('/manager');
                     Yii::$app->end();
