@@ -8,7 +8,6 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use \yii\widgets\Menu;
 use yii\widgets\Breadcrumbs;
-
 // ToDo: Add meta tags
 Yii::$app->view->registerMetaTag([
     'name' => 'description',
@@ -56,7 +55,9 @@ Yii::$app->view->registerMetaTag([
                         <?php
                     }
                     else {
-
+                        if (!empty($this->context->user_name)) {
+                            echo Html::a($this->context->getUserName(), [$this->context->getLinkAccaunt()]);
+                        }
 
                         echo  Html::beginForm(['/logout'], 'post')
                             . Html::submitButton(

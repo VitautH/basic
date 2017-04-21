@@ -38,9 +38,10 @@ class ProductsController extends MainController
         $dataProvider = new ActiveDataProvider([
             'query' => Products::find(),
         ]);
-
+        $user_role =  Yii::$app->user->identity['role_id'];
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'user_role' => $user_role,
         ]);
     }
 

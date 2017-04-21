@@ -73,15 +73,9 @@ use yii\widgets\Breadcrumbs;
 
 
 </script>
-<?php
-/*$sliders = array();
 
-foreach ($this->context->slaidshow as  $key=>$slide){
-    array_push($sliders, ['img_url' => [$slide->img_url],'title' => [$slide->title],'content' => [$slide->content]] );
-}*/
-?>
 <? if (!empty($this->context->slaidshow)) : ?>
-    <?= $this->render('_slideshow', ['images' => $this->context->slaidshow])?>
+    <?= $this->render('_slideshow', ['images' => $this->context->getSlaidshow()])?>
 <? endif ?>
 
 </body>

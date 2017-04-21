@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use app\controllers\UsersController;
 /* @var $this yii\web\View */
 /* @var $model app\models\Products */
 
@@ -25,6 +25,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'cashback',
             'casino_id',
         ],
-    ]) ?>
+    ])
+
+
+    ?>
+
+    <?php
+
+   echo $this->context->user_role;
+    ?>
 
 </div>

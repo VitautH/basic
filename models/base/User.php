@@ -54,19 +54,20 @@ class User extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getRole()
-    {
-        return $this->hasOne(Role::className(), ['id_role' => 'role_id']);
-    }
+    // ToDo:  Переписать? Удалить?
+//    /**
+//     * @return \yii\db\ActiveQuery
+//     */
+//    public function getRole()
+//    {
+//        return $this->hasOne(Role::className(), ['id_role' => 'role_id']);
+//    }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUserPayments()
-    {
-        return $this->hasMany(UserPayment::className(), ['user_id' => 'user_id']);
-    }
+//    public function getUserPayments()
+//    {
+//        return $this->hasMany(UserPayment::className(), ['user_id' => 'user_id']);
+//    }
 }

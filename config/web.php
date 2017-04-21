@@ -17,7 +17,7 @@ $config = [
                     'class' => \dektrium\user\controllers\SecurityController::className(),
                     'on ' . \dektrium\user\controllers\SecurityController::EVENT_AFTER_LOGIN => function ($e) {
 
-                       $user_role =  Yii::$app->user->identity['role_id'];
+                        $user_role =  Yii::$app->user->identity->role_id;
                         $user = new User;
                         switch ($user_role) {
                             case $user::ADMIN:
@@ -36,7 +36,7 @@ $config = [
                                 Yii::$app->end();
                                 break;
 
-                                  }
+                        }
 
 
 

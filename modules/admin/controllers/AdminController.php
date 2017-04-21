@@ -9,43 +9,26 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\modules\controllers;
+use app\controllers\Base\MainController as MainController;
 
-class AdminController extends Controller
+class AdminController extends MainController
 {
     public function beforeAction($action)
     {
         /*
-         *  Вход + проверка прав доступа
-         *
-         *
+         *  Вход в админ панель + проверка прав доступа
 
          */
         $user = new User;
-        Yii::$app->end();
-        if (empty(Yii::$app->user->identity)) {
-            $this->redirect('/login');
-            return false;
-        } else {
-            $user_role =  Yii::$app->user->identity->role_id;
-            switch ($user_role) {
-                case $user::ADMIN:
-                    return parent::beforeAction($action);
-                    break;
+if (parent::getRole() == $user::ADMIN) {
+    return parent::beforeAction($action);
 
-                case $user::BUYER:
-                    Yii::$app->response->redirect('/account');
-                    Yii::$app->end();
-                    break;
+} else {
+    $this->redirect('/login');
+    return false;
 
-                case $user::MANAGER:
+}
 
-                    Yii::$app->response->redirect('/manager');
-                    Yii::$app->end();
-                    break;
-            }
-
-
-        }
     }
 
 
