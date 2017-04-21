@@ -1,5 +1,5 @@
 <?php
-
+use app\models\User;
 $params = require(__DIR__ . '/params.php');
 
 $config = [
@@ -8,7 +8,7 @@ $config = [
     'bootstrap' => ['log'],
     'modules' => [
         /*
-         * TODO: Вызов метода проверки доступа и редиректа в админку
+         * Вызов метода проверки доступа и редиректа в админку
          */
         'user' => [
             'class' => 'dektrium\user\Module',
@@ -16,19 +16,21 @@ $config = [
                 'security' => [
                     'class' => \dektrium\user\controllers\SecurityController::className(),
                     'on ' . \dektrium\user\controllers\SecurityController::EVENT_AFTER_LOGIN => function ($e) {
+
                        $user_role =  Yii::$app->user->identity['role_id'];
+                        $user = new User;
                         switch ($user_role) {
-                            case 1:
+                            case $user::ADMIN:
                                 Yii::$app->response->redirect('/admin');
                                 Yii::$app->end();
                                 break;
 
-                            case 2:
+                            case $user::BUYER:
                                 Yii::$app->response->redirect('/account');
                                 Yii::$app->end();
                                 break;
 
-                            case 3:
+                            case $user::MANAGER:
 
                                 Yii::$app->response->redirect('/manager');
                                 Yii::$app->end();
