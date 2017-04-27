@@ -32,8 +32,13 @@ class SiteController extends MainController
                         'allow' => true,
                         'roles' => ['@'],
                     ],
+                    [
+                        'actions' => ['error'],
+                        'allow' => true,
+                    ],
                 ],
             ],
+
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

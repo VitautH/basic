@@ -18,7 +18,7 @@ class MainController extends \yii\web\Controller
     public $slaidshow;
     public $role_id;
     public $user_name;
-
+// ToDo: Или методы класса или Свойства/члены. Конструктор переделать!
     public function __construct($id, $module, array $config = [])
     {
         $this->slaidshow = Slaidshow::find()->asArray()->all();
