@@ -9,7 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $title
- * @property string $cost
+ * @property string $price
  * @property string $description
  * @property string $cashback
  * @property integer $casino_id
@@ -33,7 +33,7 @@ class Products extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'meta_keywords', 'meta_description', 'description'], 'string'],
-            [['cost', 'cashback'], 'string'],
+            [['price', 'cashback'], 'string'],
             [['casino_id'], 'number'],
             [['casino_id'], 'exist', 'skipOnError' => true, 'targetClass' => Casino::className(), 'targetAttribute' => ['casino_id' => 'id']],
         ];
@@ -49,7 +49,7 @@ class Products extends \yii\db\ActiveRecord
             'title' => 'Title',
             'meta_description' => 'Meta Description',
             'meta_keywords' => 'Meta Keywords',
-            'cost' => 'Cost',
+            'price' => 'Цена',
             'description' => 'Description',
             'cashback' => 'Cashback',
             'casino_id' => 'Casino ID',

@@ -27,8 +27,8 @@ public $casino_name;
      */
     public function rules()
     {
-        return [[['title','cost','casino_id'],'required'],
-            [['casino_id', 'cost', 'cashback'],'number'],
+        return [[['title','price','casino_id'],'required'],
+            [['casino_id', 'price', 'cashback'],'number'],
             [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
            [['title', 'description', 'meta_keywords', 'meta_description'],'safe'],
         ];

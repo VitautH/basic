@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'title',
-            'cost',
+            'price',
             'description',
             'cashback',
             'casino_id',
@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
 
      <?= $form->field($model, 'id')->hiddenInput()->label(false); ?>
-        <?= $form->field($model, 'cost')->hiddenInput()->label(false);; ?>
+        <?= $form->field($model, 'price')->hiddenInput()->label(false); ?>
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
                 <?= Html::submitButton('КУПИТЬ', ['class' => 'btn btn-primary']) ?>

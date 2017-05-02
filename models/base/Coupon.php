@@ -9,11 +9,9 @@ use Yii;
  *
  * @property integer $id
  * @property integer $coupon
- * @property integer $product_id
  * @property integer $order_id
  *
  * @property Order $order
- * @property Products $product
  */
 class Coupon extends \yii\db\ActiveRecord
 {
@@ -31,10 +29,9 @@ class Coupon extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['coupon', 'product_id', 'order_id'], 'required'],
-            [['coupon', 'product_id', 'order_id'], 'integer'],
+            [['coupon', 'order_id'], 'required'],
+            [['coupon', 'order_id'], 'integer'],
             [['order_id'], 'exist', 'skipOnError' => true, 'targetClass' => Order::className(), 'targetAttribute' => ['order_id' => 'id']],
-            [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Products::className(), 'targetAttribute' => ['product_id' => 'id']],
         ];
     }
 
@@ -46,7 +43,6 @@ class Coupon extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'coupon' => 'Coupon',
-            'product_id' => 'Product ID',
             'order_id' => 'Order ID',
         ];
     }
@@ -57,13 +53,5 @@ class Coupon extends \yii\db\ActiveRecord
     public function getOrder()
     {
         return $this->hasOne(Order::className(), ['id' => 'order_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProduct()
-    {
-        return $this->hasOne(Products::className(), ['id' => 'product_id']);
     }
 }

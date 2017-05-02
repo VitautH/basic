@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property integer $user_id
+ * @property integer $product_id
  * @property integer $coupon_id
  * @property string $amount
  * @property string $created_at
@@ -16,6 +17,7 @@ use Yii;
  * @property integer $paid
  *
  * @property Coupon[] $coupons
+ * @property Products $product
  * @property User $user
  */
 class Order extends \yii\db\ActiveRecord
@@ -34,10 +36,11 @@ class Order extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'coupon_id', 'transaction_id', 'paid'], 'integer'],
+            [['user_id', 'product_id', 'coupon_id', 'transaction_id', 'paid'], 'integer'],
+            [['product_id', 'transaction_id', 'paid'], 'required'],
             [['amount'], 'number'],
             [['created_at'], 'safe'],
-            [['transaction_id', 'paid'], 'required'],
+            [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Products::className(), 'targetAttribute' => ['product_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -50,6 +53,7 @@ class Order extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'user_id' => 'User ID',
+            'product_id' => 'Product ID',
             'coupon_id' => 'Coupon ID',
             'amount' => 'Amount',
             'created_at' => 'Created At',
@@ -64,6 +68,14 @@ class Order extends \yii\db\ActiveRecord
     public function getCoupons()
     {
         return $this->hasMany(Coupon::className(), ['order_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProduct()
+    {
+        return $this->hasOne(Products::className(), ['id' => 'product_id']);
     }
 
     /**

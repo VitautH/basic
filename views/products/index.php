@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'title',
-            'cost',
+            'price',
             'description:ntext',
             'cashback'
 
