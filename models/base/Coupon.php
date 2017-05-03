@@ -10,7 +10,7 @@ use Yii;
  * @property integer $id
  * @property integer $coupon
  * @property integer $order_id
- *
+ *@property integer $status
  * @property Order $order
  */
 class Coupon extends \yii\db\ActiveRecord
@@ -44,6 +44,7 @@ class Coupon extends \yii\db\ActiveRecord
             'id' => 'ID',
             'coupon' => 'Coupon',
             'order_id' => 'Order ID',
+            'status'=> 'Статус купона',
         ];
     }
 
