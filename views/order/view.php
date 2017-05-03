@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = 'Заказ №'. $model->id;
 
 
 
-<div class="products-view">
+<div class="order-view">
     <div class="container">
 <div class="row">
     <h1><?= Html::encode($this->title) ?></h1>
