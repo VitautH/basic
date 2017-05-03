@@ -6,6 +6,7 @@ use app\models\User;
 use app\models\Order;
 use Yii;
 use  app;
+use yii\debug\models\timeline\DataProvider;
 use yii\web\ForbiddenHttpException;
 class OrderController extends MainController
 {
@@ -52,7 +53,7 @@ else {
 
             } else {
 
-                throw new ForbiddenHttpException('Произошла ошибка!');
+                throw new ForbiddenHttpException('Доступ запрещён');
             }
 
         }
@@ -76,26 +77,42 @@ public function actionView($id){
     ]);
 
 }
+//ToDo: метод отправки письма
 public function actionPayment()
 {
+    $this->order->scenario = 'payment';
     $request= Yii::$app->request;
     if ($request->isPost) {
-if ($request->post()['status']== 1){
-    return $this->render('succes', [
-        //'model' => $this->findModel($id),
-    ]);
-}
+        $data = $request->post();
+if ($data['status']== 1){
+    // @return false | coupon
+    $response = $this->order->payment($data);
+    if (!$response) {
+        throw new ForbiddenHttpException('Произошла ошибка!');
 
     }
     else {
+// ToDo: сделать редирект
+        return $this->render('succes', [
+            'model' =>$response,
+        ]);
+    }
+
+    }
+
+}
+
+
+    else
+        {
         throw new ForbiddenHttpException('Произошла ошибка!');
     }
 
 }
-
+// ToDo: Проверить
     protected function findModel($id)
     {
-        if (($model = Order::findOne($id)) !== null) {
+        if (($model =  $this->order->findOne($id)) !== null) {
             return $model;
         } else {
             throw new ForbiddenHttpException('The requested page does not exist.');
