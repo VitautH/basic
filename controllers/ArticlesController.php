@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 use app\controllers\Base\MainController as MainController;
-use app\models\base\Articles;
+use app\models\Articles;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
