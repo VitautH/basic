@@ -27,7 +27,7 @@ private $status;
     public function beforeAction($action)
     {
 
-// ToDo: PHP 7 $this->user::GUEST; !
+
 if ($this->getRole()==User::GUEST) {
 
     throw new ForbiddenHttpException('Доступ запрещён');
@@ -49,7 +49,7 @@ else {
             $this->order->load($request->post());
 
             if ($this->order->save()) {
-                return $this->redirect(['order', 'view' => $this->order->id]);
+                return $this->redirect(['/order/view', 'id' => $this->order->id]);
 
             } else {
 
@@ -66,19 +66,32 @@ else {
     //ToDo: вывод списка заказов для менеджера
     public function actionIndex()
     {
+        if ($this->getRole()==User::GUEST or $this->getRole()==User::BUYER  ) {
 
-        //return $this->render('index');
+            throw new ForbiddenHttpException('Доступ запрещён');
+        }
+        else {
+            return $this->render('index');
+
+        }
     }
 
     // ToDo: переписать!
 public function actionView($id){
+
+
     return $this->render('view', [
         'model' => $this->findModel($id),
     ]);
 
 }
 //ToDo: метод отправки письма
-public function actionPayment()
+
+    /**
+     * @return string
+     * @throws ForbiddenHttpException
+     */
+    public function actionPayment()
 {
     $this->order->scenario = 'payment';
     $request= Yii::$app->request;
@@ -92,8 +105,9 @@ if ($data['status']== 1){
 
     }
     else {
-// ToDo: сделать редирект
-        return $this->render('succes', [
+// ToDo: сделать редирект WebPay API
+      //  return $this->redirect(['/order/success', 'id' => $this->order->id]);
+        return $this->render('success', [
             'model' =>$response,
         ]);
     }
@@ -107,6 +121,10 @@ if ($data['status']== 1){
         {
         throw new ForbiddenHttpException('Произошла ошибка!');
     }
+
+}
+
+public function actionSuccess(){
 
 }
 // ToDo: Проверить

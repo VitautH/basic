@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 <div class="succes-view">
     <div class="container">
         <div class="row">
-
+<?php var_dump($model); ?>
         </div>
 
     </div>

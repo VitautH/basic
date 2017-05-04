@@ -18,13 +18,14 @@ use yii\base\Security;
 class Coupon extends BaseCoupon
 {
     private $security;
+    const USED = 1;
+    const UNUSED = 0;
     public function rules()
     {
         return [
-            [[ 'order_id'], 'integer'],
             [['coupon'], 'string'],
             [['status'], 'boolean'],
-            [['coupon', 'order_id', 'status'], 'required'],
+            [['coupon',  'status'], 'required'],
 
         ];
     }
@@ -48,12 +49,11 @@ class Coupon extends BaseCoupon
 
   public  function saveCoupon($order_id){
        $this->coupon= $this->generateCoupon($order_id);
-      $this->order_id= $order_id;
       $this->status= false;
 
 
      if ($this->save()){
-        return   array('coupon'=>$this->coupon);
+        return   array('id'=>$this->id,'coupon'=>$this->coupon);
      }
      else {
          return false;

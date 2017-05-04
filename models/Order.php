@@ -68,9 +68,12 @@ $this->create_order($data);
 // ToDo: для песочницы
         $this->transaction_id=   mt_rand(100,1000);
         // End;
-        Order::updateAll(['transaction_id' =>       $this->transaction_id, 'paid'=> true], ['=', 'id', $data['id']]);
-$coupon = new Coupon();
-return $coupon->saveCoupon($data['id']);
+        $coupon = new Coupon();
+        $response = $coupon->saveCoupon($data['id']);
+        if ($response !== false) {
+            Order::updateAll(['transaction_id' => $this->transaction_id, 'paid' => true, 'coupon_id'=> $response['id']], ['=', 'id', $data['id']]);
+        }
+return $response;
 
 
 
