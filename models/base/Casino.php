@@ -9,10 +9,16 @@ use Yii;
  *
  * @property integer $id
  * @property string $title
+ * @property string $description
+ * @property string $meta_keywords
+ * @property string $meta_description
  * @property integer $city_id
  * @property string $address_street
  * @property string $phone
+ * @property string $img_url
  *
+ * @property City $city
+ * @property ImgCasino $imgCasino
  * @property Products[] $products
  */
 class Casino extends \yii\db\ActiveRecord
@@ -31,8 +37,10 @@ class Casino extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'address_street', 'phone'], 'string'],
             [['city_id'], 'integer'],
+            [['title', 'address_street', 'phone', 'img_url'], 'string', 'max' => 225],
+            [['description', 'meta_keywords', 'meta_description'], 'string', 'max' => 255],
+            [['city_id'], 'exist', 'skipOnError' => true, 'targetClass' => City::className(), 'targetAttribute' => ['city_id' => 'id']],
         ];
     }
 
@@ -43,15 +51,31 @@ class Casino extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Наименование казино',
-            'city_id' => 'Город',
-            'address_street' => 'Адрес',
-            'phone' => 'Телефон',
-            'meta_keywords' => 'Ключевые слова',
-            'meta_description' => 'Мета описание',
-            'description' => 'Описание',
-            'imageFile' => 'Изображение'
+            'title' => 'Title',
+            'description' => 'Description',
+            'meta_keywords' => 'Meta Keywords',
+            'meta_description' => 'Meta Description',
+            'city_id' => 'City ID',
+            'address_street' => 'Address Street',
+            'phone' => 'Phone',
+            'img_url' => 'Img Url',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCity()
+    {
+        return $this->hasOne(City::className(), ['id' => 'city_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getImgCasino()
+    {
+        return $this->hasOne(ImgCasino::className(), ['id' => 'id']);
     }
 
     /**

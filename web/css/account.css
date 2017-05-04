@@ -1,0 +1,35 @@
+.success-view{
+    background-color: #f3f3f3;
+padding-top: 40px;
+    padding-bottom: 40px;
+
+}
+
+.success-view h2 {
+    color: #000000;
+    font-size: 42px;
+line-height: 20px;
+    letter-spacing: 1px;
+}
+
+table.coupon_table  tbody > tr {
+    background-color: white;
+}
+table.coupon_table  a.pay {
+    padding: 14px 20px 14px 20px;
+    background-color: #cc9966;
+    color:white;
+    font-size: 18px;
+    line-height: 36px;
+    text-transform: uppercase;
+}
+
+table.coupon_table  a.delete {
+    font-size: 18px;
+    line-height: 36px;
+    color:#000000;
+    text-decoration: underline;
+    text-transform: uppercase;
+
+}
+

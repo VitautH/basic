@@ -63,7 +63,7 @@ else {
 
 
 
-    //ToDo: вывод списка заказов для менеджера
+    //ToDo: вывод списка заказов для менеджера В отдельный Контроллер!
     public function actionIndex()
     {
         if ($this->getRole()==User::GUEST or $this->getRole()==User::BUYER  ) {

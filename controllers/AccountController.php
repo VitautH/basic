@@ -20,7 +20,7 @@ class AccountController extends MainController
     {
         $this->user =  new User();
         $this->order= new Order();
- $this->user_id = Yii::$app->user->identity->getId();
+  $this->user_id = Yii::$app->user->identity->getId();
 
         parent::__construct($id, $module, $config);
     }
@@ -46,7 +46,7 @@ class AccountController extends MainController
     public function actionIndex()
     {
 
-        return $this->render('index', [  'model' =>$this->order->findAll($this->user_id)]);
+        return $this->render('index', [  'model' =>$this->order->findAll(['user_id' => $this->user_id])]);
     }
     /**
      * Finds the Casino model based on its primary key value.
