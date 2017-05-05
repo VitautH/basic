@@ -39,11 +39,11 @@ $this->registerCssFile('/css/account.css');
     <table class="coupon_table table">
         <thead>
         <tr>
-            <th>Казино</th>
-            <th>План</th>
-            <th>Цена</th>
-            <th>Дата</th>
-            <th>Город</th>
+            <th><span>Казино</span></th>
+            <th><span>План</span></th>
+            <th><span>Цена</span></th>
+            <th><span>Дата</span></th>
+            <th><span>Город</span>85201</th>
         </tr>
         </thead>
         <tbody>
@@ -52,38 +52,32 @@ $this->registerCssFile('/css/account.css');
             <tr>
                 <td><span class="casino_title"><?= $order->product->casino->title; ?> </span>
                     <br>
-                    <a href="#">Подробнее</a>
+                    <a class="more" id="<?=$order->id ?>" href="#">Подробнее</a>
+
                 </td>
-                <td><?= $order->product->title; ?></td>
-                <td><?= $order->amount; ?></td>
-                <td><?= $order->created_at;?></td>
-                <td><?= $order->product->casino->city->name; ?></td>
+                <td><span class="plan_title"><?= $order->product->title; ?></span></td>
+                <td><span class="price_title"><?= $order->amount; ?></span></td>
+                <td><span class="date_title"><?= Yii::$app->formatter->asDatetime($order->created_at, 'dd.MM.yyyy');?></span></td>
+                <td><span class="city_title"><?= $order->product->casino->city->name; ?></span></td>
                 <td>
                 <td><?
-                   if ($order->coupon_id == null) {
-
-                       if ($order->paid == 0) {
-                           ?>
-                           <a href="#" class="pay">Оплатить</a>
-                           <a href="#" class="delete">Удалить</a>
-                           <?
-                       }
-
-                   }
-                   else{
-                   if ($order->coupons->status== Coupon::UNUSED){
-                      ?>
-                    <span>Не использован</span>
-                    <?
-                   }
-                   else {
-                       ?>
-                       <span>Использован</span>
+                switch ($order->coupons->status){
+                    case Coupon::UNUSED:
+                        ?>
+                        <a href="#" class="unused">Предявить</a>
                     <?
 
-                   }
+                        break;
 
-                   }
+                    case Coupon::USED:
+                        ?>
+                    <span class="used">Использован</span>
+
+                    <?
+                        break;
+                }
+
+
 
 
                     ?>
