@@ -46,7 +46,7 @@ class AccountController extends MainController
     public function actionIndex()
     {
 
-        return $this->render('index', [  'model' =>$this->order->findAll(['user_id' => $this->user_id])]);
+        return $this->render('index', [  'model' =>$this->order->findAll(['user_id' => $this->user_id, 'paid'=>1])]);
     }
     /**
      * Finds the Casino model based on its primary key value.

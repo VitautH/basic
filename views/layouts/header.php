@@ -93,7 +93,9 @@ Yii::$app->view->registerMetaTag([
     </div>
 
 
+<? if ($this->context->slaidshow) {
 
+    ?>
     <section class="block_1" >
         <div class="dark_background"></div>
         <div class="container">
@@ -133,6 +135,11 @@ Yii::$app->view->registerMetaTag([
 
 
     </section>
+    <?php
+}
+
+?>
+
 
 
 </header>

@@ -5,9 +5,11 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
+$this->registerCssFile('/css/main.css');
+$this->registerCssFile('/css/products.css');
 $this->title = 'Продукты';
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="products-index">
     <div class="container">

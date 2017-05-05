@@ -8,6 +8,7 @@ use yii\widgets\ActiveForm;
 /* @var $model app\models\Products */
 
 $this->title = $model->title;
+
 $this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
