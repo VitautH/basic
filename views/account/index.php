@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use app\models\User;
+use app\models\Coupon;
 use yii\widgets\ActiveForm;
 $this->registerCssFile('/css/account.css');
 ?>
@@ -55,11 +56,39 @@ $this->registerCssFile('/css/account.css');
                 </td>
                 <td><?= $order->product->title; ?></td>
                 <td><?= $order->amount; ?></td>
-                <td>john@example.com</td>
+                <td><?= $order->created_at;?></td>
                 <td><?= $order->product->casino->city->name; ?></td>
                 <td>
-                    <a href="#" class="pay">Оплатить</a>
-                    <a href="#" class="delete">Удалить</a>
+                <td><?
+                   if ($order->coupon_id == null) {
+
+                       if ($order->paid == 0) {
+                           ?>
+                           <a href="#" class="pay">Оплатить</a>
+                           <a href="#" class="delete">Удалить</a>
+                           <?
+                       }
+
+                   }
+                   else{
+                   if ($order->coupons->status== Coupon::UNUSED){
+                      ?>
+                    <span>Не использован</span>
+                    <?
+                   }
+                   else {
+                       ?>
+                       <span>Использован</span>
+                    <?
+
+                   }
+
+                   }
+
+
+                    ?>
+
+
                 </td>
             </tr>
             <? endforeach; ?>

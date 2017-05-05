@@ -67,7 +67,7 @@ class Order extends \yii\db\ActiveRecord
      */
     public function getCoupons()
     {
-        return $this->hasMany(Coupon::className(), ['order_id' => 'id']);
+        return $this->hasOne(Coupon::className(), ['id' => 'coupon_id']);
     }
 
     /**
