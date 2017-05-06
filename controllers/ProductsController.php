@@ -10,8 +10,10 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\controllers\Base\MainController as MainController;
 /**
- * CasinoController implements the CRUD actions for Casino model.
+ * ToDo: вывод списка услуг, связка услуг с продуктами
  */
+
+
 class ProductsController extends MainController
 {
 public $slaidshow;
