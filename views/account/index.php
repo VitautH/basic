@@ -43,7 +43,7 @@ $this->registerCssFile('/css/account.css');
             <th><span>План</span></th>
             <th><span>Цена</span></th>
             <th><span>Дата</span></th>
-            <th><span>Город</span>85201</th>
+            <th><span>Город</span></th>
         </tr>
         </thead>
         <tbody>
