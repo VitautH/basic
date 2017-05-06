@@ -15,11 +15,7 @@ use app\controllers\Base\MainController as MainController;
 class ProductsController extends MainController
 {
 public $slaidshow;
-    public function __construct($id, \yii\base\Module $module, array $config = [])
-    {
-       $this->slaidshow;
-        parent::__construct($id, $module, $config);
-    }
+
 
     public function beforeAction($action)
     {
@@ -48,12 +44,11 @@ public $slaidshow;
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Products::find(),
-        ]);
+//ToDo: Pagination?
+        $model =Products::find()->limit(10)->all();
 
         return $this->render('index', [
-            'dataProvider' => $dataProvider,
+            'model' => $model,
 
         ]);
     }

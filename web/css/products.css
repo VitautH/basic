@@ -1,0 +1,96 @@
+.products-index {
+
+}
+.products-index .bonus_plan_left_sidebar_block {
+    background-color: white;
+    height: 367px;
+}
+
+
+.products-index .bonus_plan_left_sidebar_block h3 {
+    color: #333333;
+    font-size: 42px;
+    line-height: 60px;
+    margin-top: 62px;
+    margin-left: 30px;
+}
+
+
+
+.products-index .bonus_plan_steps{
+    background-color: #bcbcbc;
+    height: 367px;
+}
+
+.products-index article .row {
+    background-color: #f3f3f3;
+}
+.products-index  .filter_left_sidebar {
+    padding: 0;
+
+
+}
+.products-index  .products {
+    padding: 0;
+    padding-bottom: 50px;
+}
+.products-index  .products .item {
+    margin-top: 53px;
+    margin-left: 50px;
+    margin-right: 50px;
+    width: 93%;
+    float: left;
+
+}
+.products-index  .products .image
+{
+float: left;
+    max-width: 290px;
+    height: 350px;
+}
+
+
+.products-index .products .card {
+    background-color: white;
+    float: left;
+    height: 350px;
+   max-width: 410px;
+
+    padding-left: 28px;
+    padding-right: 28px;
+    position: relative;
+}
+
+.products-index .products .card  h3 {
+    color: #cc9966;
+    font-size: 40px;
+    margin-top: 12px;
+}
+.products-index .products .card .description p{
+color: black;
+    font-size: 16px;
+    margin-top: 12px;
+}
+.products-index .products .card span.product_title{
+    border-top: 1px solid #7f7f7f;
+    color: #cc9966;
+    font-size: 28px;
+    position: absolute;
+    bottom: 60px;
+    left: 30px;
+}
+.products-index .products .card a.booking {
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    height: 55px;
+    background-color: #333333;
+    color: white;
+    width: 100%;
+    display: inline-block;
+    font-size: 30px;
+    text-align: center;
+}
+
