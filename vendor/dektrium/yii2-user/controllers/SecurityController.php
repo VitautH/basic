@@ -92,6 +92,7 @@ class SecurityController extends Controller
     public $slaidshow;
 
 
+
     ///
     /**
      * @param string $id
