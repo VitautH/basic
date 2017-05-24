@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use app\models\base\Coupon as BaseCoupon;
 use yii\base\Security;
+
 /**
  * This is the model class for table "coupon".
  *
@@ -20,12 +21,13 @@ class Coupon extends BaseCoupon
     private $security;
     const USED = 1;
     const UNUSED = 0;
+
     public function rules()
     {
         return [
             [['coupon'], 'string'],
             [['status'], 'boolean'],
-            [['coupon',  'status'], 'required'],
+            [['coupon', 'status'], 'required'],
 
         ];
     }
@@ -33,31 +35,33 @@ class Coupon extends BaseCoupon
     public function __construct(array $config = [])
     {
 
-        $this->security =  new Security();
+        $this->security = new Security();
         parent::__construct($config);
     }
-    private function generateCoupon($order_id){
-        $coupon = $this->security->generateRandomString(6).$order_id;
 
-      return  $coupon;
+    private function generateCoupon($order_id)
+    {
+        $coupon = $this->security->generateRandomString(6) . $order_id;
+
+        return $coupon;
 
 
     }
+
     /* method saveCoupon
      * @return $id| false
      */
 
-  public  function saveCoupon($order_id){
-       $this->coupon= $this->generateCoupon($order_id);
-      $this->status= false;
+    public function saveCoupon($order_id)
+    {
+        $this->coupon = $this->generateCoupon($order_id);
+        $this->status = false;
 
-
-     if ($this->save()){
-        return   array('id'=>$this->id,'coupon'=>$this->coupon);
-     }
-     else {
-         return false;
-     }
+        if ($this->save()) {
+            return array('id' => $this->id, 'coupon' => $this->coupon);
+        } else {
+            return false;
+        }
     }
 
     public function save($runValidation = true, $attributeNames = null)

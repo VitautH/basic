@@ -14,6 +14,7 @@ use app\controllers\Base\MainController as MainController;
  */
 class PagesController extends MainController
 {
+    public $slug;
     /**
      * @inheritdoc
      */
@@ -44,33 +45,58 @@ class PagesController extends MainController
         ]);
     }
 
+//    /**
+//     * Displays a single Page model.
+//     * @param integer $id
+//     * @return mixed
+//     */
+//   public function actionView($id)
+//   {
+//
+//        return $this->render('view', [
+//            'model' => $this->findModel($id),
+//        ]);
+//   }
+//
+//
+//
+//    /**
+//     * Finds the Page model based on its primary key value.
+//     * If the model is not found, a 404 HTTP exception will be thrown.
+//     * @param integer $id
+//     * @return Page the loaded model
+//     * @throws NotFoundHttpException if the model cannot be found
+//     */
+//    protected function findModel($id)
+//    {
+//
+//
+//        $model = Page::findOne(['id' => $id]);
+//
+//        if (!empty($model)) {
+//            return $model;
+//        } else {
+//            throw new NotFoundHttpException('The requested page does not exist.');
+//       }
+//    }
     /**
-     * Displays a single Page model.
-     * @param integer $id
-     * @return mixed
+     * Displays slug pages.
+     *
+     * @return array
      */
-    public function actionView($id)
+    protected function findModelBySlug($slug)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
 
-
-
-    /**
-     * Finds the Page model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Page the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = Page::findOne($id)) !== null) {
+        if (($model = Page::findOne(['slug' => $slug])) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException();
         }
+    }
+    public function actionView($slug)
+    {
+        return $this->render('view', [
+            'model' => $this->findModelBySlug($slug),
+        ]);
     }
 }

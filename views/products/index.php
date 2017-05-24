@@ -4,6 +4,10 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use app\models\User;
+use app\models\Products;
+use app\models\Services;
+use app\models\City;
+use app\models\Casino;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 $this->registerCssFile('/css/products.css');
@@ -16,9 +20,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="clearfix"></div>
 <div class="products-index">
     <div class="container">
-
-
-
         <div class="row">
             <div class="bonus_plan_left_sidebar_block col-lg-4">
                 <h3>
@@ -26,10 +27,35 @@ $this->params['breadcrumbs'][] = $this->title;
                 </h3>
             </div>
             <div class="bonus_plan_steps col-lg-8">
-
-
+               <div class="step left_top col-lg-5">
+                   <div class="img col-lg-2">
+                       <div class="ico"></div>
+                   </div>
+                   <div class="one">  <span>1.</span></div>
+                   <div class="action"><span>Регистрируетесь</span></div>
+               </div>
+                <div class="step top col-lg-5">
+                    <div class="img col-lg-2">
+                        <div class="ico"></div>
+                    </div>
+                    <div class="two"><span>2.</span></div>
+                    <div class="action"><span>Выбераете план</span></div>
+                </div>
+                <div class="step left_bottom col-lg-5">
+                    <div class="img col-lg-2">
+                        <div class="ico"></div>
+                    </div>
+                    <div class="three"> <span>3.</span></div>
+                    <div class="action"><span>Оплачиваете</span></div>
+                </div>
+                <div class="step bottom col-lg-5">
+                    <div class="img col-lg-2">
+                        <div class="ico"></div>
+                    </div>
+                    <div class="four"> <span>4.</span></div>
+                    <div class="action"><span>Получаете кэшбэк</span></div>
+                </div>
             </div>
-
         </div>
     </div>
 
@@ -39,7 +65,60 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
 
             <div class="filter_left_sidebar col-lg-4">
+                <div class="form">
+                    <div class="select_block">
+              <select name="city" class="form-control">
+                  <option disabled selected hidden>Выбрать город</option>
+                  <?php
 
+          foreach(City::find()->all() as $city):
+              ?>
+                  <option value="<?= $city['id']?>"><?=$city['name']?></option>
+                  <?php
+
+endforeach;
+                  ?>
+
+              </select>
+                <select name="casino" class="form-control">
+                    <option disabled selected hidden>Выбрать казино</option>
+                    <?php
+
+                    foreach(Casino::find()->all() as $casino):
+                        ?>
+                        <option value="<?= $casino['id']?>"><?=$casino['title']?></option>
+                        <?php
+
+                    endforeach;
+                    ?>
+
+                </select>
+                    </div>
+                    <div class="price_block">
+                        <h4>Стоимость плана</h4>
+                        <input type="text" name="min_price" placeholder="от">
+                        <input type="text" name="max_price" placeholder="до">
+                    </div>
+                    <div class="checkbox_block">
+                    <h4>Дополнительные услуги</h4>
+                    <?php
+
+                    foreach(Services::find()->all() as $service):
+                        ?>
+                    <div class="checkbox">
+                            <input type="checkbox" name="service" id="checkbox_<?=$service['id']?>" value=" <?=$service['id']?>" aria-label="...">
+
+                        <label for="checkbox_<?=$service['id']?>"><span class="check"></span>    <span class="title"> <?=$service['name']?></span>   </label>
+                    </div>
+                        <?php
+
+                    endforeach;
+                    ?>
+                    </div>
+
+
+
+</div>
             </div>
             <div class="products col-lg-8">
 
@@ -52,11 +131,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
                         <div class="image">
+                           <?php if ($product->img_url != null) {
+                               ?>
 
-                            <img src="<?= Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' .$product->img_url;?>" width="100%" height="350px"></div>
+                            <img width="293px" height="293px" src="<?= Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' .$product->img_url;?>"></div>
 
+                        <?php  }
+else { ?>
+                        <img src="/image/noimg.jpg" width="293px" height="293px"></div>
+
+    <?php
+}
+                        ?>
                         <div class="card">
-                            <h3><?=$product->casino->title;?></h3>
+                            <h3><a href="/products/view?id=<?=$product->id;?>"> <?=$product->casino->title;?></a></h3>
 
 
                             <!-- Nav tabs -->
@@ -70,26 +158,27 @@ $this->params['breadcrumbs'][] = $this->title;
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane active description" id="description_<?=$product->id?>"><p><?=$product->description;?></p></div>
-                                <div role="tabpanel" class="tab-pane cashback"  id="cashback_<?=$product->id?>"><?=$product->cashback?></div>
-                                <div role="tabpanel" class="tab-pane services"  id="services_<?=$product->id?>">.3..</div>
+                                <div role="tabpanel" class="tab-pane cashback"  id="cashback_<?=$product->id?>"><p><?=$product->cashback?></p></div>
+                                <div role="tabpanel" class="tab-pane services"  id="services_<?=$product->id?>">
+                                        <ul>
+                                            <?php foreach ($product->productsServices as $product_service):
+                                                $id = $product_service->id_service;
+                                                ?>
+                                                <li><?=Services::findOne($id)->name;?></li>
+                                                <?
+
+
+                                            endforeach;
+
+
+                                            ?>
+                                        </ul>
+                                    </div>
 
                             </div>
-                            <span class="product_title"> <?= $product->title?></span>
-                            <?php //ToDo: Registration or Order ?>
-                            <?php  $user = new User;
-                            if ($this->context->getRole()!==$user::GUEST) {
+                            <span class="product_title">  <?= $product->title?></span>
 
-                                ?>
                                 <a class="booking" href="/products/view?id=<?=$product->id;?>"?>ЗАБРОНИРОВАТЬ</a>
-                                <?php
-                            }
-                            else{
-                                ?>
-                                <a class="singup" href="/singup/"?>РЕГИСТРАЦИЯ</a>
-                                <?php
-                            };
-
-                            ?>
 
 
 

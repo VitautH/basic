@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\models\base\Page as BasePage;
+use yii\behaviors\SluggableBehavior;
 use Yii;
 
 /**
@@ -10,6 +11,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $title
+ * @property string $brief
  * @property string $meta_description
  * @property string $meta_keywords
  * @property string $content
@@ -17,6 +19,15 @@ use Yii;
  */
 class Page extends BasePage
 {
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'title',
+            ],
+        ];
+    }
     /**
      * @inheritdoc
      */
@@ -32,7 +43,7 @@ class Page extends BasePage
     {
         return [
             [['title', 'meta_description', 'meta_keywords', 'content'], 'required'],
-            [['date_created'], 'safe'],
+            [['date_created', 'brief'], 'safe'],
             [['content'], 'string'],
             [['title', 'meta_description', 'meta_keywords'], 'string', 'max' => 225],
         ];

@@ -1,5 +1,6 @@
 <?php
 use app\models\User;
+
 $params = require(__DIR__ . '/params.php');
 
 $config = [
@@ -7,6 +8,18 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'modules' => [
+        'media' => [
+            'class' => 'noam148\imagemanager\Module',
+            //set accces rules ()
+            'canUploadImage' => true,
+            'canRemoveImage' => function(){
+                return true;
+            },
+            //add css files (to use in media manage selector iframe)
+            'cssFiles' => [
+                'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css',
+            ],
+        ],
         /*
          * Вызов метода проверки доступа и редиректа в админку
          */
@@ -26,7 +39,7 @@ $config = [
                                 break;
 
                             case $user::BUYER:
-                                Yii::$app->response->redirect('/account');
+                                Yii::$app->response->redirect(Yii::$app->request->referrer);
                                 Yii::$app->end();
                                 break;
 
@@ -56,7 +69,17 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-
+        'imagemanager' => [
+            'class' => 'noam148\imagemanager\components\ImageManagerGetPath',
+            //set media path (outside the web folder is possible)
+            'mediaPath' => '/web/uploads/images/',
+            //path relative web folder to store the cache images
+            'cachePath' => 'assets/images',
+            //use filename (seo friendly) for resized images else use a hash
+            'useFilename' => true,
+            //show full url (for example in case of a API)
+            'absoluteUrl' => false,
+        ],
 
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -85,6 +108,10 @@ $config = [
             'rules' => [
                 'login'=> 'user/security/login',
                 'logout'=> 'user/security/logout',
+                'registration'=> 'registration/index',
+                'about'=> 'site/about',
+                'contact'=> 'site/contact',
+
             ],
         ],
         

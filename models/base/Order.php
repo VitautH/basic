@@ -12,6 +12,7 @@ use Yii;
  * @property integer $product_id
  * @property integer $coupon_id
  * @property string $amount
+ * @property string $code
  * @property string $created_at
  * @property integer $transaction_id
  * @property integer $paid

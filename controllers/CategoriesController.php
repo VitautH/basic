@@ -14,6 +14,7 @@ use app\controllers\Base\MainController as MainController;
  */
 class CategoriesController extends MainController
 {
+    public $slug;
     /**
      * @inheritdoc
      */

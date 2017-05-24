@@ -8,6 +8,7 @@ use yii\helpers\ArrayHelper;
 use app\core\ImageClass;
 use yii\web\UploadedFile;
 use app\models\Categories;
+
 /**
  * This is the model class for table "articles".
  *
@@ -31,7 +32,7 @@ class Articles extends BaseArticles
     {
         return [
             //ToDo: исправить ошибку валидации даты
-            [['title','category_id'], 'required'],
+            [['title', 'category_id'], 'required'],
             [['brief', 'text'], 'string'],
             [['date_published'], 'safe'],
             [['date_created', 'archive'], 'safe'],
@@ -60,24 +61,26 @@ class Articles extends BaseArticles
             'img_url' => 'Изображение'
         ];
     }
+
     public function getCategoriesList()
     {
-        $сategories_array = Categories::find()->select(['id','title'])->all();
-        return $items = ArrayHelper::map($сategories_array,'id','title');
+        $сategories_array = Categories::find()->select(['id', 'title'])->all();
+        return $items = ArrayHelper::map($сategories_array, 'id', 'title');
     }
-public  function getCategoryName()
-{
-    if($this->category_id !== null) {
 
-        $category_name = Categories::find()->select(['id','title'])->where('id'== $this->category_id )->one();
+    public function getCategoryName()
+    {
+        if ($this->category_id !== null) {
+
+            $category_name = Categories::find()->select(['id', 'title'])->where('id' == $this->category_id)->one();
 
 
-        return $category_name->title;
+            return $category_name->title;
+        } else {
+            return "N/A";
+        }
     }
-    else {
-        return "N/A";
-    }
-}
+
     public function saveImage()
     {
 

@@ -9,6 +9,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 class ArticlesController extends MainController
 {
+    public $slug;
     public function actionIndex()
     {
 //        $articles = Articles::find()->all();

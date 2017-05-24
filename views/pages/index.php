@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'meta_description',
             'meta_keywords',
             'content:ntext',
-            'date',
+            'date_created',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

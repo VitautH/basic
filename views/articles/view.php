@@ -14,7 +14,7 @@ $this->title = $model->title;
 <div class="article-view container">
     <div class="row">
         <article>
-        <div class="article_container col-lg-9 col-lg-offset-2">
+        <div class="article_container col-lg-12">
 
             <h1><?=$model->title?></h1>
 <div class="content">

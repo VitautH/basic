@@ -16,7 +16,12 @@ use Yii;
  * @property string $address_street
  * @property string $phone
  * @property string $img_url
- *
+ *  @property string $games
+ * @property string $features
+ * @property string $entertainment
+ * @property string $parking
+ * @property string $working_hours
+ * @property string $site
  * @property City $city
  * @property ImgCasino $imgCasino
  * @property Products[] $products
@@ -39,7 +44,8 @@ class Casino extends \yii\db\ActiveRecord
         return [
             [['city_id'], 'integer'],
             [['title', 'address_street', 'phone', 'img_url'], 'string', 'max' => 225],
-            [['description', 'meta_keywords', 'meta_description'], 'string', 'max' => 255],
+            [['description', 'meta_keywords', 'meta_description', 'games', 'features', 'entertainment', 'parking', 'working_hours',], 'string', 'max' => 255],
+            [['site'], 'string', 'max' => 50],
             [['city_id'], 'exist', 'skipOnError' => true, 'targetClass' => City::className(), 'targetAttribute' => ['city_id' => 'id']],
         ];
     }
@@ -56,9 +62,15 @@ class Casino extends \yii\db\ActiveRecord
             'meta_keywords' => 'Meta Keywords',
             'meta_description' => 'Meta Description',
             'city_id' => 'City ID',
-            'address_street' => 'Address Street',
+            'address_street' => 'Contacts',
             'phone' => 'Phone',
             'img_url' => 'Img Url',
+            'games' => 'Games',
+            'features' => 'Features',
+            'entertainment' => 'Entertainment',
+            'parking' => 'Parking',
+            'working_hours' => 'Working Hours',
+            'site' => 'Site',
         ];
     }
 

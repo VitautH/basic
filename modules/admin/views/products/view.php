@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'casinoName',
-            'cost',
+            'price',
             'description',
             'cashback',
             [

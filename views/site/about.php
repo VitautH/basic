@@ -1,18 +1,34 @@
 <?php
 
-/* @var $this yii\web\View */
+/**
+ * @var $this yii\web\View
+ * @var $model \app\models\PageS
+ */
 
 use yii\helpers\Html;
 
-$this->title = 'About';
+$this->title = 'О нас';
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
-<div class="site-about">
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="container">
+    <div class="site-about">
+        <img src="/image/logo.png" class="logo col-lg-4  col-lg-offset-4">
+        <div class="site-about-inner">
+            <h1><?=$model->title?></h1>
 
-    <p>
-        This is the About page. You may modify the following file to customize its content:
-    </p>
+            <div class="brief">
+                <?= $model->brief ?>
+            </div>
 
-    <code><?= __FILE__ ?></code>
+            <div>
+                _____________
+            </div>
+
+            <div class="page-content">
+                <?= $model->content ?>
+            </div>
+
+        </div>
+    </div>
 </div>

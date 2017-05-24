@@ -6,70 +6,81 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-use yii\captcha\Captcha;
+use dosamigos\google\maps\LatLng;
+use dosamigos\google\maps\services\DirectionsWayPoint;
+use dosamigos\google\maps\services\TravelMode;
+use dosamigos\google\maps\overlays\PolylineOptions;
+use dosamigos\google\maps\services\DirectionsRenderer;
+use dosamigos\google\maps\services\DirectionsService;
+use dosamigos\google\maps\overlays\InfoWindow;
+use dosamigos\google\maps\overlays\Marker;
+use dosamigos\google\maps\Map;
+use dosamigos\google\maps\Size;
+use dosamigos\google\maps\services\DirectionsRequest;
+use dosamigos\google\maps\overlays\Polygon;
+use dosamigos\google\maps\layers\BicyclingLayer;
 
-$this->title = 'Contact';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Контакты';
+$this->registerCssFile('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
+$this->registerCssFile('/css/contact.css');
 ?>
-<div class="site-contact">
+<div class="clearfix"></div>
+
     <div class="container">
+        <div class="contact">
         <div class="row">
-            <div class="content col-lg-12">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
-
-        <div class="alert alert-success">
-            Thank you for contacting us. We will respond to you as soon as possible.
+            <div class="col-lg-12">
+                <h1><?=$this->title; ?></h1>
+            </div>
         </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="maps">
 
-        <p>
-            Note that if you turn on the Yii debugger, you should be able
-            to view the mail message on the mail panel of the debugger.
-            <?php if (Yii::$app->mailer->useFileTransport): ?>
-                Because the application is in development mode, the email is not sent but saved as
-                a file under <code><?= Yii::getAlias(Yii::$app->mailer->fileTransportPath) ?></code>.
-                Please configure the <code>useFileTransport</code> property of the <code>mail</code>
-                application component to be false to enable email sending.
-            <?php endif; ?>
-        </p>
+            <?
+            $coord = new LatLng(['lat' => 53.9272585, 'lng' =>  27.6671514]);
+            $map = new Map([
+                'center' => $coord,
+                'zoom' => 14,
+                'width'=>'100%',
+                  'height'=>'594'
+            ]);
+            // Lets configure the polyline that renders the direction
+            $polylineOptions = new PolylineOptions([
+                'strokeColor' => '#FFAA00',
+                'draggable' => true
+            ]);
 
-    <?php else: ?>
+            $waypoints = [
+                new DirectionsWayPoint(['location' => $coord])
+            ];
 
-        <p>
-            If you have business inquiries or other questions, please fill out the following form to contact us.
-            Thank you.
-        </p>
+            // Lets add a marker now
+            $marker = new Marker([
+                'position' => $coord,
+                'title' => 'TIME GAME',
+            ]);
+            $map->addOverlay($marker);
 
-        <div class="row">
-            <div class="col-lg-5">
+            echo $map->display();
 
-                <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
-                    <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
 
-                    <?= $form->field($model, 'email') ?>
-
-                    <?= $form->field($model, 'subject') ?>
-
-                    <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
-
-                    <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                        'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-                    ]) ?>
-
-                    <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+            ?>
+                        <div class="contact_block">
+                            <img src="/image/mini_logo.png"/>
+                            <ul>
+                                <li  class="addres"><span class="glyphicon glyphicon-map-marker"></span>22040, Республика Беларусь, г. Минск, ул. Сурганова, 2А, ОФ. 3</li>
+                                <li class="phone"><span class="glyphicon glyphicon-earphone"></span> +37529-755-55-55</li>
+                                <li class="email"><span class="glyphicon glyphicon-envelope"></span> info@timegame.by</li>
+                                <li class="skype"><i class="fa fa-skype"></i>timegame</li>
+                            </ul>
+                        </div>
                     </div>
-
-                <?php ActiveForm::end(); ?>
-
+                </div>
             </div>
-        </div>
 
-    <?php endif; ?>
-            </div>
         </div>
     </div>
-</div>
+
 

@@ -1,5 +1,9 @@
 .products-index {
+margin-top: 103px!important;
+}
+.products-index  .nav > li > a:focus{
 
+    padding: 10px 15px;
 }
 .products-index .bonus_plan_left_sidebar_block {
     background-color: white;
@@ -18,10 +22,82 @@
 
 
 .products-index .bonus_plan_steps{
-    background-color: #bcbcbc;
+    background-image: url("/image/steps_bg.png");
     height: 367px;
+    background-size: cover;
+}
+.products-index .bonus_plan_steps .step{
+margin-top: 54px;
+    margin-left: 50px;
+    height: 117px;
+    background-color: #f1f1f1;
+    padding: 0;
+    border-right: 5px solid black;
+}
+.products-index .bonus_plan_steps .step .img{
+    background-color: black;
+
+    height: 117px;
+    width: 117px;
+    padding: 0;
+}
+.products-index .bonus_plan_steps .step .img .ico{
+    background-image: url(/image/icons/step_icon.png);
+
+    width: 73px;
+    height: 73px;
+
+    top: 23px;
+    left: 23px;
+    position: relative;
+}
+.products-index .bonus_plan_steps .step .one, .products-index .bonus_plan_steps .step .two, .products-index .bonus_plan_steps .step .three, .products-index .bonus_plan_steps .step .four{
+    margin-left: 20px;
+    float: left;
+}
+.products-index .bonus_plan_steps .step .one span {
+    color: #cccccc;
+    font-size: 48px;
+    font-weight: bold;
+}
+.products-index .bonus_plan_steps .step .two span {
+    color: #999999;
+    font-size: 48px;
+    font-weight: bold;
+}
+.products-index .bonus_plan_steps .step .three span {
+    color: #666666;
+    font-size: 48px;
+    font-weight: bold;
+}
+.products-index .bonus_plan_steps .step .four span {
+    color: #333333;
+    font-size: 48px;
+    font-weight: bold;
 }
 
+.products-index .bonus_plan_steps .step .action{
+    left: 135px;
+    position: absolute;
+    bottom: 27px;
+
+}
+.products-index .bonus_plan_steps .step .action span {
+    color: #cc9966;
+    text-transform: uppercase;
+    font-size: 18px;
+
+    border-top: 1px solid lightgrey;
+    font-weight: bold;
+}
+
+.products-index .bonus_plan_steps .top,.products-index .bonus_plan_steps .bottom {
+    margin-left: 36px!important;
+}
+.products-index .bonus_plan_steps .left_bottom, .products-index .bonus_plan_steps .bottom {
+
+    margin-top: 24px!important;
+}
 .products-index article .row {
     background-color: #f3f3f3;
 }
@@ -36,40 +112,63 @@
 }
 .products-index  .products .item {
     margin-top: 53px;
-    margin-left: 50px;
-    margin-right: 50px;
-    width: 93%;
-    float: left;
+    margin-left: 65px;
+  height: 304px;
+
 
 }
 .products-index  .products .image
 {
 float: left;
-    max-width: 290px;
-    height: 350px;
+   width: 293px;
+    height: 293px;
 }
 
 
 .products-index .products .card {
     background-color: white;
     float: left;
-    height: 350px;
-   max-width: 410px;
-
+    height: 293px;
+    width: 57%;
     padding-left: 28px;
-    padding-right: 28px;
+
     position: relative;
 }
 
-.products-index .products .card  h3 {
+.products-index .products .card  h3 a, .products-index .products .card  h3 a:hover{
     color: #cc9966;
     font-size: 40px;
     margin-top: 12px;
+    text-decoration: none;
 }
 .products-index .products .card .description p{
 color: black;
     font-size: 16px;
+    margin-top: 6px;
+    height: 40px;
+    padding-right: 28px;
+    overflow-y: hidden;
+}
+.products-index .products .card .cashback p{
+    margin-top: 6px;
+}
+.products-index .products .card .services ul  {
+    padding: 0;
+    margin-left: 20px;
+    color: black;
+    font-size: 16px;
     margin-top: 12px;
+}
+
+.nav-tabs > li > a{
+    text-transform: uppercase;
+    padding: 5px 10px!important;
+    font-size: 16px!important;
+    border-radius: 0px!important;
+    color:#cccccc!important;
+}
+.nav-tabs > li.active > a{
+    color:#7f7f7f!important;
 }
 .products-index .products .card span.product_title{
     border-top: 1px solid #7f7f7f;
@@ -92,5 +191,105 @@ color: black;
     display: inline-block;
     font-size: 30px;
     text-align: center;
+    text-decoration: none;
+    padding-top: 6px;
+}
+.products-index .products .card a.booking:hover {
+    background-color: #cc9966;
+    color: white;
 }
 
+/* Filter */
+/*Select */
+.products-index .filter_left_sidebar .form{
+    margin-top: 49px;
+    margin-left: 31px;
+}
+
+.products-index .filter_left_sidebar .form .form-control{
+    width:300px;
+    height:33px;
+    background-color: white;
+border: none;
+    border-radius: 0px;
+    color: #cfcfcf;
+    font-size: 16px;
+    padding-left: 52px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin-bottom: 25px;
+    line-height: 0;
+}
+.products-index .filter_left_sidebar .form .form-control:focus{
+border: 1px solid #cc9966;
+    box-shadow:none;
+    -webkit-box-shadow:none;
+}
+/*Price Block */
+.products-index .filter_left_sidebar .form  .price_block h4{
+    color:black;
+    font-size: 18px;
+    line-height: 30pt;
+    font-weight: bold;
+}
+.products-index .filter_left_sidebar .form  .price_block input{
+    height: 25px;
+    width: 145px;
+    background-color: white;
+    border: 0;
+    margin-right: 5px;
+}
+/* CheckBox */
+.products-index .filter_left_sidebar .form  .checkbox_block {
+    margin-bottom: 22px;
+}
+.products-index .filter_left_sidebar .form  .checkbox_block h4 {
+    color:black;
+    font-size: 18px;
+    line-height: 30pt;
+    font-weight: bold;
+}
+.products-index .filter_left_sidebar .form  .checkbox input[type="checkbox"] {
+    display:none;
+}
+.products-index .filter_left_sidebar .form  .checkbox input[type="checkbox"] + label span.check {
+    cursor: pointer;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 0;
+    left: 0;
+    background: transparent;
+    border:1px solid #cc9966;
+}
+
+
+.products-index .filter_left_sidebar .form .checkbox input[type="checkbox"] label {
+    width: 15px;
+ float:left;
+    position: relative;
+}
+
+
+.products-index .filter_left_sidebar .form .checkbox input[type="checkbox"]:checked + label:after
+{
+    content: '';
+    position: absolute;
+    width: 9px;
+    height: 5px;
+    background: transparent;
+    top: 4px;
+    left: 4px;
+    border: 2px solid #cc9966;
+    border-top: none;
+    border-right: none;
+    transform: rotate(-45deg);
+}
+
+.products-index .filter_left_sidebar .form .checkbox span.title{
+    font-size: 16px;
+color:black;
+    display: block;
+    top: -2px;
+    position: relative;
+}

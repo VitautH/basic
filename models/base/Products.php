@@ -63,4 +63,8 @@ class Products extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Casino::className(), ['id' => 'casino_id']);
     }
+
+   public function   getProductsServices(){
+       return $this->hasMany(ProductsServices::className(), ['id_product' => 'id']);
+   }
 }

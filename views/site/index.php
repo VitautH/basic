@@ -7,19 +7,19 @@ use evgeniyrru\yii2slick\Slick;
 use  yii\web\JsExpression;
 use yii\helpers\Html;
 $this->title = 'Casino';
-
+$this->registerJSFile('/js/advantage.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 ?>
 <div class="container">
     <div class="row">
         <div class="offer">
 
 
-            <div class="col-lg-5">
-                <span class="title_1"> Хотите воспользоваться услугой?</span>
+            <div class="col-lg-6">
+                <span class="title_1">Хотите воспользоваться услугой?</span>
             </div>
 
-            <div class="col-lg-5 col-lg-offset-1">
-                <div class="arrow_box"><a href="#"> Забронировать сейчас</a></div>
+            <div class="col-lg-5">
+                <div class="arrow_box"><a href="/products">Забронировать сейчас</a></div>
             </div>
         </div>
     </div>
@@ -68,8 +68,6 @@ $img_url = Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' . $cas
                'width' => '118px',
                'height' => '121px',
            ],]).'</a>');
-
-
    }
 
             echo Slick::widget([
@@ -78,7 +76,7 @@ $img_url = Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' . $cas
                 'itemContainer' => 'div',
 
                 // HTML attributes for widget container
-                'containerOptions' => ['class' => 'silder_partner'],
+                'containerOptions' => ['class' => 'responsive silder_partner'],
 
                 // Items for carousel. Empty array not allowed, exception will be throw, if empty
                 'items' => $sliders_img,
@@ -93,7 +91,10 @@ $img_url = Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' . $cas
                     'dots'     => false,
                     'infinite' => true,
                     'slidesToShow' => 4,
-                    'slidesToScroll' => 3,
+                    'slidesToScroll' => 1,
+                    'centerMode'=> false,
+  'variableWidth'=> false,
+                    'draggable'=>false,
                     'responsive' => [
                         [
                             'breakpoint' => 768,
@@ -129,35 +130,7 @@ $img_url = Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' . $cas
 </h3>
     </div>
     <div class="bonus_plan_steps col-lg-8">
-        <?php
-
-        foreach ($products as  $key=>$product){ ?>
-            <div class="col-lg-5 <?= ($key <= 1) ? 'block-top ':'block-bottom' ?>">
-                <div class="img col-lg-2">
-                    <?php   if($product->img_url !== null) {
-
-                    ?>
-                    <img width="120" height="117" src="<?= Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' . $product->img_url;?>"/>
-                <?php }
-                else {
-                        ?>
-                    <img width="120" height="117" src="<?= Yii::getAlias('@web') . '/image/default_img_casino.png'?>"/>
-
-                    <?
-                }
-                    ?>
-                </div>
-                <div class="bonus_plan_steps_content col-lg-3">
-                    <h3><?= $product->title;?></h3>
-
-                    <a href="products/view?id=<?= $product->id; ?>">выберите план</a>
-                </div>
-
-            </div>
-
-
-    <?    } ?>
-
+        <?= $this->render('_popular', ['products' => $products]) ?>
     </div>
 </div>
 </div>
@@ -169,14 +142,14 @@ $img_url = Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' . $cas
     ПРЕИМУЩЕСТВА РАННЕГО БРОНИРОВАНИЯ
 </h3>
         </div>
-        <div class="center_block col-lg-5">
-<div class="block_1 col-lg-12">
+        <div class="advantages_block col-lg-5">
+<div class="block_1 active  col-lg-12" id="advantage_1">
 <div class="icon col-lg-2"></div>
     <div class="col-lg-8"><h3>ПОЛУЧАЕТЕ НА 10% БОЛЬШЕ</h3>
         <p>Среди них широкий ассортимент, квалифицированный персонал, привлекательные условия.</p>
     </div>
             </div>
-            <div class="block_2 col-lg-12">
+            <div class="block_2 col-lg-12" id="advantage_2" data-toggle="2">
                 <div class="icon col-lg-2"></div>
                 <div class="col-lg-8"><h3>ВЫСОКОЕ КАЧЕСТВО УСЛУГ</h3>
                     <p>
@@ -185,7 +158,7 @@ $img_url = Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' . $cas
                 </div>
 
             </div>
-            <div class="block_3 col-lg-12">
+            <div class="block_3 col-lg-12" id="advantage_3">
                 <div class="icon col-lg-2"></div>
                 <div class="col-lg-8"><h3>ЭКОНОМИТЕ СВОЕ ВРЕМЯ</h3><p>
                         Среди них широкий ассортимент, квалифицированный персонал, привлекательные условия.
@@ -194,14 +167,14 @@ $img_url = Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' . $cas
         </div>
         <div class="right_block col-lg-3">
             <h3>
-                ВЫСОКОЕ
-                КАЧЕСТВО
-                УСЛУГ
+                ПОЛУЧАЕТЕ НА 10% БОЛЬШЕ
             </h3>
             <p>
                 Среди них широкий ассортимент, квалифицированный персонал, привлекательные условия
             </p>
 
         </div>
+
+
     </div>
 </div>
