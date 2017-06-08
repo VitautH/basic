@@ -1,0 +1,55 @@
+.site-error {
+background-color:#f3f3f3;
+    margin-top: 66px;
+    padding-bottom: 207px;
+}
+
+.site-error h2 {
+    text-align: center;
+    color: #767676;
+    font-size: 30px;
+    margin-top: 30px;
+
+
+}
+
+.site-error .img {
+    margin-top: 15px;
+    background-image: url("/image/404.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 329px;
+    left: 40%;
+
+}
+.site-error  a.back {
+color:black;
+    font-size: 22px;
+    text-decoration: underline;
+    text-align: center;
+    display: block;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .site-error {
+        margin-top: 80px;
+    }
+    .site-error h2 {
+        font-size: 20px;
+        text-align: center;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .site-error .img {
+        margin-top: 0;
+        background-image: url(/image/404.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        height: 400px;
+        left: 0;
+        width: 85%;
+        margin-left: 7%;
+    }
+}

@@ -1,0 +1,9 @@
+.manager-view{
+    background-color: white;
+    margin-top: 100px;
+}
+
+.manager-view h2 {
+    font-size: 30px;
+    text-align: center;
+}

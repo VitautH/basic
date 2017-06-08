@@ -1,0 +1,242 @@
+.products-view {
+    margin-top: 104px;
+}
+.products-view .container {
+
+    background-color: #f3f3f3;
+    padding-bottom: 43px;
+}
+.products-view .title_block a {
+margin-left: 36px;
+
+    color: #cc9966;
+    font-size: 40px;
+    line-height: 36pt;
+    display: inline-block;
+
+}
+.products-view .title_block a:hover {
+    text-decoration: none;
+}
+
+
+.products-view span.city {
+    color: black;
+    font-size: 24px;
+    line-height: 36pt;
+    font-weight: bold;
+    display: inline-block;
+}
+.products-view  .img{
+    margin-top: 40px;
+    margin-left: 40px;
+    max-width: 670px;
+}
+
+.products-view .description {
+margin-top: 50px;
+    margin-left: 40px;
+}
+
+.products-view .description span.title_description,.products-view .cashback span.title_cashback, .products-view .included_service span.title_included_service {
+color: #7f7f7f;
+    font-size: 16px;
+
+    line-height: 20pt;
+}
+.products-view .description p,  .products-view .cashback p {
+    color: black;
+    font-size: 16px;
+
+    line-height: 20pt;
+}
+.products-view .cashback {
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+.products-view .included_service {
+    margin-top: 20px;
+    margin-left: 40px;
+}
+ .products-view .included_service ul {
+     margin-left: 16px;
+  padding-left: 0;
+  }
+.products-view  .price_block {
+    margin-top: 226px;
+    display: inline-block;
+    font-size: 40px;
+}
+
+.products-view  .price_block span.price{
+color:#cc9966;
+
+    line-height: 28pt;
+}
+.products-view  .booking_block {
+    margin-top: 29px;
+}
+.products-view  .booking_block button.booking{
+background-color: #333333;
+    border: 0;
+    color: white;
+    font-size: 30px;
+    height: 58px;
+   width: 300px;
+}
+
+.products-view .booking_block .singup_form_click {
+    background-color: #cc9966;
+    border: 0;
+    color: white;
+    font-size: 30px;
+    height: 58px;
+    width: 300px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+}
+.products-view .booking_block a.singup_form_click:hover {
+    text-decoration: none;
+    background-color: #8a623a;
+}
+
+/*
+Modal
+ */
+
+.continue_to_pay_modal {
+
+    top: 50%;
+    left: 31%;
+    width: 530px;
+    display: none;
+    z-index: 1000;
+    position: fixed;
+}
+
+
+.continue_to_pay_modal .close{
+    position: relative;
+    top: -11px;
+    left: 34px;
+    background-color: #cc9966;
+    opacity: 1;
+    width: 35px;
+    height: 35px;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transform-origin: 0 100%;
+    -moz-transform-origin: 0 100%;
+    -ms-transform-origin: 0 100%;
+    -o-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+    cursor: pointer;
+}
+.continue_to_pay_modal .close:hover
+{
+    opacity: 1;
+
+}
+.continue_to_pay_modal  .close span {
+
+
+}
+
+.continue_to_pay_modal  .content{
+
+    background-color: white;
+    height: 200px;
+    width: 530px;
+
+}
+.continue_to_pay_modal   .content p.user_name {
+    color: black;
+    font-size: 24px;
+    line-height: 30pt;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.continue_to_pay_modal   .content p.tip{
+    text-align: center;
+    font-size: 16px;
+}
+
+.continue_to_pay_modal   .content button.continue_to_pay{
+    background-color: #cc9966;
+    border: 0;
+    color: white;
+    font-size: 30px;
+    height: 58px;
+    width: 300px;
+    position: relative;
+    left: 20%;
+    margin-top: 20px;
+}
+/*
+Responsive 600 px width
+ */
+@media only screen and (max-width: 600px) {
+    .products-view {
+        top: 33px;
+        position: relative;
+        margin-top: 48px;
+    }
+    .products-view .title_block a {
+        font-size: 30px;
+    }
+    .products-view span.city {
+        font-size: 16px;
+    }
+    .products-view  .img {
+        margin-left: 0;
+    }
+    .products-view .description, .products-view .cashback, .products-view .included_service {
+        margin-left: 0;
+    }
+    .products-view  .price_block{
+        margin-left: 0;
+        margin-top: 20px;
+        font-size: 30px;
+    }
+    .right_block{
+        height: 100%;
+        padding-bottom: 100px;
+    }
+    .continue_to_pay_modal   .content button.continue_to_pay {
+        padding-left: 10px;
+        padding-right: 10px;
+        width: auto;
+        left: 10%;
+    }
+    .continue_to_pay_modal .content {
+        background-color: white;
+        height: 200px;
+        width: 100%;
+    }
+    .continue_to_pay_modal {
+        width: 85%;
+        left: 7%;
+    }
+    .products-view  .img img {
+
+        margin-left: 7%;
+    }
+    img {
+        width: 85%;
+        height: 85%;
+    }
+    .products-view .booking_block button.booking {
+        background-color: #333333;
+        border: 0;
+        color: white;
+        font-size: 22px;
+        height: 58px;
+        width: 100%;
+    }
+}

@@ -5,7 +5,6 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use dektrium\user\widgets\Connect;
 use dektrium\user\models\LoginForm;
-
 use app\models\User;
 use yii\widgets\ActiveForm;
 if(Yii::$app->user->isGuest):
@@ -23,36 +22,25 @@ endif;
        <div class="col-lg-4">
 
        </div>
-       <div class="col-lg-2 footer_menu">
-           <h3>О компании
-           </h3>
+       <div class="col-lg-2 col-xs-6 footer_menu">
+
            <ul>
-               <li>Политика обработки ПД</li>
-               <li>Новости</li>
-               <li>Документы</li>
-               <li>Контакты</li>
+               <?php
+
+               foreach ($this->context->footer_menu as $menu_items):
+                   ?>
+                   <li><a href="/page/<? if($menu_items['slug']!== null){
+                       echo  $menu_items['slug'];}
+                   else {
+                       echo  $menu_items['id'];
+
+                       }?>"><?=$menu_items['title']?></a> </li>
+                   <?
+               endforeach;
+               ?>
            </ul>
        </div>
-       <div class="col-lg-2  footer_menu">
-           <h3>О компании
-           </h3>
-           <ul>
-               <li>Политика обработки ПД</li>
-               <li>Новости</li>
-               <li>Документы</li>
-               <li>Контакты</li>
-           </ul>
-       </div>
-       <div class="col-lg-2  footer_menu">
-           <h3>О компании
-           </h3>
-           <ul>
-               <li>Политика обработки ПД</li>
-               <li>Новости</li>
-               <li>Документы</li>
-               <li>Контакты</li>
-           </ul>
-       </div>
+
    </div>
     </div>
 </footer>
@@ -62,7 +50,7 @@ if(Yii::$app->session->getFlash('success_registration', NULL)!== null):
 ?>
     <div class="success_registration_message" id="success_registration_message">
         <div class="close" id="close_modal_success_registration_message">
-            <span>x</span>
+            <span></span>
         </div>
         <div class="content">
             <p> <?=Yii::$app->session->getFlash('success_registration', NULL)  ?></p>
@@ -76,7 +64,7 @@ endif;
         ?>
         <div class="failed_registration_message" id="failed_registration_message">
             <div class="close" id="close_modal_failed_registration_message">
-                <span>x</span>
+                <span></span>
             </div>
             <div class="content">
                 <p> <?=Yii::$app->session->getFlash('failed_registration', NULL)  ?></p>
@@ -96,75 +84,15 @@ endif;
 <span>ЗАРЕГИСТРИРОВАТЬСЯ</span>
     </div>
     <div class="close" id="close_modal_login_form">
-<span>x</span>
+<span></span>
     </div>
     <div class="modal_form" id="login_form">
 
-        <?php $form = ActiveForm::begin([
-                'action' => '/login',
-            'id' => 'login-form',
-            'enableAjaxValidation' => true,
-            'enableClientValidation' => true,
-            'validateOnBlur' => true,
-            'validateOnType' => false,
-            'validateOnChange' => false,
-        ]) ?>
-
-
-            <?= $form->field($model_login, 'login',
-                ['inputOptions' => ['autofocus' => 'autofocus', 'class' => 'form-control', 'tabindex' => '1', 'placeholder'=>'Логин']]
-            )->label(false);
-            ?>
-
-
-            <?= $form->field(
-                $model_login,
-                'password',
-                ['inputOptions' => ['class' => 'form-control', 'tabindex' => '2',  'placeholder'=>'Пароль']])
-                ->passwordInput()
-                ->label(
-                    Yii::t('user', 'Password')
-                    . ($enablePasswordRecovery ?
-                        ' (' . Html::a(
-                            Yii::t('user', 'Забыли пароль?'),
-                            ['/user/recovery/request'],
-                            ['tabindex' => '5']
-                        )
-                        . ')' : '')
-                )->label(false) ?>
-<? //ToDO: Отключил Запомнить пароль  ?>
-        <?//= $form->field($model, 'rememberMe')->checkbox(['tabindex' => '3']) ?>
-
-        <?= Html::submitButton(
-            Yii::t('user', 'ВОЙТИ'),
-            ['class' => 'btn btn-primary btn-block', 'tabindex' => '4']
-        ) ?>
-
-        <?php ActiveForm::end(); ?>
+        <?=$this->render('_popup_login');?>
 
     </div>
     <div class="modal_form" id="singup_form">
-        <?php $form = ActiveForm::begin([
-            'id' => 'registration-form',
-            'action' => '/registration',
-            'enableAjaxValidation' => true,
-            'enableClientValidation' => true,
-            'validateOnBlur' => true,
-            'validateOnType' => false,
-            'validateOnChange' => false,
-        ]); ?>
-
-        <?= $form->field($model_registration, 'email', ['inputOptions' => ['autofocus' => 'autofocus', 'class' => 'form-control', 'tabindex' => '1','placeholder'=>'E-mail']])->label(false); ?>
-
-        <?= $form->field($model_registration, 'username', ['inputOptions' => ['autofocus' => 'autofocus', 'class' => 'form-control', 'tabindex' => '1','placeholder'=>'Логин']])->label(false); ?>
-
-        <?= $form->field($model_registration, 'phone', ['inputOptions' => ['autofocus' => 'autofocus', 'class' => 'form-control', 'tabindex' => '1','placeholder'=>'Телефон']])->label(false); ?>
-            <?= $form->field($model_registration, 'password', ['inputOptions' => ['autofocus' => 'autofocus', 'class' => 'form-control', 'tabindex' => '1','placeholder'=>'Пароль']])->passwordInput()->label(false); ?>
-
-
-        <?= Html::submitButton(Yii::t('user', 'Зарегистрироваться'), ['class' => 'btn btn-primary btn-block']) ?>
-
-        <?php ActiveForm::end(); ?>
+        <?=$this->render('_popup_register');?>
     </div>
 </div>
 
@@ -182,6 +110,16 @@ endif;
 <? if (!empty($this->context->slaidshow)) : ?>
     <?= $this->render('_slideshow', ['images' => $this->context->getSlaidshow()])?>
 <? endif ?>
+<?php
+// ToDo: Доделать
+//
+//$object_user = User::findIdentityByAccessToken('675');
+//if ($object_user !== null){
+//    yii::$app->user->login($object_user);
+//}
 
+//$user->setIdentity();//loginByAccessToken('34y55');
+//Account::findIdentityByAccessToken('34y55');
+?>
 </body>
 </html>

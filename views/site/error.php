@@ -14,12 +14,12 @@ $this->registerCssFile('/css/error.css');
 <div class="container">
     <div class="site-error">
     <div class="row">
-        <h2 class="col-lg-12">В следующий раз точно повезет!</h2>
+        <h2 class="col-lg-12 col-xs-12">В следующий раз точно повезет!</h2>
     </div>
         <div class="row">
 
 
-    <div class="img col-lg-3 "></div>
+    <div class="img col-lg-3 col-xs-6"></div>
 
     </div>
         <div class="row">
@@ -28,3 +28,11 @@ $this->registerCssFile('/css/error.css');
 </div>
 
 </div>
+<style>
+    /*Responsive max 600 px */
+    @media only screen and (max-width: 600px) {
+        .container{
+            padding: 0!important;
+        }
+    }
+</style>

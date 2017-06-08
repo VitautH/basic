@@ -8,12 +8,13 @@
 use yii\helpers\Html;
 
 $this->title = 'О нас';
-$this->params['breadcrumbs'][] = $this->title;
+
 
 ?>
+
 <div class="container">
     <div class="site-about">
-        <img src="/image/logo.png" class="logo col-lg-4  col-lg-offset-4">
+        <img src="/image/logo.png" class="logo col-lg-4  col-lg-offset-4 col-xs-offset-0 col-xs-12 col-sm-6">
         <div class="site-about-inner">
             <h1><?=$model->title?></h1>
 
@@ -32,3 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+<style>
+    /*Responsive max 600 px */
+    @media only screen and (max-width: 600px) {
+    .container{
+        padding: 0!important;
+    }
+    }
+</style>

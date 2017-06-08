@@ -1,5 +1,6 @@
 .products-index {
 margin-top: 103px!important;
+
 }
 .products-index  .nav > li > a:focus{
 
@@ -85,7 +86,7 @@ margin-top: 54px;
 .products-index .bonus_plan_steps .step .action span {
     color: #cc9966;
     text-transform: uppercase;
-    font-size: 18px;
+    font-size: 14px;
 
     border-top: 1px solid lightgrey;
     font-weight: bold;
@@ -102,7 +103,8 @@ margin-top: 54px;
     background-color: #f3f3f3;
 }
 .products-index  .filter_left_sidebar {
-    padding: 0;
+   /* padding: 0; */
+    padding-bottom: 30px;
 
 
 }
@@ -163,7 +165,7 @@ color: black;
 .nav-tabs > li > a{
     text-transform: uppercase;
     padding: 5px 10px!important;
-    font-size: 16px!important;
+    font-size: 14px!important;
     border-radius: 0px!important;
     color:#cccccc!important;
 }
@@ -231,13 +233,17 @@ border: 1px solid #cc9966;
     font-size: 18px;
     line-height: 30pt;
     font-weight: bold;
+
 }
 .products-index .filter_left_sidebar .form  .price_block input{
     height: 25px;
-    width: 145px;
+    width: 144px;
+
     background-color: white;
     border: 0;
     margin-right: 5px;
+    padding-left: 10px;
+    float: left;
 }
 /* CheckBox */
 .products-index .filter_left_sidebar .form  .checkbox_block {
@@ -293,3 +299,217 @@ color:black;
     top: -2px;
     position: relative;
 }
+.products-index .filter_left_sidebar .form #filter_submit {
+    background: #cc9966;
+    border: 0;
+    color: white;
+    text-transform: uppercase;
+    font-size: 25px;
+
+    display: inline-block;
+    cursor: pointer;
+
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: 300px;
+    text-align: center;
+}
+/*
+Responsive 600 px width
+ */
+@media only screen and (max-width: 600px) {
+  .products-index {
+        position: relative;
+        top: 30px;
+        margin-top: 0!important;
+    }
+    .bonus_plan_left_sidebar_block{
+        height: 100%;
+
+    }
+ .bonus_plan_left_sidebar_block h3 {
+        color: #333333;
+        font-size: 30px;
+        line-height: 60px;
+        text-align: center;
+        margin-top: auto;
+        margin-left: auto;
+    }
+    .bonus_plan_steps .block-top, .bonus_plan_steps .block-bottom {
+        height: 118px;
+        margin-left: auto;
+        margin-top: 25px;
+        padding-left: 0;
+        padding-right: 0px;
+    }
+
+    .bonus_plan_steps {
+        height: 100%;
+        padding-bottom: 30px;
+        top: -50px;
+    }
+    .bonus_plan_steps   .bonus_plan_steps_content h3 {
+        text-align: center;
+        font-size: 25px;
+        color:#666666;
+        text-decoration: none;
+    }
+    .products-index .bonus_plan_steps {
+        background-image: url(/image/steps_bg.png);
+        height: 100%;
+        background-size: cover;
+        padding-bottom: 30px;
+    }
+    .products-index .bonus_plan_steps .top, .products-index .bonus_plan_steps .bottom, .products-index .bonus_plan_steps .step{
+        margin-left: auto!important;
+        margin-top: 24px!important;
+    }
+    .products-index .products .card {
+        background-color: white;
+        float: left;
+        height: 300px;
+        width: 100%;
+        padding-left: 28px;
+        position: relative;
+        margin-bottom: 30px;
+    }
+    .products-index .products .card h3 a, .products-index .products .card h3 a:hover {
+
+        font-size: 24px;
+
+    }
+    .nav-tabs > li > a {
+        font-size: 10px!important;
+    }
+    .products-index .products .card span.product_title {
+
+        font-size: 22px;
+    }
+    .products-index  .products .image{
+        margin-left: 15%;
+    }
+    .products-index .products .image img {
+        width: 85%;
+        height: 85%;
+    }
+    .products-index  .products .item {
+        margin-left: 0;
+    }
+    .products-index article .row {
+        top: -50px;
+        position: relative;
+    }
+    .products-index .filter_left_sidebar .form  .price_block input {
+
+        float: left;
+        margin-bottom: 20px;
+    }
+    .products-index .filter_left_sidebar .form  .checkbox_block h4 {
+        display: inline-flex;
+    }
+    .products-index .bonus_plan_left_sidebar_block {
+        background-color: white;
+        height: 100%;
+        padding-bottom: 80px;
+    }
+    .products-index .bonus_plan_left_sidebar_block h3 {
+        color: #333333;
+        font-size: 30px;
+        line-height: normal;
+        margin-top: 80px;
+         margin-left: 0;
+        text-align: center;
+    }
+    .products-index .filter_left_sidebar .form {
+
+        margin-left: 7%;
+    }
+    .products-index .filter_left_sidebar .form .form-control,  .products-index .filter_left_sidebar .form  .price_block input {
+        width: 250px;
+    }
+    .products-index .products .image {
+        float: left;
+        width: auto;
+        height: auto;
+    }
+    .products-index .filter_left_sidebar .form #filter_submit {
+        width: 250px;
+    }
+}
+
+/* Tablet version */
+@media (min-width : 599px) and (max-width : 1224px) {
+
+    header .top li.language_switch {
+        margin-left:0%;
+    }
+
+    header nav ul > li {
+        float: left;
+        margin-left: 10%;
+    }
+
+    header nav ul > li:first-child {
+        margin-left: -26px;
+        width:80px;
+    }
+    .products-index .bonus_plan_left_sidebar_block {
+        height: 90px;
+        text-align:center;
+    }
+    .products-index .bonus_plan_left_sidebar_block h3 {
+        margin-top: 15px;
+        font-size:35px;
+    }
+
+    .bonus_plan_steps > div:last-child .action{
+        top:67px;
+    }
+
+    .products-index .filter_left_sidebar .form {
+
+        margin-left: 0;
+        margin-top:20px;
+    }
+    .select_block {
+        padding-left:5px;
+        margin-top:40px;
+    }
+    .products-index .filter_left_sidebar .form .form-control {
+
+        padding-left: 5px;
+    }
+    .products-index .filter_left_sidebar .form .form-control {
+        width: 203px;
+    }
+
+    .products-index .filter_left_sidebar {
+        padding-bottom: 10px;
+    }
+    #filter_submit{
+        margin-left: 29%;
+        margin-top: 0;
+        width: 250px!important;
+    }
+    .products-index .products .item {
+        margin-top:25px;
+        margin-left:22px;
+    }
+    .products-index .products {
+
+        padding-bottom: 10px;
+    }
+    .products-index .filter_left_sidebar .form  .price_block h4 {
+        margin-top: -10px;
+    }
+
+    .products-index .filter_left_sidebar .form  .price_block input {
+        height: 33px;
+        width: 203px;
+        margin-bottom: 25px;
+    }
+    .products-index .filter_left_sidebar .form  .checkbox_block h4 {
+        margin-top: -10px;
+    }
+}
+

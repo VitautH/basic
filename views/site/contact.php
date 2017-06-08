@@ -29,12 +29,12 @@ $this->registerCssFile('/css/contact.css');
     <div class="container">
         <div class="contact">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12 col-xs-12">
                 <h1><?=$this->title; ?></h1>
             </div>
         </div>
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12 col-xs-12">
                     <div class="maps">
 
             <?
@@ -71,8 +71,12 @@ $this->registerCssFile('/css/contact.css');
                             <img src="/image/mini_logo.png"/>
                             <ul>
                                 <li  class="addres"><span class="glyphicon glyphicon-map-marker"></span>22040, Республика Беларусь, г. Минск, ул. Сурганова, 2А, ОФ. 3</li>
+                              <br>
+
                                 <li class="phone"><span class="glyphicon glyphicon-earphone"></span> +37529-755-55-55</li>
+                                <br>
                                 <li class="email"><span class="glyphicon glyphicon-envelope"></span> info@timegame.by</li>
+                                <br>
                                 <li class="skype"><i class="fa fa-skype"></i>timegame</li>
                             </ul>
                         </div>
