@@ -21,11 +21,23 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+'title',
+            [
+                'label' => 'Контент',
+                'format' => 'html',
+                'value' => function ($data) {
+               $content = \yii\helpers\StringHelper::truncate($data->content,150,'...');
+        return Html::decode($content);
 
-            'id',
-            'meta_description',
-            'meta_keywords',
-            'content:ntext',
+                },
+            ],
+
+['label'=>'Меню',
+    'format'=>'raw',
+    'value'=>function ($data){
+        return $data->getMenuName();
+    }
+    ],
             'date_created',
 
             ['class' => 'yii\grid\ActionColumn'],

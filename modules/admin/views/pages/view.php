@@ -6,9 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Page */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Pages', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = $model->title;
+
 ?>
 <div class="page-view">
 
@@ -28,10 +27,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'meta_description',
             'meta_keywords',
-            'content:ntext',
+            'title',
+            [
+                'label' => 'Контент',
+                'format' => 'html',
+                'value' => function ($data) {
+                    return Html::decode($data->content);
+
+                },
+            ],
+            'slug',
+
             'date_created',
         ],
     ]) ?>

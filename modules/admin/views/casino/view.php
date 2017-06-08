@@ -30,27 +30,37 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'title',
-            'description',
-            'meta_description',
             'meta_keywords',
-            'cityName',
-            'address_street',
+            'meta_description',
+            ['attribute'=>'description',
+                'format'=>'html',
+                'value'=> function($data){
+                    return Html::decode($data->description);
+                }
+            ],
+            'city_id',
+            'contacts',
             'phone',
+            'games',
+            'features',
+            'entertainment',
+            'parking',
+            'working_hours',
+            'site',
             [
-                'attribute' => 'img_url',
-                'format' => 'html',
+                'attribute' => 'logo_id',
+               'format' => 'html',
                 'value' => function ($data) {
-                    if ($data->img_url != null) {
-                        return Html::img(Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' . $data->img_url, [
-                            'alt' => 'yii2 - картинка в gridview',
-                            'style' => 'width:100px;'
-                        ]);
+                   if ($data->logo_id != null) {
+                        return Html::img(Yii::$app->imagemanager->getImagePath($data->logo_id, '100', '100','outbound'));
                     } else {
-                        return "N/A";
+                       return "N/A";
                     }
                 },
             ]
         ],
+
     ]) ?>
 
 </div>
+
