@@ -11,7 +11,7 @@ use yii\web\UploadedFile;
 /**
 * ProductsController implements the CRUD actions for Products model.
 */
-class ModulesController extends Controller
+class ModulesController extends AdminController
 {
     public function beforeAction($action)
     {

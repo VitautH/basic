@@ -50,12 +50,72 @@ public $slaidshow;
     public function actionIndex()
     {
 //ToDo: Pagination?
-        $model =Products::find()->limit(10)->all();
+        // Filter //
+        if (Yii::$app->request->isPost){
 
-        return $this->render('index', [
-            'model' => $model,
+            $request = Yii::$app->request->post();
 
-        ]);
+
+            $items = Products::find();
+
+
+            $items ->select('products.*, casino.title  as cname');
+            $items->leftJoin('products_services', 'products.id = products_services.id_product');
+            $items->leftJoin('casino', 'products.casino_id = casino.id');
+
+
+
+
+
+
+            if(!empty($request['service'])){
+                $services =$request['service'];
+                $items ->andWhere(['IN', 'products_services.id_service', $services]);
+            }
+            if (!empty($request['min_price'])){
+                $min_price = $request['min_price'];
+                $items->andWhere([ '>=', 'price', $min_price ]);
+            }
+            if(!empty($request['max_price'])){
+                $max_price = $request['max_price'];
+                $items->andWhere([ '<=', 'price', $max_price ]);
+            }
+            if(!empty($request['city'])){
+                $city = $request['city'];
+                $items->andWhere([ '=', 'casino.city_id', $city ]);
+
+            }
+
+            if(!empty($request['casino'])){
+                $casino = $request['casino'];
+                $items->andWhere([ '=', 'casino.id', $casino ]);
+            }
+
+
+
+
+
+            $response =  $items->all();
+
+
+
+
+            return $this->render('index', [
+                'model' => $response,
+
+            ]);
+
+
+
+        }
+        else {
+            $model = Products::find()->limit(10)->all();
+
+            return $this->render('index', [
+                'model' => $model,
+
+            ]);
+        }
     }
 
     /**
@@ -71,7 +131,69 @@ public $slaidshow;
     }
 
 
+public function actionFilter(){
 
+   if (Yii::$app->request->isAjax){
+
+       $request = Yii::$app->request->post();
+
+
+    $items = Products::find();
+
+
+     $items ->select('products.*, casino.title  as cname');
+       $items->leftJoin('products_services', 'products.id = products_services.id_product');
+       $items->leftJoin('casino', 'products.casino_id = casino.id');
+
+
+
+
+
+
+ if(!empty($request['service'])){
+     $services =$request['service'];
+     $items ->andWhere(['IN', 'products_services.id_service', $services]);
+ }
+ if (!empty($request['min_price'])){
+     $min_price = $request['min_price'];
+     $items->andWhere([ '>=', 'price', $min_price ]);
+ }
+     if(!empty($request['max_price'])){
+         $max_price = $request['max_price'];
+         $items->andWhere([ '<=', 'price', $max_price ]);
+     }
+       if(!empty($request['city'])){
+           $city = $request['city'];
+           $items->andWhere([ '=', 'casino.city_id', $city ]);
+
+       }
+
+       if(!empty($request['casino'])){
+           $casino = $request['casino'];
+           $items->andWhere([ '=', 'casino.id', $casino ]);
+       }
+
+
+
+
+       $response =  $items->all();
+
+
+
+unset($request);
+unset($items);
+
+       return $this->renderPartial('_ajax_index', [
+           'model' => $response
+
+       ]);
+
+
+
+  }
+
+
+}
 
 
     /**

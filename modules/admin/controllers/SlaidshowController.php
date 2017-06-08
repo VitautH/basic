@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * SlaidshowController implements the CRUD actions for Slaidshow model.
  */
-class SlaidshowController extends Controller
+class SlaidshowController extends AdminController
 {
     /**
      * @inheritdoc

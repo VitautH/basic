@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use moonland\tinymce\TinyMCE;
+use dosamigos\tinymce\TinyMce;
 use yii\jui\DatePicker;
 /* @var $this yii\web\View */
 /* @var $model app\models\base\Articles */
@@ -26,9 +26,39 @@ use yii\jui\DatePicker;
     echo $form->field($model, 'category_id')->dropDownList($categories_items,$params);?>
 
 
-    <?= $form->field($model, 'brief')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'brief')->widget(TinyMce::className(), [
+        'options' => ['rows' => 6],
+        'language' => 'ru',
+        'clientOptions' => [
+            'file_browser_callback' => new yii\web\JsExpression("function(field_name, url, type, win) {
+            window.open('".yii\helpers\Url::to(['/imagemanager/manager', 'view-mode'=>'iframe', 'select-type'=>'tinymce'])."&tag_name='+field_name,'','width=800,height=540 ,toolbar=no,status=no,menubar=no,scrollbars=no,resizable=no');
+        }"),
+            'plugins' => [
+                "advlist autolink lists link charmap print preview anchor",
+                "searchreplace visualblocks code fullscreen",
+                "insertdatetime media table contextmenu paste image"
+            ],
+            'toolbar' => "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+        ]
+    ]);?>
 
-    <?= $form->field($model, 'text')->textarea(['rows' => 10]) ?>
+
+    <?= $form->field($model, 'brief')->widget(TinyMce::className(), [
+        'options' => ['rows' => 10],
+        'language' => 'ru',
+        'clientOptions' => [
+            'file_browser_callback' => new yii\web\JsExpression("function(field_name, url, type, win) {
+            window.open('".yii\helpers\Url::to(['/imagemanager/manager', 'view-mode'=>'iframe', 'select-type'=>'tinymce'])."&tag_name='+field_name,'','width=800,height=540 ,toolbar=no,status=no,menubar=no,scrollbars=no,resizable=no');
+        }"),
+            'plugins' => [
+                "advlist autolink lists link charmap print preview anchor",
+                "searchreplace visualblocks code fullscreen",
+                "insertdatetime media table contextmenu paste image"
+            ],
+            'toolbar' => "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+        ]
+    ]);?>
+
 
     <?= $form->field($model, 'date_published')->input('date') ?>
     <?= $form->field($model, 'imageFile')->fileInput()->hint('в формате png, jpg')->label("Главное изображение"); ?>

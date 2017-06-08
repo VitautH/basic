@@ -25,6 +25,7 @@ use Yii;
  * @property integer $updated_at
  * @property integer $flags
  * @property integer $last_login_at
+ * @property string $secret_key
  *
  * @property Order[] $orders
  * @property Profile $profile
@@ -55,6 +56,7 @@ class User extends \yii\db\ActiveRecord
             [['password_hash'], 'string', 'max' => 60],
             [['auth_key'], 'string', 'max' => 32],
             [['registration_ip'], 'string', 'max' => 45],
+            [['secret_key'], 'string', 'max' => 4],
             [['username'], 'unique'],
             [['email'], 'unique'],
             [['role_id'], 'exist', 'skipOnError' => true, 'targetClass' => UserRole::className(), 'targetAttribute' => ['role_id' => 'id']],
@@ -85,6 +87,7 @@ class User extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
             'flags' => 'Flags',
             'last_login_at' => 'Last Login At',
+            'secret_key' => 'Secret Key',
         ];
     }
 
@@ -126,5 +129,12 @@ class User extends \yii\db\ActiveRecord
     public function getRole()
     {
         return $this->hasOne(UserRole::className(), ['id' => 'role_id']);
+    }
+
+    /** @inheritdoc */
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        return static::findOne(['secret_key' => $token]);
+
     }
 }

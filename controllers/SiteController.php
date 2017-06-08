@@ -14,10 +14,14 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Articles;
 use app\models\Banners;
+use app\models\Menu;
+
 use yii\web\NotFoundHttpException;
 class SiteController extends MainController
 {
 public $slug;
+public $footer_menu;
+
     public function beforeAction($action)
     {
 
@@ -81,15 +85,19 @@ public $slug;
     {
         $articles = Articles::find()->limit(3)->all();
 
-        $casinos_slider_img = Casino::find()->where(['not', ['img_url' => NULL]])->all();
+        $casinos_slider_img = Casino::find()->where(['not', ['logo_id' => NULL]])->all();
 
         // Вывод баннера на левый сайтбар. ToDo: Убрать лимит 1 ?
         $banner = Banners::find()->one();
         // ToDo: Сделать галочку отобразить на главной, Random, limit 4
         $products = Products::find()->limit(4)->all();
 
-
-        return $this->render('index', ['articles' => $articles, 'casinos_slider_img' => $casinos_slider_img, 'banner' => $banner, 'products' => $products]);
+$this->footer_menu = Page::find()
+    ->select('id, title, slug')
+    ->where('menu_id = 1')
+    ->asArray()
+    ->all();
+        return $this->render('index', ['articles' => $articles, 'casinos_slider_img' => $casinos_slider_img, 'banner' => $banner, 'products' => $products,  'footer_menu'=> $this->footer_menu]);
 
     }
 
