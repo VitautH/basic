@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\ImgCasino;
 use Yii;
 use app\models\Casino;
 use yii\data\ActiveDataProvider;
@@ -105,7 +106,76 @@ class CasinoController extends AdminController
 
         return $this->redirect(['index']);
     }
+    /*
+     * Галерея
+     */
+public function actionGallery($id){
+        $response = ImgCasino::find()->where([ '=', 'casino_id', $id ]);
 
+    $dataProvider = new ActiveDataProvider([
+        'query' => $response
+    ]);
+
+    return $this->render('index_img', [
+        'dataProvider' => $dataProvider,
+
+    ]);
+}
+public function actionGalleryAdd($id)
+{
+    $model = new ImgCasino();
+
+    if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        return $this->redirect(['/admin/casino/gallery', 'id' => $id]);
+    } else {
+
+        return $this->render('create_img', [
+            'model' => $model,
+            'id'=>$id
+        ]);
+    }
+
+
+
+
+}
+
+public  function actionGalleryDelete($id){
+    $casino_id = ImgCasino::findOne($id);
+    ImgCasino::findOne($id)->delete();
+
+    return $this->redirect(['/admin/casino/gallery?id='.$casino_id->casino_id]);
+}
+    public function actionGalleryUpdate($id)
+    {
+        $model = ImgCasino::findOne($id);
+
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+
+            $response = ImgCasino::find()->where([ '=', 'casino_id', $model->casino_id ]);
+            $dataProvider = new ActiveDataProvider([
+                'query' => $response
+            ]);
+
+            return $this->render('index_img', [
+                'dataProvider' => $dataProvider,
+
+            ]);
+
+        } else {
+
+            return $this->render('update_img', [
+                'model' => $model,
+                'id'=>$id
+            ]);
+        }
+
+
+
+
+    }
     /**
      * Finds the Casino model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

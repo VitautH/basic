@@ -12,31 +12,32 @@ use yii\widgets\ActiveForm;
 $this->registerCssFile('/css/product-view.css');
 $this->title = $model->title;
 
-$this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="clearfix"></div>
 <div class="products-view">
 <div class="container">
 
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-8 col-xs-12">
 
             <div class="title_block"> <a href="/casino/view?id=<?=$model->casino->id;?>"><?= $model->casino->title;?></a></h2> <span class="city"><?= $model->casino->city->name;?></span></div>
             <div class="clearfix"></div>
 
-            <div class="img">    <?php if ($model->img_url != null) {
+            <div class="image">
+                <?php if ($model->logo_id != null) {
+                    ?>
+                    <img  width="560" height="560"  src="<?= Yii::$app->imagemanager->getImagePath($model->logo_id, '560', '560','inset')?>"/>
+
+
+                <?php  }
+                else { ?>
+                    <img src="/image/noimg.jpg" width="560" height="560">
+
+                    <?php
+                }
                 ?>
-                <img width="100%" height="560px" src="<?= Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' . $model->img_url; ?>">
             </div>
-            <?php
-            }
-            else {
-                ?>
-            <img src="/image/noimg.jpg" width="100%" height="560px"></div>
-                <?
-            }
-            ?>
             <div class="clearfix"></div>
             <div class="description">
                 <span class="title_description">Описание:</span>
@@ -65,8 +66,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
         </div>
-        <div class="col-lg-4">
-            <div class="price_block"> <span class="price"><?=  $model->price;?></span> BYN</div>
+        <div class="right_block col-lg-4 col-xs-12">
+            <div class="price_block "> <span class="price"><?=  $model->price;?></span> BYN</div>
             <div class="clearfix"></div>
             <div class="booking_block">
                 <?php
@@ -89,7 +90,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="continue_to_pay_modal">
     <div class="close" id="close_modal_continue_to_pay">
-        <span>x</span>
+        <span></span>
     </div>
     <div class="content">
                                 <p class="user_name">

@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\ImgProducts;
 use Yii;
 use app\models\Products;
 use yii\data\ActiveDataProvider;
@@ -12,16 +13,9 @@ use yii\web\UploadedFile;
 /**
  * ProductsController implements the CRUD actions for Products model.
  */
-class ProductsController extends Controller
+class ProductsController extends AdminController
 {
-    public function beforeAction($action)
-    {
 
-        if (empty(Yii::$app->user->identity)) {
-            return false;
-        }
-        return  parent::beforeAction($action);
-    }
     /**
      * @inheritdoc
      */
@@ -128,6 +122,75 @@ class ProductsController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+    /*
+        * Галерея
+        */
+    public function actionGallery($id){
+        $response = ImgProducts::find()->where([ '=', 'product_id', $id ]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $response
+        ]);
+
+        return $this->render('index_img', [
+            'dataProvider' => $dataProvider,
+
+        ]);
+    }
+    public function actionGalleryAdd($id)
+    {
+        $model = new ImgProducts();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['/admin/products/gallery', 'id' => $id]);
+        } else {
+
+            return $this->render('create_img', [
+                'model' => $model,
+                'id'=>$id
+            ]);
+        }
+
+
+
+
+    }
+    public function actionGalleryUpdate($id)
+    {
+        $model = ImgProducts::findOne($id);
+
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+
+            $response = ImgProducts::find()->where([ '=', 'product_id', $model->product_id ]);
+            $dataProvider = new ActiveDataProvider([
+                'query' => $response
+            ]);
+
+            return $this->render('index_img', [
+                'dataProvider' => $dataProvider,
+
+            ]);
+
+        } else {
+
+            return $this->render('update_img', [
+                'model' => $model,
+                'id'=>$id
+            ]);
+        }
+
+
+
+
+    }
+    public  function actionGalleryDelete($id){
+        $product_id = ImgProducts::findOne($id);
+        ImgProducts::findOne($id)->delete();
+
+        return $this->redirect(['/admin/products/gallery?id='.$product_id->product_id]);
     }
 
     /**

@@ -1,0 +1,102 @@
+.contact  {
+    background-color: #f3f3f3;
+    margin-top: 103px;
+}
+
+.contact h1 {
+    color:black;
+    font-size: 42px;
+    line-height: 20px;
+    margin-left: 55px;
+    margin-top: 50px;
+}
+
+.contact .maps {
+margin-top: 54px;
+    margin-bottom: 58px;
+}
+
+.contact .contact_block {
+    position: absolute;
+    background-color: #333333;
+    width: 400px;
+
+    bottom: 175px;
+    right: 56px;
+}
+
+.contact .contact_block  img {
+    position: relative;
+    left: 45px;
+    top: 23px;
+}
+.contact .contact_block   ul{
+    margin-top: 28px;
+    padding-bottom:4px
+}
+.contact .contact_block   ul > li {
+    list-style: none;
+    color:white;
+    font-size: 16px;
+    line-height: 20pt;
+    margin-bottom: 16px;
+    display: inline-flex;
+}
+.contact .contact_block   ul li span, .contact .contact_block   ul li i {
+
+   color: #cc9966;
+    padding-right: 15px;
+}
+
+/*
+Responsive 600 px width
+ */
+@media only screen and (max-width: 600px) {
+    .contact {
+        margin-top: 80px;
+    }
+    .contact h1 {
+        color: black;
+        font-size: 30px;
+        line-height: 20px;
+        margin-left: 0;
+        margin-top: 30px;
+        text-align: center;
+    }
+    .contact .maps {
+        margin-top: 20px;
+    }
+    .contact .maps #gmap0-map-canvas {
+        height: 200px!important;
+    }
+    .contact .contact_block {
+        position: relative;
+        background-color: #333333;
+        width: 100%;
+        bottom: 0;
+        right: 0;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    .contact .contact_block img {
+        position: relative;
+        left: 3%;
+        top: 30px;
+    }
+    .contact .contact_block ul {
+        margin-top: 40px;
+        padding-bottom: 25px;
+        width: 90%;
+    }
+    .contact .contact_block ul > li {
+        list-style: none;
+        color: white;
+        font-size: 14px;
+        line-height: normal;
+        margin-bottom: 16px;
+        display: inline-flex;
+    }
+    .container{
+        padding: 0!important;
+    }
+}

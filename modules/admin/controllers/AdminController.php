@@ -24,7 +24,7 @@ if (parent::getRole() == $user::ADMIN) {
     return parent::beforeAction($action);
 
 } else {
-    $this->redirect('/login');
+    $this->redirect(Yii::$app->homeUrl);
     return false;
 
 }

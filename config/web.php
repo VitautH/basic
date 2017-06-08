@@ -8,7 +8,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'modules' => [
-        'media' => [
+        'imagemanager' => [
             'class' => 'noam148\imagemanager\Module',
             //set accces rules ()
             'canUploadImage' => true,
@@ -72,7 +72,7 @@ $config = [
         'imagemanager' => [
             'class' => 'noam148\imagemanager\components\ImageManagerGetPath',
             //set media path (outside the web folder is possible)
-            'mediaPath' => '/web/uploads/images/',
+            'mediaPath' => '/app/web/uploads/images/',
             //path relative web folder to store the cache images
             'cachePath' => 'assets/images',
             //use filename (seo friendly) for resized images else use a hash
@@ -109,8 +109,11 @@ $config = [
                 'login'=> 'user/security/login',
                 'logout'=> 'user/security/logout',
                 'registration'=> 'registration/index',
+//                'registration'=> 'user/registration/register',
                 'about'=> 'site/about',
                 'contact'=> 'site/contact',
+                'page/<slug>'=> 'pages/view'
+
 
             ],
         ],

@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * ArticlesController implements the CRUD actions for Articles model.
  */
-class ArticlesController extends Controller
+class ArticlesController extends AdminController
 {
     /**
      * @inheritdoc

@@ -4,6 +4,8 @@ use Yii;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use  yii\app;
+use app\models\Services;
+use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model app\models\Products */
 
@@ -33,17 +35,21 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'casinoName',
             'price',
-            'description',
+            ['attribute'=>'description',
+                'format'=>'html',
+                'value'=> function($data){
+                    return Html::decode($data->description);
+                }
+            ],
+
             'cashback',
+
             [
-                'attribute' => 'img_url',
+                'attribute' => 'logo_id',
                 'format' => 'html',
                 'value' => function ($data) {
-                    if ($data->img_url != null) {
-                        return Html::img(Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' . $data->img_url, [
-                            'alt' => 'yii2 - картинка в gridview',
-                            'style' => 'width:100px;'
-                        ]);
+                    if ($data->logo_id != null) {
+                        return Html::img(Yii::$app->imagemanager->getImagePath($data->logo_id, '100', '100','outbound'));
                     } else {
                         return "N/A";
                     }
@@ -53,4 +59,19 @@ $this->params['breadcrumbs'][] = $this->title;
         ]
 
     ]) ?>
+    <table id="w0" class="table table-striped table-bordered detail-view" style="border: 0; margin-top: -20px;"><tbody>
+        <tr><th>Услуги:</th><td> <ul><?php
+                foreach (Services::find()->all() as $service):
+                    if(!empty($model->hasService($service->id))){
+                     ?>
+                <li>
+                    <?=$service->name?>
+                </li>
+                      <?
+                    }
+
+                endforeach;
+                    ?></ul></td></tr>
+      </tbody></table>
+
 </div>

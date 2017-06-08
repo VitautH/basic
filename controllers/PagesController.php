@@ -9,12 +9,14 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\controllers\Base\MainController as MainController;
+
 /**
  * PagesController implements the CRUD actions for Page model.
  */
 class PagesController extends MainController
 {
     public $slug;
+
     /**
      * @inheritdoc
      */
@@ -84,19 +86,16 @@ class PagesController extends MainController
      *
      * @return array
      */
-    protected function findModelBySlug($slug)
-    {
 
-        if (($model = Page::findOne(['slug' => $slug])) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException();
-        }
-    }
+
     public function actionView($slug)
     {
+        $model = $model = Page::findOne(['slug' => $slug]);
+        if (empty($model)) {
+            $model = $model = Page::findOne(['id' => $slug]);
+        }
         return $this->render('view', [
-            'model' => $this->findModelBySlug($slug),
+            'model' => $model,
         ]);
     }
 }

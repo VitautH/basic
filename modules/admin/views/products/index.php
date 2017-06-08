@@ -27,17 +27,28 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'casinoName',
             'price',
-            'description:ntext',
-            'cashback',
+            ['attribute'=>'description',
+                'format'=>'html',
+                'value'=> function($data){
+    return \yii\helpers\StringHelper::truncate(Html::decode($data->description), '300');
+                }
+                ],
+            'cashback'
+            ,
             [
-                'attribute' => 'img_url',
+                'attribute' => 'gallery',
                 'format' => 'html',
-                'value' =>function ($data) {
-                    if ($data->img_url != null) {
-                        return Html::img(Yii::getAlias('@web') . '/' . Yii::getAlias('@img_path') . '/' . $data->img_url, [
-                            'alt' => 'yii2 - картинка в gridview',
-                            'style' => 'width:100px;'
-                        ]);
+                'value'=> function($data){
+                    return Html::a('Перейти', '/admin/products/gallery?id='.$data->id);
+                }
+            ],
+
+            [
+                'attribute' => 'logo_id',
+                'format' => 'html',
+                'value' => function ($data) {
+                    if ($data->logo_id != null) {
+                        return Html::img(Yii::$app->imagemanager->getImagePath($data->logo_id, '100', '100','outbound'));
                     } else {
                         return "N/A";
                     }

@@ -13,15 +13,16 @@ use Yii;
  * @property string $meta_keywords
  * @property string $meta_description
  * @property integer $city_id
- * @property string $address_street
+ * @property string $contacts
  * @property string $phone
- * @property string $img_url
- *  @property string $games
+ * @property string $logo_id
+ * @property string $games
  * @property string $features
  * @property string $entertainment
  * @property string $parking
  * @property string $working_hours
  * @property string $site
+ *
  * @property City $city
  * @property ImgCasino $imgCasino
  * @property Products[] $products
@@ -42,9 +43,10 @@ class Casino extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['city_id'], 'integer'],
-            [['title', 'address_street', 'phone', 'img_url'], 'string', 'max' => 225],
-            [['description', 'meta_keywords', 'meta_description', 'games', 'features', 'entertainment', 'parking', 'working_hours',], 'string', 'max' => 255],
+            [['description'], 'string'],
+            [['city_id', 'logo_id'], 'integer'],
+            [['title', 'contacts', 'phone'], 'string', 'max' => 225],
+            [['meta_keywords', 'meta_description', 'games', 'features', 'entertainment', 'parking', 'working_hours'], 'string', 'max' => 255],
             [['site'], 'string', 'max' => 50],
             [['city_id'], 'exist', 'skipOnError' => true, 'targetClass' => City::className(), 'targetAttribute' => ['city_id' => 'id']],
         ];
@@ -62,9 +64,9 @@ class Casino extends \yii\db\ActiveRecord
             'meta_keywords' => 'Meta Keywords',
             'meta_description' => 'Meta Description',
             'city_id' => 'City ID',
-            'address_street' => 'Contacts',
+            'contacts' => 'Contacts',
             'phone' => 'Phone',
-            'img_url' => 'Img Url',
+            'logo_id' => 'Logo',
             'games' => 'Games',
             'features' => 'Features',
             'entertainment' => 'Entertainment',
@@ -82,13 +84,7 @@ class Casino extends \yii\db\ActiveRecord
         return $this->hasOne(City::className(), ['id' => 'city_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getImgCasino()
-    {
-        return $this->hasOne(ImgCasino::className(), ['id' => 'id']);
-    }
+
 
     /**
      * @return \yii\db\ActiveQuery

@@ -39,11 +39,16 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Пользователи', 'url' => ['/admin/users/']],
             ['label' => 'Купоны', 'url' => ['/admin/coupon/']],
-            ['label' => 'Продукты', 'url' => ['/admin/products/']],
+            ['label' => 'Продукты', 'url' => ['/admin/products/'],
+                'items' =>[
+                    ['label' => 'Продукты', 'url' => ['/admin/products/']],
+                    ['label' => 'Услуги', 'url' => ['/admin/service/']],
+                ]],
             ['label' => 'Модули', 'url' => ['/admin/modules/'], 'items' => [
                 ['label' => 'Баннер', 'url' => ['/admin/banners/']],
                 ['label' => 'Слайдшоу', 'url' => ['/admin/slaidshow/']],
-                ['label' => 'Меню', 'url' => ['/admin/menu/']],
+                ['label' => 'Приемущества', 'url' => ['/admin/modules-advantages/']],
+
                 ]],
             ['label' => 'Материалы', 'url' => ['#'], 'items' => [
         ['label' => 'Категории', 'url' => ['/admin/categories/']],
@@ -51,6 +56,7 @@ AppAsset::register($this);
                 ['label' => 'Страницы', 'url' => ['/admin/pages/']]
                 ]],
             ['label' => 'Казино', 'url' => ['/admin/casino']],
+            ['label' => 'Настройки', 'url' => ['/admin/setting']],
             Yii::$app->user->isGuest ? (
             ['label' => 'Login', 'url' => ['/login']]
             ) : (

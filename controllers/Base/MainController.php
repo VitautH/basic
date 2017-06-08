@@ -12,7 +12,8 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\User;
 use  app\models\Slaidshow;
-
+use app\models\Page;
+use app\models\ModulesAdvantages;
 class MainController extends \yii\web\Controller
 {
 
@@ -20,10 +21,18 @@ class MainController extends \yii\web\Controller
     public $slaidshow;
     public $role_id;
     public $user_name;
-
+    public $footer_menu;
+public $advantages;
 // ToDo: Или методы класса или Свойства/члены. Конструктор переделать!
     public function __construct($id, $module, array $config = [])
     {
+$this->advantages = ModulesAdvantages::find()->asArray()->all();
+        $this->footer_menu = Page::find()
+            ->select('id, title, slug')
+            ->where('menu_id = 1')
+            ->asArray()
+            ->all();
+
         $this->slaidshow = Slaidshow::find()->asArray()->all();
 
         if (!Yii::$app->user->isGuest) {
