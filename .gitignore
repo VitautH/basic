@@ -57,3 +57,5 @@ vendor/symfony/
 vendor/webmozart/
 vendor/yiisoft/
 views/profile/
+/messages/ru/basic.php
+/messages/ru/app.php
