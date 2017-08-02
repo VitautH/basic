@@ -60,14 +60,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                 }
                 }
             ],
-            [
-                'attribute'=>'Купоны',
-                'format'=>'raw',
-                'value'=>function($data){
-                   return Html::a('Перейти', '/admin/coupon/view?id='.$data->id);
-                    }
-
-            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

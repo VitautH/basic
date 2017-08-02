@@ -7,7 +7,7 @@
 
 use yii\helpers\Html;
 
-$this->title = 'О нас';
+$this->title = _t('О нас');
 
 
 ?>
@@ -16,7 +16,7 @@ $this->title = 'О нас';
     <div class="site-about">
         <img src="/image/logo.png" class="logo col-lg-4  col-lg-offset-4 col-xs-offset-0 col-xs-12 col-sm-6">
         <div class="site-about-inner">
-            <h1><?=$model->title?></h1>
+            <h1><?=$this->title?></h1>
 
             <div class="brief">
                 <?= $model->brief ?>

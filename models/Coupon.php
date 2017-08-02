@@ -56,11 +56,9 @@ class Coupon extends BaseCoupon
 
     private function generateCoupon($order_id)
     {
-        $coupon = $this->security->generateRandomString(6) . $order_id;
+        $coupon = $this->security->generateRandomString(2) . substr($order_id,1,2);
 
         return $coupon;
-
-
     }
 
     /* method saveCoupon
@@ -93,6 +91,28 @@ class Coupon extends BaseCoupon
       return Html::a($username,'/admin/users/view?id='.$user_id);
 
     }
+
+    /*
+     * Return User
+     */
+//public  function getUser($coupon_id){
+//    $user_id = Order::find(['==','coupon_id',$coupon_id])->one()->user_id;
+//
+//    return User::findOne($user_id);
+//}
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+    public function getOrder()
+    {
+        return $this->hasOne(Order::className(), ['coupon_id' => 'id']);
+    }
+public function generate_sms_code(){
+   $this->sms_code = $this->security->generateRandomString(4);
+   // ToDo:Send SMS;
+    $this->save();
+}
 // Вывод стоимости Заказа на странице Купона
     // return Order->amount
     public static function getCouponPrice($id){
@@ -107,4 +127,6 @@ class Coupon extends BaseCoupon
      $product_title = Products::find($product_id)->one()->title;
         return Html::a($product_title,'/admin/products/view?id='.$product_id);
     }
+
+
 }

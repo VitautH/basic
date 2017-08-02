@@ -17,7 +17,7 @@ $this->title = "Успешная оплата";
         <div class="row">
           <h2> Спасибо, что воспользовались нашим сервисом! </h2>
             <p>Ваш купон: <b><?= $model['coupon']?></b></p>
-            <a href="/account">Ваши заказы</a>
+            <a href="/<?=Yii::$app->language;?>/account">Ваши заказы</a>
         </div>
 
     </div>

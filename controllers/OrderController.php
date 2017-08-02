@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\controllers\Base\MainController as MainController;
 use app\models\User;
 use app\models\Order;
+use app\models\Products;
 use Yii;
 use  app;
 use yii\debug\models\timeline\DataProvider;
@@ -45,22 +46,19 @@ class OrderController extends MainController
 
     public function actionCreate()
     {
-
-
-        $this->order->scenario = 'create_order';
         $request = Yii::$app->request;
         if ($request->isPost) {
-
-            $this->order->load($request->post());
-
-            if ($this->order->save()) {
-                return $this->redirect(['/account']);
-
-            } else {
-
-                throw new ForbiddenHttpException('Доступ запрещён');
+            $product_id = $request->post()['Products']['id'];
+            $order= new Order();
+            $response = $order->createOrder(Products::findOne($product_id));
+            if ($response !== false) {
+                $this->redirect($response);
             }
-
+            else {
+                throw new ForbiddenHttpException('Произошла ошбка при оплате');
+            }
+        } else {
+            throw new ForbiddenHttpException('Доступ запрещён');
         }
     }
 

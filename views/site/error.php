@@ -14,7 +14,7 @@ $this->registerCssFile('/css/error.css');
 <div class="container">
     <div class="site-error">
     <div class="row">
-        <h2 class="col-lg-12 col-xs-12">В следующий раз точно повезет!</h2>
+        <h2 class="col-lg-12 col-xs-12"><?= _t('В следующий раз точно повезет');?>!</h2>
     </div>
         <div class="row">
 
@@ -23,7 +23,7 @@ $this->registerCssFile('/css/error.css');
 
     </div>
         <div class="row">
-            <a href="<?=Yii::$app->homeUrl?>" class="back">Перейти на главную</a>
+            <a href="<?=Yii::$app->homeUrl. \Yii::$app->language?>" class="back"><?= _t('Перейти на главную');?></a>
         </div>
 </div>
 

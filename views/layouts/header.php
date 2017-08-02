@@ -10,18 +10,22 @@ use \yii\widgets\Menu;
 use yii\widgets\Breadcrumbs;
 use Yii\app;
 use app\models\Setting;
+use app\models\User;
+use app\components\Lang;
+
 // ToDo: Add meta tags
+
 Yii::$app->view->registerMetaTag([
     'name' => 'description',
     'content' => 'Description of the page...'
-] );
+]);
 $this->registerJSFile('/js/modal.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 
 $this->registerCssFile('//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css');
 $this->registerJSFile('//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->registerJSFile('/js/bootstrap.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 
-$phone = Setting::find()->andWhere(['params'=>'phone'])->asArray()->one();
+$phone = Setting::find()->andWhere(['params' => 'phone'])->asArray()->one();
 
 ?>
 <!DOCTYPE html>
@@ -32,12 +36,14 @@ $phone = Setting::find()->andWhere(['params'=>'phone'])->asArray()->one();
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 
-    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
+
 
 <body>
 <div class="overlay"></div>
@@ -45,185 +51,199 @@ $phone = Setting::find()->andWhere(['params'=>'phone'])->asArray()->one();
 <header>
     <div class="top">
         <div class="container">
+            <ul class="top_nav">
 
-            <ul class="top_nav row">
-                <li class="phone col-xs-4 col-lg-2">
+                <li class="phone">
                     <span class="glyphicon glyphicon-earphone"></span>
-                    <span><?=$phone['value'] ?></span>
+                    <span><?= $phone['value'] ?></span>
                 </li>
-                <li class="language_switch  col-xs-3 col-lg-2">
-                    <span><a href="#">EN</a></span>
-                    <span class="active"><a href="#">RU</a></span>
-                    <span><a href="#">IT</a></span>
+
+                <li class="language_switch">
+                    <div>
+                        <span <?= (\Yii::$app->language == 'en') ? 'class="active"' : ''; ?>><a
+                                    href="<?= \Yii::$app->request->BaseUrl ?>/switch/en">EN</a></span>
+                        <span <?= (\Yii::$app->language == 'ru') ? 'class="active"' : ''; ?>><a
+                                    href="<?= \Yii::$app->request->BaseUrl ?>/switch/ru">RU</a></span>
+                    </div>
                 </li>
-                <?php // ToDo: исправить меню ?>
-                <ul class="authority_block  col-xs-4 col-lg-2">
-                <li class="login_logaut_block">
-                    <?php
 
-                    // ToDo: Исправить с false на true! Стиль кнопки в стил ссылки превратить!!!
-                    if(Yii::$app->user->isGuest) {
-                        ?>
-                       <li class="login"> <?= Html::a('Войти', [Yii::$app->request->url.'#'], ['class' => 'login_form_click']) ?></li>
-
-                        <li class="singup"><?= Html::a('Зарегистрироваться', [Yii::$app->request->url.'#'], ['class' => 'singup_form_click']) ?></li>
-
+                <li class="li_authority_block">
+                    <ul class="authority_block">
+                        <li class="login_logaut_block"></li>
                         <?php
-                    }
-                    else {
+                        // ToDo: Исправить с false на true! Стиль кнопки в стил ссылки превратить!!!
+                        if (Yii::$app->user->isGuest) {
+                            ?>
+                            <li class="login"> <?= Html::a(_t('Войти')
+                                    , [Yii::$app->request->url . '#'], ['class' => 'login_form_click']) ?></li>
+
+                            <li class="singup"><?= Html::a(_t('Зарегистрироваться'), [Yii::$app->request->url . '#'], ['class' => 'singup_form_click']) ?></li>
+
+                            <?php
+                        } else {
 
 
                             ?>
                             <ul class="nav nav-pills">
 
                                 <li role="presentation" class="dropdown ">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-haspopup="true" aria-expanded="true">
                                         <?= $this->context->getUserName() ?> <span class="caret"></span>
 
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/account">Заказы</a></li>
-                                        <li><a href="/account/profile">Профиль</a></li>
-
+                                        <li><a href="/<?= \Yii::$app->language; ?>/account"><?= _t('Заказы') ?></a></li>
+                                        <li>
+                                            <a href="/<?= \Yii::$app->language; ?>/account/profile"><?= _t('Профиль') ?></a>
+                                        </li>
+                                        <? if (($this->context->role_id == User::MANAGER) or ($this->context->role_id == User::ADMIN)):
+                                            ?>
+                                            <li>
+                                                <a href="/<?= \Yii::$app->language; ?>/manager"><?= _t('Проверить купон') ?></a>
+                                            </li>
+                                            <?php
+                                        endif;
+                                        ?>
                                     </ul>
                                 </li>
                             </ul>
 
                             <li class="logout"><?= Html::beginForm(['/logout'], 'post')
-                            . Html::submitButton(
-                                'Выйти',
-                                ['class' => 'btn btn-link logout']
-                            )
-                            . Html::endForm()?></li>
-                  <?php
+                                . Html::submitButton(
+                                    _t('Выйти'),
+                                    ['class' => 'btn btn-link logout']
+                                )
+                                . Html::endForm() ?></li>
+                            <?php
 
 
-                    }
-                    ?>
-                </li>
-                </ul>
+                        }
+                        ?>
+                        </li>
+                    </ul>
+
             </ul>
 
 
         </div>
+    </div>
+    <nav>
+        <div class="container">
 
 
-        <nav>
+            <?php
+            Menu::begin();
+            echo Menu::widget([
+                'options' => ['class' => 'navbar-nav'],
+                'items' => [
+                    [
+                        'template' => '<a href="' . Yii::$app->homeUrl. \Yii::$app->language . '" >' . _t('Главная') . ' </a>',
+                        'active' => ($this->context->action->getUniqueId() == 'site/index')
+                    ],
+                    [
+                        'label' => _t('Получить бонус-план'),
+                        'url' => ['/' . \Yii::$app->language . '/products'],
+                        'active' => ($this->context->slug == 'products')
+                    ],
+                    [
+                        'label' => _t('О нас'),
+                        'url' => ['/' . \Yii::$app->language . '/about'],
+                        'active' => ($this->context->slug == 'about')
+                    ],
+                    [
+                        'label' => _t('Контакты'),
+                        'url' => ['/' . \Yii::$app->language . '/contact'],
+                        'active' => ($this->context->action->getUniqueId() == 'site/contact')
+                    ]
+                ],
+            ]);
+            Menu::end();
+            ?>
 
-            <?//= $this->context->action->getUniqueId() ?>
-            <div class="container">
-                <div class="nav_container col-xs-12">
+        </div>
+    </nav>
+    <nav class="phone">
+        <ul class="nav nav-pills">
+
+            <li role="presentation" class="dropdown ">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                   aria-expanded="true">
+                    <span class="ico_nav"></span>
+                </a>
+                <ul class="dropdown-menu">
                     <?php
                     Menu::begin();
                     echo Menu::widget([
-                        'options' => ['class' => 'navbar-nav'],
+                        'options' => ['class' => 'phone_menu'],
                         'items' => [
                             [
-                                'url' => Yii::$app->homeUrl,
-                                'template' => '<a href="{url}" >Главная </a>',
+                                'label' => _t('Главная'),
+                                'url' => Yii::$app->homeUrl. \Yii::$app->language,
                                 'active' => ($this->context->action->getUniqueId() == 'site/index')
                             ],
 
 
                             [
-                                'label' => 'Получить бонус-план',
-                                'url' => ['/products'],
+                                'label' => _t('Получить бонус-план'),
+                                'url' => ['/' . \Yii::$app->language . '/products'],
                                 'active' => ($this->context->slug == 'products')
                             ],
                             [
-                                'label' => 'О нас',
-                                'url' => ['/about'],
+                                'label' => _t('О нас'),
+                                'url' => ['/' . \Yii::$app->language . '/about'],
                                 'active' => ($this->context->slug == 'about')
                             ],
                             [
-                                'label' => 'контакты',
-                                'url' => ['/site/contact'],
+                                'label' => _t('Контакты'),
+                                'url' => ['/' . \Yii::$app->language . '/contact'],
                                 'active' => ($this->context->action->getUniqueId() == 'site/contact')
                             ]
                         ],
                     ]);
                     Menu::end();
                     ?>
-                </div>
+
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <? if (!empty($this->context->slaidshow)) : ?>
+        <div class="main-slider">
+            <div class="container" style="padding: 0;">
+                <section class="block_1"
+                         style="background-image: url(&quot;/uploads/images/banner/f24bb9c0b759829b223e2c65248a3b4f.jpg&quot;);">
+                    <div class="my-flex-container">
+                        <div class="my-flex-block">
+                            <img src="/image/logo.png" class="logo col-lg-4  col-lg-offset-4 col-xs-12 col-xs-0">
+
+                        </div>
+
+
+                        <div class="my-flex-block">
+                            <div class="slider_header col-lg-10 col-xs-12" id="slider_1">
+                                <div class="arrow  col-lg-1 col-xs-1" id="arrow-left">
+
+                                </div>
+                                <div class="content col-lg-8 col-xs-8">
+                                    <span class="title"> </span>
+                                    <p>
+                                    </p>
+                                </div>
+                                <div class="arrow col-lg-1 col-xs-1" id="arrow-right">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="my-flex-block">
+                            <div class="item_slideshow">
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </nav>
-
-<nav class="phone">
-    <ul class="nav nav-pills">
-
-        <li role="presentation" class="dropdown ">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-                <span  class="ico_nav"></span>
-
-            </a>
-            <ul class="dropdown-menu">
-                <?php
-                Menu::begin();
-                echo Menu::widget([
-                    'options' => ['class' => 'phone_menu'],
-                    'items' => [
-                        [
-                            'label' => 'Главная',
-                            'url' => Yii::$app->homeUrl,
-                            'active' => ($this->context->action->getUniqueId() == 'site/index')
-                        ],
-
-
-                        [
-                            'label' => 'Получить бонус-план',
-                            'url' => ['/products'],
-                            'active' => ($this->context->slug == 'products')
-                        ],
-                        [
-                            'label' => 'О нас',
-                            'url' => ['/about'],
-                            'active' => ($this->context->slug == 'about')
-                        ],
-                        [
-                            'label' => 'контакты',
-                            'url' => ['/site/contact'],
-                            'active' => ($this->context->action->getUniqueId() == 'site/contact')
-                        ]
-                    ],
-                ]);
-                Menu::end();
-                ?>
-
-            </ul>
-        </li>
-    </ul>
-</nav>
-    </div>
-
-
-<? if (!empty($this->context->slaidshow)) : ?>
-
-
-        <div class="header_container container">
-            <section class="block_1">
-            <div class="dark_background"></div>
-            <img src="/image/logo.png" class="logo col-lg-4  col-lg-offset-4 col-xs-12 col-xs-0"/>
-            <div class="clearfix"></div>
-            <div class="slider_header col-lg-10  col-xs-12 " id="slider_1">
-                <div class="arrow  col-lg-1 col-xs-1" id="arrow-left">
-
-                </div>
-                <div class="content col-lg-8 col-xs-8">
-                    <span class="title"> </span>
-                    <p>
-                    </p>
-                </div>
-                <div class="arrow col-lg-1 col-xs-1" id="arrow-right">
-                </div>
-
-
-
-            </section>
-            <div class="item_slideshow">
-            </div>
-            </div>
-
-
-<?php endif; ?>
+        </div>
+    <?php endif; ?>
 
 </header>

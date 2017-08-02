@@ -6,7 +6,7 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Казино';
+$this->title = _t('Казино');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="casino-index">

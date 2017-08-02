@@ -10,16 +10,15 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use dektrium\user\widgets\Connect;
-use dektrium\user\models\LoginForm;
+
 
 use app\models\User;
 use yii\widgets\ActiveForm;
 
-$model_login = \Yii::createObject(LoginForm::className());
+$model_login = new User();
 //$model_login = new LoginForm();
-
-$enablePasswordRecovery = true;
-
+$model_login->setScenario(User::SCENARIO_LOGIN);
+$enablePasswordRecovery= true;
 ?>
 
 <?php $form = ActiveForm::begin([
@@ -34,7 +33,7 @@ $enablePasswordRecovery = true;
 
 
 <?= $form->field($model_login, 'login',
-    ['inputOptions' => ['autofocus' => 'autofocus', 'class' => 'form-control', 'tabindex' => '1', 'placeholder' => 'Логин']]
+    ['inputOptions' => ['autofocus' => 'autofocus', 'class' => 'form-control', 'tabindex' => '1', 'placeholder' => _t('Логин')]]
 )->label(false);
 ?>
 
@@ -42,7 +41,7 @@ $enablePasswordRecovery = true;
 <?= $form->field(
     $model_login,
     'password',
-    ['inputOptions' => ['class' => 'form-control', 'tabindex' => '2', 'placeholder' => 'Пароль']])
+    ['inputOptions' => ['class' => 'form-control', 'tabindex' => '2', 'placeholder' => _t('Пароль')]])
     ->passwordInput()
     ->label(
         Yii::t('user', 'Password')
@@ -59,7 +58,7 @@ $enablePasswordRecovery = true;
 <? //= $form->field($model, 'rememberMe')->checkbox(['tabindex' => '3'])?>
 
 <?= Html::submitButton(
-    Yii::t('user', 'ВОЙТИ'),
+    Yii::t('user', _t('Войти')),
     ['class' => 'btn btn-primary btn-block', 'tabindex' => '4']
 ) ?>
 

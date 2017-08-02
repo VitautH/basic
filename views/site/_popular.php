@@ -7,7 +7,6 @@ use yii\helpers\Html;
  * Time: 20:01
  */
 ?>
-
 <?php foreach ($products as  $key=>$product) : ?>
     <div class="col-lg-5 col-sm-5 col-xs-12   <?= ($key <= 1) ? 'block-top ':'block-bottom' ?>">
         <div class="img col-lg-2 col-xs-3 col-sm-3">
@@ -24,11 +23,11 @@ use yii\helpers\Html;
             ?>
         </div>
         <div class="bonus_plan_steps_content col-lg-3 col-sm-5 col-xs-9">
-            <h3><a href="products/view?id=<?= $product->id; ?>"><?= $product->title;?></a></h3>
+            <h3><a href="/<?=\Yii::$app->language;?>/products/view?id=<?= $product->id; ?>"><?= $product->title;?></a></h3>
 <img width="60px" height="60px" src="<?= Yii::$app->imagemanager->getImagePath($product->casino->logo_id, '60', '60') ?>">
 <span class="price"><?= $product->price;?> BYN</span>
         </div>
-        <div class="booking hidden-xs"><a href="products/view?id=<?= $product->id; ?>"> Забронировать <br> сейчас!</a></div>
+        <div class="booking hidden-xs"><a href="/<?=\Yii::$app->language;?>/products/view?id=<?= $product->id; ?>"> <?= _t('Забронировать сейчас');?>!</a></div>
     </div>
 
 <? endforeach; ?>

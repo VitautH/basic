@@ -1,9 +1,11 @@
 <?php
+
 use app\models\User;
 
 $params = require(__DIR__ . '/params.php');
-
+require(__DIR__ . '/../helpers/helpers.php');
 $config = [
+    'sourceLanguage' => 'ru',
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
@@ -12,7 +14,7 @@ $config = [
             'class' => 'noam148\imagemanager\Module',
             //set accces rules ()
             'canUploadImage' => true,
-            'canRemoveImage' => function(){
+            'canRemoveImage' => function () {
                 return true;
             },
             //add css files (to use in media manage selector iframe)
@@ -30,7 +32,7 @@ $config = [
                     'class' => \dektrium\user\controllers\SecurityController::className(),
                     'on ' . \dektrium\user\controllers\SecurityController::EVENT_AFTER_LOGIN => function ($e) {
 
-                        $user_role =  Yii::$app->user->identity->role_id;
+                        $user_role = Yii::$app->user->identity->role_id;
                         $user = new User;
                         switch ($user_role) {
                             case $user::ADMIN:
@@ -52,7 +54,6 @@ $config = [
                         }
 
 
-
                     },
                 ],
             ],
@@ -66,15 +67,22 @@ $config = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'xqU70zFOHQMeMTNlxDc8VSNPhp6G1b7d',
         ],
+        'i18n' => [
+            'class' => 'app\components\Lang',
+        ],
+        'bepaid' => [
+            'class' => 'app\components\Bepaid',
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
         'imagemanager' => [
             'class' => 'noam148\imagemanager\components\ImageManagerGetPath',
             //set media path (outside the web folder is possible)
-            'mediaPath' => '/app/web/uploads/images/',
+            // 'mediaPath' => '/app/web/uploads/images/',
+            'mediaPath' => 'uploads/images/',
             //path relative web folder to store the cache images
-            'cachePath' => 'assets/images',
+            //  'cachePath' => 'assets/images',
             //use filename (seo friendly) for resized images else use a hash
             'useFilename' => true,
             //show full url (for example in case of a API)
@@ -106,21 +114,31 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'login'=> 'user/security/login',
-                'logout'=> 'user/security/logout',
-                'registration'=> 'registration/index',
-//                'registration'=> 'user/registration/register',
-                'about'=> 'site/about',
-                'contact'=> 'site/contact',
-                'page/<slug>'=> 'pages/view'
-
-
+                '/login' => 'login/login',
+                '/logout' => 'user/security/logout',
+                '/registration' => 'registration/index',
+                '/<lang:en|ru>/about' => 'site/about',
+                '/<lang:en|ru>/contact' => 'site/contact',
+                '/<lang:en|ru>/page/<slug>' => 'pages/view',
+                '/<lang:en|ru>' => 'site/index',
+                '/<lang:en|ru>/products' => 'products',
+                '/<lang:en|ru>/products/view' => 'products/view',
+                '/<lang:en|ru>/articles/view' => 'articles/view',
+                '/<lang:en|ru>/articles' => 'articles/index',
+                '/<lang:en|ru>/account/profile' => 'account/profile',
+                '/<lang:en|ru>/account' => 'account/index',
+                '/<lang:en|ru>/casino' => 'casino/index',
+                '/<lang:en|ru>/casino/view' => 'casino/view',
+                '/<lang:en|ru>/manager' => 'manager/index',
+                '/switch/<lang>'=> 'lang/change',
+               // '/<lang:en|ru>/<slug:\w+>.html' => 'page/page-view',
             ],
         ],
-        
+
     ],
     'aliases' => [
         '@img_path' => 'uploads/images',
+        '@common' => '/common/'
     ],
     'params' => $params,
 ];

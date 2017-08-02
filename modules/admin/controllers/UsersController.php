@@ -67,15 +67,32 @@ class UsersController extends AdminController
     {
         $model = new User();
         $model->setScenario(User::SCENARIO_CREATE);
-        $this->ajaxValidation($model);
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+        if (Yii::$app->request->isPost) {
+
+            $model->load($_POST);
+            /*
+                            *  Validation
+                            */
+            if (\Yii::$app->request->isAjax) {
+                return $this->ajaxValidation($model);
+
+
+            } else {
+                if ($model->validate() && $model->save()) {
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+            }
+
+        }
+
+      else {
             return $this->render('create', [
                 'model' => $model,
                 'create'=> true
             ]);
         }
+
+
     }
 
     /**
@@ -88,15 +105,33 @@ class UsersController extends AdminController
     {
         $model = $this->findModel($id);
         $model->setScenario(User::SCENARIO_UPDATE_ADMIN);
-        $this->ajaxValidation($model);
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+        if (Yii::$app->request->isPost) {
+
+            $model->load($_POST);
+            /*
+                  *  Validation
+                  */
+            if (\Yii::$app->request->isAjax) {
+                return $this->ajaxValidation($model);
+
+
+            } else {
+                if ($model->validate() && $model->save()) {
+                    return $this->render('update', [
+                        'model' => $model,
+                        'update'=>true
+                    ]);
+                }
+
+            }
+        }
+        else {
             return $this->render('update', [
                 'model' => $model,
                 'update'=>true
             ]);
         }
+
     }
 
     /**
@@ -116,24 +151,17 @@ class UsersController extends AdminController
      */
     protected function ajaxValidation($model)
     {
-        if (\Yii::$app->request->isAjax) {
+
             $model->load(\Yii::$app->request->post());
-//            $model->validate();
+
 
             \Yii::$app->response->format = Response::FORMAT_JSON;
             \Yii::$app->response->data   = ActiveForm::validate($model);
 
-//            \Yii::$app->response->data = [
-//                'status'    => $model->validate() ? 'ok' : 'error',
-//                'errors'    => $model->getErrors(),
-//            ];
 
-//            \Yii::$app->response->data   = $model->validate();
-
-//            \Yii::$app->response->errors   = $model->getErrors();
             \Yii::$app->response->send();
             \Yii::$app->end();
-        }
+
     }
 
     /**
@@ -151,4 +179,5 @@ class UsersController extends AdminController
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 }

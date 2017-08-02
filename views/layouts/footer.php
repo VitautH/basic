@@ -14,14 +14,10 @@ $model_login = \Yii::createObject(LoginForm::className());
 endif;
 //ToDo: Вынести  в отдельные JS файлы!
 ?>
-
-
 <footer>
     <div class="container">
    <div class="row">
-       <div class="col-lg-4">
 
-       </div>
        <div class="col-lg-2 col-xs-6 footer_menu">
 
            <ul>
@@ -29,7 +25,7 @@ endif;
 
                foreach ($this->context->footer_menu as $menu_items):
                    ?>
-                   <li><a href="/page/<? if($menu_items['slug']!== null){
+                   <li><a href="/<?=\Yii::$app->language;?>/page/<? if($menu_items['slug']!== null){
                        echo  $menu_items['slug'];}
                    else {
                        echo  $menu_items['id'];
@@ -44,20 +40,8 @@ endif;
    </div>
     </div>
 </footer>
-<?php
+<?=$this->render('_popup_check_sms');?>
 
-if(Yii::$app->session->getFlash('success_registration', NULL)!== null):
-?>
-    <div class="success_registration_message" id="success_registration_message">
-        <div class="close" id="close_modal_success_registration_message">
-            <span></span>
-        </div>
-        <div class="content">
-            <p> <?=Yii::$app->session->getFlash('success_registration', NULL)  ?></p>
-    </div>
-<?php
-endif;
-?>
         <?php
 
         if(Yii::$app->session->getFlash('failed_registration', NULL)!== null):
@@ -78,10 +62,10 @@ endif;
 <div class="login_singup_popup">
 <div class="tabs">
     <div id="login_modal_form"  class="tab">
-<span>ВОЙТИ</span>
+<span><?= _t('Войти');  ?></span>
     </div>
     <div id="singup_modal_form" class="active tab">
-<span>ЗАРЕГИСТРИРОВАТЬСЯ</span>
+<span><?= _t('Зарегистрироваться');?></span>
     </div>
     <div class="close" id="close_modal_login_form">
 <span></span>
@@ -104,22 +88,9 @@ endif;
 endif;
 ?>
 <?php $this->endBody() ?>
-
-
-
 <? if (!empty($this->context->slaidshow)) : ?>
     <?= $this->render('_slideshow', ['images' => $this->context->getSlaidshow()])?>
 <? endif ?>
-<?php
-// ToDo: Доделать
-//
-//$object_user = User::findIdentityByAccessToken('675');
-//if ($object_user !== null){
-//    yii::$app->user->login($object_user);
-//}
 
-//$user->setIdentity();//loginByAccessToken('34y55');
-//Account::findIdentityByAccessToken('34y55');
-?>
 </body>
 </html>

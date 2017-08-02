@@ -33,23 +33,23 @@ $model_registration->setScenario(User::SCENARIO_REGISTER);
     ?>
 
     <?= $form->field($model_registration, 'username', [
-        'inputOptions' => ['class' => 'form-control', 'placeholder' => 'Логин']
+        'inputOptions' => ['class' => 'form-control', 'placeholder' => _t('Логин')]
     ])->label(false);
     ?>
 
     <?= $form->field($model_registration, 'phone', [
-        'inputOptions' => ['class' => 'form-control', 'placeholder' => 'Телефон']
+        'inputOptions' => ['class' => 'form-control', 'placeholder' => _t('Телефон')]
     ])->label(false);
     ?>
 
     <?= $form->field($model_registration, 'password', [
-        'inputOptions' => ['class' => 'form-control', 'placeholder' => 'Пароль']
+        'inputOptions' => ['class' => 'form-control', 'placeholder' => _t('Пароль')]
     ])
     ->passwordInput()
     ->label(false);
 ?>
 
 
-    <?= Html::submitButton(Yii::t('user', 'Зарегистрироваться'), ['class' => 'btn btn-primary btn-block']) ?>
+    <?= Html::submitButton(Yii::t('user', _t('Зарегистрироваться')), ['class' => 'btn btn-primary btn-block']) ?>
 
 <?php ActiveForm::end(); ?>

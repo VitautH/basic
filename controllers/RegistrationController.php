@@ -6,10 +6,12 @@
  * Time: 17:51
  */
 /*
+ToDo: Ошибка с редиректом! Исправить!!!
 ToDo: 1) Проверка смс
 2) Проверка e-mail
 3) Подробный вывод сообщений об ошибках.
  */
+
 namespace app\controllers;
 
 use app\controllers\Base\MainController as MainController;
@@ -45,30 +47,53 @@ class RegistrationController extends MainController
         }
     }
 
-    // Точка входа регистрации
+    /*
+     *    Точка входа регистрации
+     */
+
     public function actionIndex()
     {
 
 
         if (Yii::$app->request->isPost) {
 
-            $request = Yii::$app->request;
-//            $user = Yii::createObject(User::className());
+
+            /*
+             * Создаём модель
+             */
             $user = new User();
-            $user->setScenario(User::SCENARIO_REGISTER); // Устанавливаем сценарий
 
-//            $event = $this->getFormEvent($user);
-            $this->ajaxValidation($user);
-
-            if ($user->registration($request->post())) {
-                return $this->redirect(Yii::$app->request->referrer);
-            } else {
-                Yii::$app->session->setFlash(
-                    'failed_registration', 'Извините, произошла ошибка во время регистрации!'
-
-                );
-                return $this->redirect([Yii::$app->request->referrer]);
+            /*
+             *  Устанавливаем сценарий
+             */
+            $user->setScenario(User::SCENARIO_REGISTER);
+            $user->load($_POST);
+            /*
+             *  Validation
+             */
+            if (\Yii::$app->request->isAjax) {
+              return  $this->ajaxValidation($user);
             }
+            else
+                {
+                if ($user->validate()) {
+                   if($user->Registration()){
+                       Yii::$app->session->setFlash(
+                           'success_registration', ['phone'=>$user->phone, 'username'=>$user->username, 'key'=>$user->secret_key]
+
+                       );
+                       return $this->redirect([Yii::$app->homeUrl]);
+                   }
+                }
+                else {
+                    Yii::$app->session->setFlash(
+                        'failed_registration', 'Извините, произошла ошибка во время регистрации!'
+
+                    );
+                    return $this->redirect([Yii::$app->homeUrl]);
+                }
+            }
+
 
         } else {
 
@@ -77,30 +102,45 @@ class RegistrationController extends MainController
 
     }
 
+public function actionCheckCode(){
+    $model = new User();
+    if (!empty($_POST)) {
+        $model->setScenario(User::SCENARIO_CHECK_REGISTER_CODE);
+        $model->load($_POST);
 
+        if (\Yii::$app->request->isAjax) {
+            return  $this->ajaxValidation($model);
+        } else {
+            if ($model->validate()) {
+              $model->activationUser();
+                   return $this->redirect([Yii::$app->homeUrl]);
+
+
+
+
+            }
+        }
+
+    }
+   else{
+        //throw new NotFoundHttpException('The requested page does not exist.');
+    }
+}
     /**
      * @throws \yii\base\ExitException
      */
     protected function ajaxValidation($model)
     {
-        if (\Yii::$app->request->isAjax) {
-            $model->load(\Yii::$app->request->post());
-//            $model->validate();
 
-            \Yii::$app->response->format = Response::FORMAT_JSON;
-            \Yii::$app->response->data   = ActiveForm::validate($model);
+        $model->load(\Yii::$app->request->post());
 
-//            \Yii::$app->response->data = [
-//                'status'    => $model->validate() ? 'ok' : 'error',
-//                'errors'    => $model->getErrors(),
-//            ];
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+        \Yii::$app->response->data = ActiveForm::validate($model);
 
-//            \Yii::$app->response->data   = $model->validate();
 
-//            \Yii::$app->response->errors   = $model->getErrors();
-            \Yii::$app->response->send();
-            \Yii::$app->end();
-        }
+        \Yii::$app->response->send();
+        \Yii::$app->end();
+
     }
 
 

@@ -12,6 +12,8 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\ForbiddenHttpException;
 use Yii;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 class AccountController extends MainController
 {
@@ -63,15 +65,33 @@ class AccountController extends MainController
         $model->setScenario(User::SCENARIO_UPDATE);
         if (!empty($_POST)) {
             $model->load($_POST);
-            if ($model->save()) {
-                $message = 'Информация обновлена';
+            /*
+                *  Validation
+                */
+            if (\Yii::$app->request->isAjax) {
+                return $this->ajaxValidation($model);
+            } else {
+                if ($model->validate()) {
+
+                    if ($model->save()) {
+                        $message = 'Информация обновлена';
+                        return $this->render('profile', [
+                            'model' => $model,
+'message'=> $message
+
+                        ]);
+                    }
+                }
             }
+
         }
+       else  {
         return $this->render('profile', [
             'model' => $model,
-            'message' => $message
+
 
         ]);
+    }
     }
 
 
@@ -91,5 +111,21 @@ class AccountController extends MainController
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+    /**
+     * @throws \yii\base\ExitException
+     */
+    protected function ajaxValidation($model)
+    {
+
+        $model->load(\Yii::$app->request->post());
+
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+        \Yii::$app->response->data = ActiveForm::validate($model);
+
+
+        \Yii::$app->response->send();
+        \Yii::$app->end();
+
     }
 }

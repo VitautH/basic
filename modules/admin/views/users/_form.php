@@ -37,6 +37,9 @@ if(isset($update)){
 
     <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 <?=$form->field($model, 'role_id')->dropDownList([User::BUYER=>'Покупатель',User::MANAGER=>'Менеджер', User::ADMIN=>'Администратор'])?>
+    <?=$form->field($model, 'flags')->dropDownList([0=>'Заблокировать',1=>'Активировать'])?>
+
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

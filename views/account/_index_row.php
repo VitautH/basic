@@ -17,43 +17,39 @@ use app\models\Products;
 ?>
 <?php if ($order->paid== 1):
 ?>
-
   <div class="coupon_table_body col-lg-12 col-xs-12" id="coupon_table_body_<?= $order->id?>">
-
-
-
       <div class="col-lg-2 col-xs-12 col-sm-2">
-         <span class="coupon_table_head_phone col-xs-4">Казино: </span>
+         <span class="coupon_table_head_phone col-xs-4"><?= _t('Казино');?>: </span>
         <span class="casino_title col-xs-8 col-sm-12"><?= $order->product->casino->title; ?> </span>
         <br>
-        <a class="to_more to_more_<?= $order->id ?>" data-content="<?= $order->id ?>" href="#">Подробнее</a>
-          <a href="#" id="<?= $order->id?>" class="un_more un_more_<?= $order->id?>">Свернуть</a>
+        <a class="to_more to_more_<?= $order->id ?>" data-content="<?= $order->id ?>" href="#"><?= _t('Подробнее');?></a>
+          <a href="#" id="<?= $order->id?>" class="un_more un_more_<?= $order->id?>"><?= _t('Свернуть');?></a>
       </div>
       <div class="col-lg-2 col-xs-12 col-sm-2">
-          <span class="coupon_table_head_phone col-xs-4">План: </span>
+          <span class="coupon_table_head_phone col-xs-4"><?= _t('Бонус-план');?>: </span>
           <span class="plan_title col-xs-8 col-sm-12 "><?= $order->product->title; ?></span>
     </div>
       <div class="col-lg-2 col-xs-12 col-sm-2">
-          <span class="coupon_table_head_phone col-xs-4">Цена: </span>
+          <span class="coupon_table_head_phone col-xs-4"><?= _t('Цена');?>: </span>
           <span class="price_title col-xs-8 col-sm-12"><?= $order->amount; ?></span>
       </div>
     <div class="account-date col-lg-2 col-xs-12 col-sm-2">
-        <span class="account-date"><span class="coupon_table_head_phone col-xs-4">Дата: </span></span>
+        <span class="account-date"><span class="coupon_table_head_phone col-xs-4"><?= _t('Дата');?>: </span></span>
         <span class="date_title  col-xs-8 col-sm-12"><?= Yii::$app->formatter->asDatetime($order->created_at, 'dd.MM.yyyy'); ?></span>
     </div>
     <div class="account-city col-lg-2 col-xs-12 col-sm-2">
-        <span class="account-city"><span class="coupon_table_head_phone col-xs-4">Город: </span></span>
+        <span class="account-city"><span class="coupon_table_head_phone col-xs-4"><?= _t('Город');?>: </span></span>
         <span class="city_title col-xs-8 col-sm-12"><?= $order->product->casino->city->name; ?></span>
     </div>
 <div class="col-xs-12 coupon_table_head_phone">
-    <a class="to_more_phone to_more_<?= $order->id ?>" data-content="<?= $order->id ?>" href="/products/view?id=<?=$order->product->id?>">Подробнее</a>
+    <a class="to_more_phone to_more_<?= $order->id ?>" data-content="<?= $order->id ?>" href="/products/view?id=<?=$order->product->id?>"><?= _t('Подробнее');?></a>
 </div>
     <div class="account-actions col-lg-2 col-xs-12 col-sm-2">
         <? if ($order->coupons['status'] == Coupon::UNUSED) : ?>
-            <span class="casino-button button-unused"><a data-content="<?= $order->coupons->coupon?>" class="unused_click" href="#">показать</a></span>
+            <span class="casino-button button-unused"><a data-content="<?= $order->coupons->coupon?>" class="unused_click" href="#"><?= _t('Показать');?></a></span>
         <? endif;
         if ($order->coupons['status'] == Coupon::USED) : ?>
-            <span class="casino-button button-used"><a href="">ПОГАШЕН</a></span>
+            <span class="casino-button button-used"><a href=""><?= _t('Погашен');?></a></span>
 
         <? endif; ?>
     </div>
@@ -75,26 +71,22 @@ use app\models\Products;
         ?></div>
         <div class="right_block col-lg-8 col-sm-8">
             <div class="description">
-                <span class="title_description">Описание:</span>
+                <span class="title_description"><?= _t('Описание');?>:</span>
                 <p><?= $order->product->description;?></p>
             </div>
             <div class="cashback">
-                <span class="title_cashback">Кэшбэк:</span>
+                <span class="title_cashback"><?= _t('Кэшбэк');?>:</span>
                 <p> <?= $order->product->cashback;?> BYN </p>
             </div>
             <div class="included_service">
-                <span class="title_included_service">Включенные услуги:</span>
+                <span class="title_included_service"><?= _t('Включенные услуги');?>:</span>
                 <ul>
                     <?php foreach ($order->product->productsServices as $product_service):
                         $id = $product_service->id_service;
                         ?>
                         <li><?=Services::findOne($id)->name;?></li>
                         <?
-
-
                     endforeach;
-
-
                     ?>
                 </ul>
             </div></div>

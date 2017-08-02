@@ -9,6 +9,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 $this->registerCssFile('/css/main.css');
+$this->registerCssFile('/css/trainee.css');
 $this->registerCssFile('/css/normilize.css');
 AppAsset::register($this);
 
