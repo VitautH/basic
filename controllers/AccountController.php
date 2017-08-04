@@ -52,14 +52,12 @@ class AccountController extends MainController
     public function actionIndex()
     {
 
-        return $this->render('index', ['model' => $this->order->findAll(['user_id' => $this->user_id])]);
+        return $this->render('index', ['model' => $this->order->find(['user_id' => $this->user_id])->orderBy(['created_at'=>SORT_DESC])->all()]);
     }
 
     // Профиль
     public function actionProfile()
     {
-
-
         $message = null;
         $model = User::findOne($this->user_id);
         $model->setScenario(User::SCENARIO_UPDATE);
@@ -77,24 +75,19 @@ class AccountController extends MainController
                         $message = 'Информация обновлена';
                         return $this->render('profile', [
                             'model' => $model,
-'message'=> $message
+                            'message' => $message
 
                         ]);
                     }
                 }
             }
 
+        } else {
+            return $this->render('profile', [
+                'model' => $model
+            ]);
         }
-       else  {
-        return $this->render('profile', [
-            'model' => $model,
-
-
-        ]);
     }
-    }
-
-
 
 
     /**
@@ -112,6 +105,7 @@ class AccountController extends MainController
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
     /**
      * @throws \yii\base\ExitException
      */
