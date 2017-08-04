@@ -1,0 +1,405 @@
+.success-view {
+    background-color: #f3f3f3;
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+}
+
+.success-view h2 {
+    color: #000000;
+    font-size: 42px;
+    line-height: 20px;
+    letter-spacing: 1px;
+}
+
+.coupon_table_head {
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.coupon_table_head span {
+
+    font-size: 18px;
+}
+
+.coupon_table_body {
+    background-color: white;
+    padding: 8px;
+    margin-bottom: 15px;
+    width: 1070px;
+    margin-left: 65px;
+}
+
+.coupon_table_body span {
+    font-size: 16px;
+    color: #666666;
+    text-align: center;
+}
+
+.coupon_table_body span.casino_title, .coupon_table_body span.plan_title {
+    color: #cc9966;
+    font-size: 24px;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.coupon_table_body span.price_title,
+.coupon_table_body span.date_title,
+.coupon_table_body span.city_title {
+    font-size: 18px;
+    color: black;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.coupon_table_body a.unused {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 14px 20px 14px 20px;
+    background-color: #cc9966;
+    color: white;
+    font-size: 18px;
+    line-height: 36px;
+    text-transform: uppercase;
+}
+
+.coupon_table_body span.used {
+    display: inline-block;
+    margin-top: 5px;
+    background-color: #666666;
+    color: white;
+    font-size: 18px;
+    line-height: 36px;
+    text-transform: uppercase;
+    padding: 14px 20px 14px 20px;
+}
+
+.coupon_table_body a.to_more {
+    color: #a1a1a1;
+    font-size: 16px;
+    text-decoration: underline;
+
+}
+
+.coupon_table_body a.un_more {
+    display: none;
+    color: #a1a1a1;
+    font-size: 16px;
+    text-decoration: underline;
+}
+
+table.coupon_table .account-date {
+    width: 80px;
+}
+
+table.coupon_table .account-city {
+    width: 180px;
+}
+
+table.coupon_table .account-actions {
+    width: 120px;
+}
+
+/* Buttons */
+
+span.casino-button {
+    margin: 2px;
+    display: inline-block;
+    float: right;
+    margin-top: 10px;
+}
+
+span.casino-button a, span.casino-button a:hover {
+    color: #fff;
+    font-size: 18pt;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    width: 144px;
+    text-transform: uppercase;
+    background-color: #cc9966;
+    border-radius: 2px;
+}
+
+span.casino-button.button-unused a {
+    background-color: #cc9966;
+}
+
+span.casino-button.button-used a {
+    cursor: default;
+    background-color: #484747;
+    color: white;
+}
+
+a.to_more_phone {
+    display: none;
+}
+
+.more {
+    display: none;
+    background-color: white;
+    padding-bottom: 24px;
+    margin-bottom: 10px;
+    padding-top: 37px;
+
+}
+
+.more .right_block {
+    margin-left: 65px
+}
+
+.more .right_block span.title_description, .more .right_block span.title_cashback, .more .right_block span.title_included_service {
+    line-height: 20pt;
+    color: #7f7f7f;
+    font-size: 16px;
+
+}
+
+.more .right_block p {
+    color: black;
+    font-size: 16px;
+    line-height: 20pt;
+
+}
+
+.more .right_block .included_service ul {
+    padding-left: 20px;
+}
+
+/* Modal Pop-Up */
+.coupon_modal {
+    position: fixed;
+    top: 50%;
+    left: 30%;
+    width: 530px;
+    display: none;
+    z-index: 1000;
+}
+
+.coupon_modal .close, .payment_success .close {
+    position: relative;
+    top: -11px;
+    left: 34px;
+    background-color: #cc9966;
+    opacity: 1;
+    width: 35px;
+    height: 35px;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transform-origin: 0 100%;
+    -moz-transform-origin: 0 100%;
+    -ms-transform-origin: 0 100%;
+    -o-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+    cursor: pointer;
+}
+
+.coupon_modal .close:hover,  .payment_success .close:hover{
+    opacity: 1;
+
+}
+
+.coupon_modal .content, .payment_success .content {
+
+    background-color: white;
+    height: 200px;
+    width: 530px;
+
+}
+
+.coupon_modal .content p {
+    color: black;
+    font-size: 18px;
+    line-height: 30pt;
+    text-align: center;
+    display: inline-block;
+}
+
+.coupon_modal .content .code, .payment_success .content .code {
+    color: #cc9966;
+    font-size: 30px;
+    line-height: 30pt;
+    text-align: center;
+}
+
+.payment_success {
+    display: block;
+    position: fixed;
+    top: 30%;
+    left: 30%;
+    width: 530px;
+    z-index: 1000;
+}
+
+.payment_success .content p
+{
+    color: black;
+    font-size: 18px;
+    line-height: 30pt;
+    text-align: center;
+    display: block;
+    padding-top: 40px;
+}
+/*
+* End Modal Pop-Up
+ */
+
+.coupon_table_head_phone {
+    display: none;
+}
+
+.coupon_table_head {
+    margin-left: 25px;
+}
+/*
+Responsive 600 px width
+ */
+@media only screen and (max-width: 600px) {
+    .success-view, .products-index {
+        margin-top: 50px !important;
+        padding-bottom: 100px;
+
+    }
+
+    .success-view .row {
+        margin-left: -15px !important;
+        padding-bottom: 5px;
+    }
+
+    .main {
+        background-color: #f3f3f3;
+    }
+
+    .coupon_table_head {
+        display: none;
+    }
+
+    .coupon_table_head_phone {
+        display: block;
+    }
+
+    .coupon_table_body {
+        padding-bottom: 30px !important;
+    }
+
+    span.casino-button {
+        float: none !important;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        width: 100%;
+    }
+
+    span.casino-button a, span.casino-button a:hover {
+        width: 100%;
+    }
+
+    .coupon_table_body span {
+        text-align: justify;
+    }
+
+    .coupon_table_body span.casino_title, .coupon_table_body span.plan_title {
+        margin-top: 10px;
+        font-size: 16px;
+    }
+
+    .coupon_table_body a.to_more {
+        display: none;
+        margin-left: 25px;
+    }
+
+    .coupon_modal {
+        position: fixed;
+        top: 50%;
+        left: 5%;
+        width: 85%;
+        display: none;
+        z-index: 1000;
+    }
+
+    .coupon_modal .content p {
+        color: black;
+        font-size: 14px;
+        line-height: 20pt;
+        text-align: justify;
+        display: inline-block;
+        padding: 7px;
+    }
+
+    .coupon_modal .content {
+        background-color: white;
+        height: 200px;
+        width: 100%;
+    }
+
+    .coupon_table_body span.price_title, .coupon_table_body span.date_title, .coupon_table_body span.city_title {
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    .coupon_table_head_phone {
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    span.casino-button a, span.casino-button a:hover {
+        font-size: 18px;
+    }
+
+    .to_more_phone {
+        display: block;
+        font-size: 16px;
+        color: #666666;
+        text-align: justify;
+        text-decoration: underline;
+    }
+}
+
+/* Для планшета */
+@media (min-width: 599px) and (max-width: 1224px) {
+
+    .coupon_modal {
+        top: 20%;
+        left: 17%;
+    }
+
+    .coupon_table_body span.casino_title, .coupon_table_body span.plan_title {
+        font-size: 18px;
+    }
+
+    span.casino-button {
+        float: none !important;
+    }
+
+    span.casino-button a, span.casino-button a:hover {
+        width: 110px;
+        font-size: 18px;
+    }
+
+    .coupon_table_body {
+        padding-bottom: 20px !important;
+    }
+
+    .left_block .img > img {
+        width: 85%;
+        height: 85%;
+    }
+
+    .more {
+        display: none;
+        height: 100%;
+
+        background: white;
+        float: left;
+        width: 100%;
+    }
+
+    .more .right_block {
+        margin-left: 0;
+        float: left
+    }
+}

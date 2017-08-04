@@ -43,8 +43,6 @@ $phone = Setting::find()->andWhere(['params' => 'phone'])->asArray()->one();
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-
-
 <body>
 <div class="overlay"></div>
 <?php $this->beginBody() ?>
@@ -52,12 +50,10 @@ $phone = Setting::find()->andWhere(['params' => 'phone'])->asArray()->one();
     <div class="top">
         <div class="container">
             <ul class="top_nav">
-
                 <li class="phone">
                     <span class="glyphicon glyphicon-earphone"></span>
                     <span><?= $phone['value'] ?></span>
                 </li>
-
                 <li class="language_switch">
                     <div>
                         <span <?= (\Yii::$app->language == 'en') ? 'class="active"' : ''; ?>><a
@@ -66,7 +62,6 @@ $phone = Setting::find()->andWhere(['params' => 'phone'])->asArray()->one();
                                     href="<?= \Yii::$app->request->BaseUrl ?>/switch/ru">RU</a></span>
                     </div>
                 </li>
-
                 <li class="li_authority_block">
                     <ul class="authority_block">
                         <li class="login_logaut_block"></li>
@@ -80,17 +75,14 @@ $phone = Setting::find()->andWhere(['params' => 'phone'])->asArray()->one();
                             <li class="singup"><?= Html::a(_t('Зарегистрироваться'), [Yii::$app->request->url . '#'], ['class' => 'singup_form_click']) ?></li>
 
                             <?php
-                        } else {
-
-
+                        }
+                        else {
                             ?>
                             <ul class="nav nav-pills">
-
                                 <li role="presentation" class="dropdown ">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                        aria-haspopup="true" aria-expanded="true">
                                         <?= $this->context->getUserName() ?> <span class="caret"></span>
-
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li><a href="/<?= \Yii::$app->language; ?>/account"><?= _t('Заказы') ?></a></li>
@@ -108,7 +100,6 @@ $phone = Setting::find()->andWhere(['params' => 'phone'])->asArray()->one();
                                     </ul>
                                 </li>
                             </ul>
-
                             <li class="logout"><?= Html::beginForm(['/logout'], 'post')
                                 . Html::submitButton(
                                     _t('Выйти'),
@@ -116,29 +107,22 @@ $phone = Setting::find()->andWhere(['params' => 'phone'])->asArray()->one();
                                 )
                                 . Html::endForm() ?></li>
                             <?php
-
-
                         }
                         ?>
                         </li>
                     </ul>
-
             </ul>
-
-
         </div>
     </div>
     <nav>
         <div class="container">
-
-
             <?php
             Menu::begin();
             echo Menu::widget([
                 'options' => ['class' => 'navbar-nav'],
                 'items' => [
                     [
-                        'template' => '<a href="' . Yii::$app->homeUrl. \Yii::$app->language . '" >' . _t('Главная') . ' </a>',
+                        'template' => '<a href="' . Yii::$app->homeUrl . \Yii::$app->language . '" >' . _t('Главная') . ' </a>',
                         'active' => ($this->context->action->getUniqueId() == 'site/index')
                     ],
                     [
@@ -179,7 +163,7 @@ $phone = Setting::find()->andWhere(['params' => 'phone'])->asArray()->one();
                         'items' => [
                             [
                                 'label' => _t('Главная'),
-                                'url' => Yii::$app->homeUrl. \Yii::$app->language,
+                                'url' => Yii::$app->homeUrl . \Yii::$app->language,
                                 'active' => ($this->context->action->getUniqueId() == 'site/index')
                             ],
 
@@ -234,10 +218,8 @@ $phone = Setting::find()->andWhere(['params' => 'phone'])->asArray()->one();
                                 </div>
                             </div>
                         </div>
-
                         <div class="my-flex-block">
                             <div class="item_slideshow">
-
                             </div>
                         </div>
                     </div>
@@ -245,5 +227,4 @@ $phone = Setting::find()->andWhere(['params' => 'phone'])->asArray()->one();
             </div>
         </div>
     <?php endif; ?>
-
 </header>
