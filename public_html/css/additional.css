@@ -1623,7 +1623,7 @@ input.bonus_calendar_orders[name="bonus_calendar"]  {
     font-size:24px;
     font-weight: bold;
 }
-.coupon_table_body {
+.coupon_table_body, .more, .coupon_table_head {
     width:1070px!important;
     margin-left:65px!important;
 }
@@ -1765,6 +1765,12 @@ div.unpaid_checkbox > label {
     }
 }
 @media screen and (max-width: 767px) {
+    .more{
+        display: none!important;
+    }
+    .un_more{
+        display: none!important;
+    }
     .success-view {
         margin-top: 25px!important;
     }
@@ -1908,6 +1914,12 @@ div.unpaid_checkbox > label {
     footer.footer_error {
         position:absolute;
     }
+    .more{
+        display: none!important;
+    }
+    .un_more{
+        display: none!important;
+    }
 }
 @media screen and (max-width: 767px) {
     .site-error {
@@ -1923,5 +1935,11 @@ div.unpaid_checkbox > label {
     }
     .site-error .row:nth-child(3){
         margin-top:0;
+    }
+    .more{
+        display: none!important;
+    }
+    .un_more{
+        display: none!important;
     }
 }
