@@ -11,7 +11,6 @@ use app\models\Coupon;
 use yii\base\Security;
 use app;
 use app\components\Bepaid;
-use yii\httpclient\Client;
 
 class Order extends BaseOrder
 {
@@ -33,7 +32,7 @@ class Order extends BaseOrder
             [['paid', 'error'], 'boolean'],
             [['product_id', 'amount', 'user_id', 'transaction_id', 'paid'], 'required'],
             [['amount'], 'number'],
-            [['created_at', 'currency','transaction_id'], 'safe'], //datetime
+            [['created_at', 'currency', 'transaction_id'], 'safe'], //datetime
             [['code'], 'safe'], //datetime
             [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Products::className(), 'targetAttribute' => ['product_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
@@ -49,7 +48,6 @@ class Order extends BaseOrder
 
         return $scenarios;
     }
-
 
     public function createOrder(Products $products)
     {
@@ -81,41 +79,34 @@ class Order extends BaseOrder
         }
     }
 
+
     public static function payment($data)
     {
-        $token = $data['additional_data']['vendor']['token'];
-        $model = Order::findOne(['token' => $token]);
-        if (empty($model)) {
-            return false;
-        }
-        else {
+        $model = Order::findOne(['id' => $data['order_id']]);
+        if ($model) {
             $coupon = new Coupon();
-            $response = $coupon->saveCoupon($data['uid']);
-
-            if (!$response) {
+            $response = $coupon->saveCoupon($data['order_id']);
+            $model->setScenario('payment');
+            $model->token = false;
+            $model->transaction_id = $data['uid'];
+            $model->paid = true;
+            $model->coupon_id = $response['id'];
+            if ($model->save()) {
+                return array('status' => Bepaid::STATUS_SUCCESS, 'coupon' => $response['coupon']);
+            } else {
+                Coupon::deleteAll(['id' => $response['id']]);
                 return self::rollback($data);
             }
-
-            else {
-                $model->setScenario('payment');
-                $model->token = null;
-                $model->transaction_id = $data['uid'];
-                $model->paid = true;
-                $model->coupon_id = $response['id'];
-                if ($model->save()) {
-                    return array('status'=>Bepaid::STATUS_SUCCESS, 'coupon'=>$response['coupon']);
-                } else {
-                    Coupon::deleteAll(['id' => $response['id']]);
-
-                    return self::rollback($data);
-                }
-            }
+        } else {
+            return false;
         }
     }
 
+
     /*
-     * Откат транзакции
+     * Откат транзакции. Ошибка выдачи купона
      */
+//ToDo: Вывод ошибки выдочи купона
     public static function rollback($data)
     {
         $token = $data['additional_data']['vendor']['token'];
@@ -126,12 +117,21 @@ class Order extends BaseOrder
         $model->transaction_id = $data['uid'];
         $model->paid = true;
         $model->error = true;
-        if($model->save()){
+        if ($model->save()) {
             return false;
-        }
-        else {
+        } else {
             var_dump($model->getErrors());
             die();
+        }
+    }
+
+    public static function failPayment($data)
+    {
+        $token = $data['token'];
+        if (Order::deleteAll(['token' => $token])) {
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -147,4 +147,18 @@ class Order extends BaseOrder
         }
     }
 
+
+    private function sentEmail($userId)
+    {
+
+    }
+
+    private static function sentSms($userId)
+    {
+        $model = User::findOne(['id' => $userId]);
+        $file = fopen('log.txt', 'a');
+        fwrite($file, $model->phone);
+        fclose($file);
+        return true;
+    }
 }
