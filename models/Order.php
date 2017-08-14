@@ -15,6 +15,10 @@ use app\components\Bepaid;
 class Order extends BaseOrder
 {
     const CURRENCY = 'USD';
+    const PAID = 1;
+    const UNPAID = 0;
+    const VISIBLE=1;
+    const HIDE = 0;
     public $customersEmail;
     private $security;
     private $code;
@@ -82,9 +86,13 @@ class Order extends BaseOrder
 
     public static function payment($data)
     {
+        $file= fopen('log.txt', 'w+' );
+        fwrite($file, $data['order_id']);
         $model = Order::findOne(['id' => $data['order_id']]);
         if ($model) {
+            fwrite($file, 'step1');
             $coupon = new Coupon();
+            fwrite($file, $data['uid']);
             $response = $coupon->saveCoupon($data['order_id']);
             $model->setScenario('payment');
             $model->token = false;
@@ -92,14 +100,17 @@ class Order extends BaseOrder
             $model->paid = true;
             $model->coupon_id = $response['id'];
             if ($model->save()) {
+                fwrite($file, 'ok');
                 return array('status' => Bepaid::STATUS_SUCCESS, 'coupon' => $response['coupon']);
             } else {
+                fwrite($file, 'error');
                 Coupon::deleteAll(['id' => $response['id']]);
                 return self::rollback($data);
             }
         } else {
             return false;
         }
+        fclose($file);
     }
 
 

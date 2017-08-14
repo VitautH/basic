@@ -1436,11 +1436,19 @@ input[name="bonus_calendar"]   {
 }
 .terms_of_use > input[type="checkbox"]:checked + label:before, .unpaid_checkbox > input[type="checkbox"]:checked + label:before {
     border:1px solid #cc9966;
-    background:#fafafa url(../image/checkb.png) no-repeat 3px 3.5px;
+    background:#fafafa url(../image/icons/checkb.png) no-repeat 3px 3.5px;
     width: 18px;
     height: 18px;
     content: "";
 }
+
+#unpaid_orders > input[type="checkbox"]:checked + label:before, .unpaid_checkbox > input[type="checkbox"]:checked + label:before {
+    border:1px solid #cc9966;
+    background:#fafafa url(../image/icons/checkb.png) no-repeat 3px 3.5px;
+    width: 18px;
+    height: 18px;
+    content: "";
+}]
 @media (min-width : 768px) and (max-width : 1224px) {
     .login_singup_popup {
         left: 0;

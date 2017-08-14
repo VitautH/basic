@@ -5,7 +5,7 @@ use yii\widgets\DetailView;
 use app\models\User;
 use app\models\Coupon;
 use yii\widgets\ActiveForm;
-
+use app\models\City;
 $session = Yii::$app->session;
 
 $this->title = _t('Список купонов');
@@ -19,19 +19,42 @@ $this->registerJSFile('/js/account.js', ['depends' => [\yii\web\JqueryAsset::cla
                     <h2><?= _t('Заказы'); ?></h2>
                 </div>
             </div>
-            <!--        <div class="row">-->
-            <!--            <div class="col-lg-offset-1 col-lg-11 col-xs-12 col-sm-12">-->
-            <!--                <div class="filter">-->
-            <!--                </div>-->
-            <!--            </div>-->
-            <!--        </div>-->
-            <!--        <div class="row">-->
-            <!--            <div>-->
-            <!--                <div class="unpaid_checkbox">-->
-            <!--                </div>-->
-            <!--            </div>-->
-            <!--        </div>-->
+            <div class="row">
+                <div class=" col-lg-11 col-xs-12 col-sm-12">
+                    <div class="filter">
+                        <?php $form = ActiveForm::begin([
+                            'id' => 'filter_form',
 
+                        ]) ?>
+                        <select id="city" class="form-control" >
+                            <option disabled="" selected="" hidden=""><?= _t('Выбрать город')?></option>
+                          <?php
+                          foreach (City::find()->asArray()->all() as $city){
+?>
+                              <option value="<?=$city['id']?>"><?=$city['name']?></option>
+    <?
+                          }
+?>
+                        </select>
+                        <input type="date" id="data" class="bonus_calendar bonus_calendar_orders" value="2017-07-11" name="bonus_calendar">
+                        <div class="price_block ">
+                            <h4><?= _t('Стоимость плана (в у.е)')?></h4>
+                            <input type="number" class="price" name="min_price" step="1" min="0" max="100000" placeholder="<?= _t('от')?>">
+                            <input type="number" class="price" name="max_price" step="1" min="0" max="100000" placeholder="<?= _t('до')?>">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <div class="unpaid_checkbox">
+                        <input type="checkbox" id="unpaid_orders" class="unused_checkbox" name="unpaid_orders" value="">
+                        <label for="unpaid_orders"><?=_t('Показать только непогашенные');?></label>
+                    </div>
+                </div>
+            </div>
+            <?php ActiveForm::end() ?>
             <div class="coupon_table_head col-lg-12 col-sm-12 ">
                 <div class="col-lg-3 col-sm-2"><span></span></div>
                 <div class="col-lg-2 col-sm-2"><span><?= _t('Бонус-план'); ?></span></div>
@@ -41,9 +64,11 @@ $this->registerJSFile('/js/account.js', ['depends' => [\yii\web\JqueryAsset::cla
                 <div class="col-lg-4 col-sm-2"><span class="account-actions"><span></span></span></div>
             </div>
             <div class="clearfix"></div>
+            <div class="coupon">
             <? foreach ($model as $order): ?>
                 <?= $this->render('_index_row', ['order' => $order]) ?>
             <? endforeach; ?>
+            </div>
         </div>
     </div>
     <div class="coupon_modal">
