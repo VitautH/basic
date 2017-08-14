@@ -37,4 +37,64 @@ $(document).ready(function () {
         $('.overlay').hide();
         $('.payment_success').hide();
     });
+
+    /*Filter */
+    $('#city').change(function () {
+        var data = $(this).val();
+        $.ajax({
+            url: '/order/filter',
+            type: 'POST',
+            data:  {city:data},
+            success: function(data) {
+                $('.coupon').html(data);
+
+            }
+        })
+    })
+
+    $('#data').change(function () {
+        var data = $(this).val();
+        $.ajax({
+            url: '/order/filter',
+            type: 'POST',
+            data:  {data:data},
+            success: function(data) {
+                $('.coupon').html(data);
+
+            }
+        })
+    })
+
+    $('.price').change(function () {
+        var min_price = $("input[name='min_price']").val();
+        var max_price = $("input[name='max_price']").val();
+        $.ajax({
+            url: '/order/filter',
+            type: 'POST',
+            data:  {min_price:min_price, max_price:max_price},
+            success: function(data) {
+                $('.coupon').html(data);
+
+            }
+        })
+    })
+
+    $('.unused_checkbox').click(function () {
+        if (this.checked){
+        var checked= 1;
+        }
+
+        else {
+            var checked= 0;
+        }
+        $.ajax({
+            url: '/order/filter',
+            type: 'POST',
+            data:  {checked:checked},
+            success: function(data) {
+                $('.coupon').html(data);
+
+            }
+        })
+    })
 });

@@ -11,12 +11,6 @@ $this->title = "Заказ №".$model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['index']];
 $this->params['breadcrumbs'][] = 'Заказ №'. $model->id;
 ?>
-
-
-
-
-
-
 <div class="order-view">
     <div class="container">
 <div class="row">

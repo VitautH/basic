@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\controllers\Base\MainController as MainController;
+use app\models\Coupon;
 use app\models\User;
 use app\models\Order;
 use app\models\Products;
@@ -52,7 +53,71 @@ class AccountController extends MainController
     public function actionIndex()
     {
 
-        return $this->render('index', ['model' => $this->order->find(['user_id' => $this->user_id])->orderBy(['created_at'=>SORT_DESC])->all()]);
+        return $this->render('index', ['model' => $this->order->find()->andWhere(['=', 'user_id', Yii::$app->user->getId()])->andWhere(['paid' => Order::PAID])->andWhere(['visible' => Order::VISIBLE])->orderBy(['created_at' => SORT_DESC])->all()]);
+    }
+
+    /*
+     * Filter Order
+     */
+    public function actionFilter()
+    {
+        if (Yii::$app->request->isAjax) {
+            $request = Yii::$app->request->post();
+            $items = Order::find();
+            $items->select('products.*, casino.id, order.*, order.id as oid, coupon.* ');
+            $items->leftJoin('products', 'products.id = order.product_id');
+            $items->leftJoin('casino', 'casino.id = products.casino_id');
+            $items->leftJoin('products_services', 'products.id = products_services.id_product');
+            $items->leftJoin('coupon', 'coupon.id = order.coupon_id');
+            if (!empty($request['city'])) {
+                $city = $request['city'];
+                $items->where(['=', 'casino.city_id', $city]);
+            }
+            if (!empty($request['data'])) {
+                $created_at = $request['data'];
+                $items->where(['=', 'date_format(`created_at`, "%Y-%m-%d")', $created_at]);
+            }
+            if (!empty($request['min_price']) || !empty($request['max_price'])) {
+                $min_price = $request['min_price'];
+                $max_price = $request['max_price'];
+                if (!empty($min_price)) {
+                    $items->where(['>=', 'price', $min_price]);
+                }
+                if (!empty($max_price)) {
+                    $items->where(['<=', 'price', $max_price]);
+                }
+
+            }
+            if (!empty($request['checked'])&& $request['checked']== Coupon::USED) {
+
+                $items->where(['=', 'coupon.status', Coupon::USED]);
+            }
+            $items->andWhere(['=', 'order.user_id', Yii::$app->user->getId()]);
+            $items->andWhere(['=', 'order.paid', Order::PAID]);
+            $items->andWhere(['=', 'order.visible', Order::VISIBLE]);
+            $items->orderBy(['created_at' => SORT_DESC]);
+            $response = $items->all();
+            unset($request);
+            unset($items);
+
+            return $this->renderPartial('_ajax_index', [
+                'response' => $response
+
+            ]);
+        }
+    }
+
+    /*
+     * Hide Used Coupon
+     */
+    public function actionCouponHide($slug)
+    {
+        $model = Order::findOne(['id' => $slug, 'user_id' => Yii::$app->user->getId()]);
+        if ($model) {
+            $model->visible = Order::HIDE;
+            $model->save();
+            $this->redirect(Yii::$app->request->referrer);
+        }
     }
 
     // Профиль

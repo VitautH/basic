@@ -34,7 +34,6 @@ class OrderController extends MainController
 
     public function beforeAction($action)
     {
-
         if ($this->getRole() == User::GUEST) {
 
             throw new ForbiddenHttpException('Доступ запрещён');
@@ -49,12 +48,11 @@ class OrderController extends MainController
         $request = Yii::$app->request;
         if ($request->isPost) {
             $product_id = $request->post()['Products']['id'];
-            $order= new Order();
+            $order = new Order();
             $response = $order->createOrder(Products::findOne($product_id));
             if ($response !== false) {
                 $this->redirect($response);
-            }
-            else {
+            } else {
                 throw new ForbiddenHttpException('Произошла ошбка при оплате');
             }
         } else {
@@ -78,56 +76,11 @@ class OrderController extends MainController
     // ToDo: переписать!
     public function actionView($id)
     {
-
-
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-
-    }
-//ToDo: метод отправки письма!!
-
-
-    /**
-     * @return string
-     * @throws ForbiddenHttpException
-     */
-    public function actionPayment()
-    {
-
-        $this->order->scenario = 'payment';
-        $request = Yii::$app->request;
-        if ($request->isPost) {
-            $data = $request->post();
-            if ($data['status'] == 1) {
-                $order = Order::findOne($data['id']);
-                $response = $order->payment($data);
-                if (!$order->payment($data)) {
-                    throw new ForbiddenHttpException('Произошла ошибка!');
-
-                } else {
-                    return $this->redirect('/account/');
-                    // ToDo: сделать редирект WebPay API
-                    //  return $this->redirect(['/order/success', 'id' => $this->order->id]);
-                    /*return $this->render('success', [
-                        'model' => $response,
-                    ]);*/
-                }
-
-            }
-
-        } else {
-            throw new ForbiddenHttpException('Произошла ошибка!');
-        }
-
     }
 
-    public function actionSuccess()
-    {
-
-    }
-
-// ToDo: Проверить
     protected function findModel($id)
     {
         if (($model = $this->order->findOne($id)) !== null) {
