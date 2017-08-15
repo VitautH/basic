@@ -63,6 +63,23 @@ $config = [
         ],
     ],
     'components' => [
+        'assetManager' => [
+            'bundles' => [
+                'yii\bootstrap\BootstrapAsset' => [
+                    'sourcePath' => null,
+                    'basePath' => '@webroot',
+                    'baseUrl' => '@web',
+                    'css' => ['css/bootstrap.css'],
+                ],
+                'dosamigos\google\maps\MapAsset' => [
+                    'options' => [
+                        'key' => 'AIzaSyDocESGs-Hgw5vb8hUxRrtQJ4goSX4nRBU',
+                        'language' => 'en',
+                        'version' => '3.1.18'
+                    ]
+                ],
+            ],
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'xqU70zFOHQMeMTNlxDc8VSNPhp6G1b7d',
@@ -108,6 +125,12 @@ $config = [
                 ],
             ],
         ],
+
+//        'notifyPayment'=> [
+//            'class'=>'app\models\Order'
+//        ],
+
+
         'db' => require(__DIR__ . '/db.php'),
 
         'urlManager' => [
@@ -130,8 +153,11 @@ $config = [
                 '/<lang:en|ru>/casino' => 'casino/index',
                 '/<lang:en|ru>/casino/view' => 'casino/view',
                 '/<lang:en|ru>/manager' => 'manager/index',
-                '/switch/<lang>'=> 'lang/change',
-               // '/<lang:en|ru>/<slug:\w+>.html' => 'page/page-view',
+                '/<lang:en|ru>/manager/check-sms_code' => 'manager/check-sms_code',
+                '/switch/<lang>' => 'lang/change',
+                '/order-hide/<slug>' => 'account/coupon-hide',
+                '/order/filter' => 'account/filter',
+                // '/<lang:en|ru>/<slug:\w+>.html' => 'page/page-view',
             ],
         ],
 
@@ -159,5 +185,4 @@ if (YII_ENV_DEV) {
         'allowedIPs' => ['127.0.0.1', '::1'],
     ];
 }
-
 return $config;
